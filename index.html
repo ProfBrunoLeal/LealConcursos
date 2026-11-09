@@ -21,34 +21,25 @@ h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.12;margin:0 0 14px;max-width:1
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
 .chips span{background:rgba(255,255,255,.15);border-radius:999px;padding:5px 12px;font-size:.88rem}
 .btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none}
+.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;text-align:center}
 .btn.z{background:var(--zap);color:#fff}
 .btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.btn.p{background:var(--accent);color:#fff}
 section{padding:44px 0}
 h2{font-size:1.55rem;margin:0 0 6px}
 .lead{color:var(--muted);max-width:38em;margin:0 0 22px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
 .card h3{margin:0 0 4px;font-size:1.08rem}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
+.card p{margin:0 0 14px;color:var(--muted);font-size:.95rem}
 .when{margin:10px 0 14px;font-weight:600;color:var(--accent);font-size:.95rem}
-.card .btn{padding:10px 16px;font-size:.92rem}
+.card .btn{padding:10px 16px;font-size:.92rem;display:block}
 .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.ico{font-size:1.5rem;margin-bottom:6px}
 .cta{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:20px;padding:30px 24px}
 .cta h2{margin-bottom:6px}.cta p{margin:0 0 18px;opacity:.93}
-.cta .btn.p{background:#fff;color:#0f2a6b}
-.loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.cta .btn.white{background:#fff;color:#0f2a6b}
 footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center}
-
-.prof{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
-@media(max-width:700px){.prof{grid-template-columns:1fr}}
-.prof img.main{width:100%;border-radius:18px;display:block;border:1px solid var(--line)}
-.who{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
-.who b{font-size:1.15rem;display:block}.who span{color:var(--muted);font-size:.9rem}
-.prof p{color:var(--muted);margin:0 0 10px}
-.logo{margin-bottom:28px}.logo-svg{height:56px;width:auto;display:block}
+.logo-svg{height:56px;width:auto;display:block}
 .heroin{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center}
 .pic{display:flex;justify-content:center}
 .pic img{width:100%;max-width:340px;aspect-ratio:1;object-fit:cover;border-radius:28px;border:4px solid rgba(255,255,255,.85);box-shadow:0 18px 40px rgba(0,0,0,.35)}
@@ -56,23 +47,89 @@ footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center}
 </style>
 </head>
 <body>
+
 <header class="hero">
   <div class="wrap">
-    <div class="logo"><svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="Leal Concursos">
-<defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14d8b0"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
-<rect x="4" y="4" width="56" height="56" rx="16" fill="url(#gh)"/>
-<path d="M22 17V43H36" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M32 35L45 22M36 22H45V31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-<text x="74" y="36" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="31" font-weight="800" letter-spacing="1.5" fill="#ffffff">LEAL</text>
-<text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
-</svg></div>
-    <div class="heroin"><div class="txt">
-    <h1>Sua aprovação em escolas técnicas e carreiras militares começa aqui.</h1>
-    <p>Curso com todas as matérias, em turmas presenciais na Vila São Luís, Duque de Caxias, com o Prof. Bruno Leal, professor há 29 anos.</p>
-    <div class="chips"><span>Cefet</span><span>FAETEC</span><span>ESA</span><span>EEAr</span><span>Fuzileiros Navais</span></div>
-    <div class="btns">
-      <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Falar no WhatsApp</a>
-      <a class="btn s" href="#turmas">Ver turmas e horários</a>
+    <div class="logo">
+      <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="Leal Concursos">
+        <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14d8b0"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
+        <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#gh)"/>
+        <path d="M22 17V43H36" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M32 35L45 22M36 22H45V31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="74" y="36" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="31" font-weight="800" letter-spacing="1.5" fill="#ffffff">LEAL</text>
+        <text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
+      </svg>
     </div>
+    <div class="heroin">
+      <div class="txt">
+        <h1>Sua aprovação em escolas técnicas e carreiras militares começa aqui.</h1>
+        <p>Curso com todas as matérias, em turmas presenciais na Vila São Luís, Duque de Caxias, com o Prof. Bruno Leal, professor há 29 anos.</p>
+        <div class="chips"><span>Cefet</span><span>FAETEC</span><span>ESA</span><span>EEAr</span><span>Fuzileiros Navais</span></div>
+        <div class="btns">
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn s" href="#turmas">Ver turmas e horários</a>
+        </div>
+      </div>
+      <div class="pic">
+        <img alt="Prof. Bruno Leal, professor do Leal Concursos" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAIwAjADASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAQACAwQFBgcI/8QASRAAAQQBAwIEAwUFBgMFBwUAAQACAxEEBRIhMUEGE1FhInGBFDKRobEHI0LB0RUzUmJy4STw8UNTc4KiFjVEVZKTlCVUY4PS/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAECAwQFBv/EACwRAQEAAgEEAQQCAQQDAQAAAAABAhEDBBIhMUEFEzJRFGEiI3GBkTNCUtH/2gAMAwEAAhEDEQA/AO6EfqjspScIrimkRZx0SDaUtJAKmkdJUpKSpA2kUaSUASSRpUBJII9ECspJI2gakAiBR5TqQNSRSrlAEeqVJBAgkikgSKSSBJJJIEkklSA9kCkkikkkgEQigWPnkUgLJ6IHJI0lSBWkgkgKCSSAHqlSSKKCBRKRRDUgikEASTkECQ6JJIEmkonoggCSKSCtnZcOFjOnyX7I29+pJ7ADufZcJ+0LLysnT8bz9MyMfGEoc2d72nqOhaDYK6LNd9s8ZY2LLzDh432kM7OkJ2g/Qfqo9ehZrGrYelut0EV5GSB6VTW/Ur2cGuPKZVzzvdNN3FLX48bozdC0Fp9RXCmJXP6fj6pokYxY4hqGC3iIh4bJGPQ31V+CPKzykklSmzEkj0Q7oCmpwTUVzvjnjQwR/3zP1W7F9xvyCwvHXOjxtHG6eMX9Vvt6Cui75f+PFiflV9BFJcGyCKCKIQSSCSBJUkkgVIFOtBUBFII1SAJVyikEBSSSQDhJJFA1GkUlQqSSRQBJEBGlAEkeEkA7pEIpIBSSSXZAkkkkAoIgV0SSRSQKJQKIagnFNKAIhJAIHJIoIpFNKcgiAlwihSAoFIFIoBSVIoFAECiUCgSSVeiVIMnVdGh1DLhy2zZGLmRNLGzQOolp7G+oU+nadDgRvERe97zukkkdue8+pKvJLfflrSans2kiigsqo6t9odiGDDFTTfBv7Rju5SYWNHh4sWPCKZG2h6n3VkhKle7xpAoJUndECVlTaRpFDm+ECQRSKBqVI0kiuc8c/+68cXX/Ex/qt/HgLB8cf+7cb1+0x/qt4Lvl/48WJ+VXkqRSXBsEUkkQkkkkBQCSSBI0gLRQEJIBFAkqSSVCSSRQJJJJAEkUECSCSVIEiAlSKAUgnIVSBJJJKhIgJksscIBmeGAmgT6rN1DxBpunRCTJyWNaQCDfB61z9EGugvO9V/appW/:Index.html Complete Código Source">
+      </div>
     </div>
-    <div class="pic"><img alt="Prof. Bruno Leal, professor do Leal Concursos" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAIwAjADASIAAhEBAxEB/8QAHAAAAQUBAQEAAAAAAAAAAAAAAQACAwQFBgcI/8QASRAAAQQBAwIEAwUFBgMFBwUAAQACAxEEBRIhMUEGE1FhInGBFDKRobEHI0LB0RUzUmJy4STw8UNTc4KiFjVEVZKTlCVUY4PS/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAECAwQFBv/EACwRAQEAAgEEAQQCAQQDAQAAAAABAhEDBBIhMUEFEzJRFGEiI3GBkTNCUtH/2gAMAwEAAhEDEQA/AO6EfqjspScIrimkRZx0SDaUtJAKmkdJUpKSpA2kUaSUASSRpUBJII9ECspJI2gakAiBR5TqQNSRSrlAEeqVJBAgkikgSKSSBJJJIEkklSA9kCkkikkkgEQigWPnkUgLJ6IHJI0lSBWkgkgKCSSAHqlSSKKCBRKRRDUgikEASTkECQ6JJIEmkonoggCSKSCtnZcOFjOnyX7I29+pJ7ADufZcJ+0LLysnT8bz9MyMfGEoc2d72nqOhaDYK6LNd9s8ZY2LLzDh432kM7OkJ2g/Qfqo9ehZrGrYelut0EV5GSB6VTW/Ur2cGuPKZVzzvdNN3FLX48bozdC0Fp9RXCmJXP6fj6pokYxY4hqGC3iIh4bJGPQ31V+CPKyclk+bGIY4/wC7gDtxv/E4j9Fwzxm7ZfDeN8NArC8SgZWXpmn9RLN5rx/lbz+q3geVg6Z/x+tZmodYo/8Ah4T7D7x/H9E4/G8ky8+G2UggRwlS5tEklSSyEkj0Q7oCmpwTUVzvjnjQwR/3zP1W7F9xvyCwvHXOjxtHG6eMX9Vvt6Cui75f+PFiflV9BFJcGyCKCKIQSSCSBJUkkgVIFOtBUBFII1SAJVyikEBSSSQDhJJFA1GkUlQqSSRQBJEBGlAEkeEkA7pEIpIBSSSXZAkkkkAoIgV0SSRSQKJQKIagnFNKAIhJAIHJIoIpFNKcgiAlwihSAoFIFIoBSVIoFAECiUCgSSVeiVIMnVdGh1DLhy2zZGLmRNLGzQOolp7G+oU+nadDgRvERe97zukkkdue8+pKvJLfflrSans2kiigsqo6t9odiGDDFTTfBv7Rju5SYWNHh4sWPCKZG2h6n3VkhKle7xpAoJUndECVlTaRpFDm+ECQRSKBqVI0kiuc8c/+68cXX/Ex/qt/HgLB8cf+7cb1+0x/qt4Lvl/48WJ+VXkqRSXBsEUkkQkkkkBQCSSBI0gLRQEJIBFAkqSSVCSSRQJJJJAEkUECSCSVIEiAlSKAUgnIVSBJJJKhIgJksscIBmeGAmgT6rN1DxBpunRCTJyWNaQCDfB61z9EGugvO9V/appW/:Index.html Complete Código Source]
+  </div>
+</header>
+
+<main class="wrap">
+  
+  <!-- SEÇÃO DE TURMAS -->
+  <section id="turmas">
+    <h2>Nossas Turmas</h2>
+    <p class="lead">Prepare-se com foco e método para garantir sua vaga nas melhores instituições.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Intensivo Pré-Técnico</h3>
+        <p>Foco nos exames do Cefet, FAETEC e Colégios Técnicos.</p>
+        <div class="when">Aulas presenciais</div>
+        <a class="btn p" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Intensivo%20Pr%C3%A9-T%C3%A9cnico." target="_blank">Saiba mais</a>
+      </div>
+      <div class="card">
+        <h3>Carreiras Militares</h3>
+        <p>Preparação sólida para ESA, EEAr, Fuzileiros Navais e afins.</p>
+        <div class="when">Turmas regulares</div>
+        <a class="btn p" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20as%20Turmas%20Militares." target="_blank">Saiba mais</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO DE SIMULADOS ONLINE (NOVA!) -->
+  <section id="simulados">
+    <h2>Simulados Online</h2>
+    <p class="lead">Pratique com questões gabaritadas e resoluções em passo a passo do professor.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Simulado de Porcentagem</h3>
+        <p>Questões de concursos anteriores com correção interativa e gabarito comentado.</p>
+        <div class="when">Matemática · Aula 5</div>
+        <a class="btn p" href="simulado-porcentagem.html">Fazer Simulado</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA WHATSAPP -->
+  <section>
+    <div class="cta">
+      <h2>Ficou com alguma dúvida?</h2>
+      <p>Fale diretamente com a nossa equipe pelo WhatsApp e garanta a sua vaga na próxima turma.</p>
+      <a class="btn white" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20o%20Leal%20Concursos." target="_blank">Conversar no WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Leal Concursos · Vila São Luís, Duque de Caxias - RJ<br>
+    Prof. Bruno Leal · 29 anos de experiência em educação
+  </div>
+</footer>
+
+</body>
+</html>
