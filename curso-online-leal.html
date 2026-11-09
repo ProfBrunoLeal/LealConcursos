@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Curso Online – Leal Concursos</title>
+<style>
+:root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--ok:#12a150;--warn:#b26a00;--warnbg:#fff4de;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f121a;--card:#181d28;--text:#eef1f7;--muted:#9aa3b6;--line:#2a3142;--accent:#7aa2ff;--ok:#2fbf71;--warn:#f0b35a;--warnbg:#33260f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f121a;--card:#181d28;--text:#eef1f7;--muted:#9aa3b6;--line:#2a3142;--accent:#7aa2ff;--ok:#2fbf71;--warn:#f0b35a;--warnbg:#33260f;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:680px;margin:0 auto;padding:18px 16px 40px}
+h1{font-size:1.3rem;margin:4px 0 2px}
+.sub{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+.tabs{display:flex;gap:8px;margin-bottom:12px}
+.tab{flex:1;padding:11px;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
+.prog{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.85rem;margin-bottom:12px}
+.bar{flex:1;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+.item{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.item.done{opacity:.65}
+.chk{width:22px;height:22px;accent-color:var(--ok);flex:none}
+.t{flex:1;min-width:0}
+.t b{display:block}
+.t small{color:var(--muted)}
+.go{flex:none;text-decoration:none;background:var(--accent);color:#fff;font-weight:600;font-size:.9rem;padding:8px 14px;border-radius:999px}
+.flag{display:inline-block;background:var(--warnbg);color:var(--warn);font-size:.75rem;border-radius:6px;padding:1px 7px;margin-left:6px}
+.note{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:12px 14px;color:var(--muted);font-size:.88rem;margin-top:14px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Curso Online – Leal Concursos</h1>
+  <div class="sub">Prof. Bruno Leal · versão preliminar</div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-mat" aria-selected="true">Matemática</button>
+    <button class="tab" role="tab" id="t-por" aria-selected="false">Português</button>
+  </div>
+  <div class="prog"><div class="bar"><i id="bar"></i></div><span id="pt"></span></div>
+  <div id="list"></div>
+  <div class="note">Rascunho: os títulos de cada aula e a divisão em partes (parte 1, 2, 3) ainda serão preenchidos. Os itens com aviso amarelo têm link repetido e precisam ser conferidos.</div>
+</main>
+<script>
+const Y="https://youtu.be/";
+const CURSO={
+ mat:{nome:"Matemática",aulas:[
+  ["00","https://www.youtube.com/live/59Hl7q9vt7k"],["01","https://www.youtube.com/watch?v=mGDILtrR4BY"],
+  ["02",Y+"nhTMpkQhftI"],["03",Y+"4-HJ9nvXvXI"],["04",Y+"VECFoTMcfAY"],["05",Y+"UZR3ESkHxGc"],["06",Y+"qhrEnA117cw"],
+  ["07",Y+"oMwoi0SUa4U"],["08",Y+"q5HKMJHN1qk"],["09",Y+"28NZclt25ns"],["10",Y+"_1Rtmkx6mUg"],["11",Y+"RAy8iiV59Ss"],
+  ["12",Y+"Jgx8kuo66A0",1],["13",Y+"niCuP7F-EKg"],["14",Y+"gPATT8BNSUM"],["15",Y+"S035BWqhSws"],["16",Y+"E5IOaPxKy8s"],
+  ["17",Y+"s_01OvHp47w"],["18",Y+"nL6wLFJmTOg"],["19",Y+"RbQ3dVFxeS4"],["20",Y+"deWaNI0Xyvw",1]]},
+ por:{nome:"Português",aulas:[
+  ["01",Y+"N6UoByjptQM"],["02",Y+"j1Rvk15kzjs"],["03",Y+"LvGDlEiud3I"],["04",Y+"YstRyYMM8Qg"],["05",Y+"AhebcKawurQ"],
+  ["06",Y+"WSbZ4AyRgMs"],["07",Y+"0wdUCifoO7Y"],["08",Y+"ez1bU7Ehe8Y"],["09",Y+"7ayUvUBRBxc"],["10",Y+"qMdgND5VB5M"],
+  ["11",Y+"qyL3ydeCfAo"],["12",Y+"Jgx8kuo66A0",1],["13",Y+"vCSDZxZVfEM"],["14",Y+"_kLO7RlA_l8"],["15",Y+"MQkPC2ycwRA"],
+  ["16",Y+"6EHTKDHIeBg"],["17",Y+"pAyXCtFqixc"],["18",Y+"qQX90u8hft4"],["19",Y+"7vO_ocixBW4"],["20",Y+"deWaNI0Xyvw",1]]}
+};
+let atual="mat", feitas={};
+try{ feitas=JSON.parse(localStorage.getItem("leal-feitas")||"{}"); }catch(e){ feitas={}; }
+function salvar(){ try{ localStorage.setItem("leal-feitas",JSON.stringify(feitas)); }catch(e){} }
+function desenhar(){
+  const c=CURSO[atual], box=document.getElementById("list"); box.innerHTML="";
+  let n=0;
+  c.aulas.forEach(([num,url,dup])=>{
+    const k=atual+num, ok=!!feitas[k]; if(ok) n++;
+    const d=document.createElement("div"); d.className="item"+(ok?" done":"");
+    const cb=document.createElement("input"); cb.type="checkbox"; cb.className="chk"; cb.checked=ok;
+    cb.onchange=()=>{ feitas[k]=cb.checked; salvar(); desenhar(); };
+    const t=document.createElement("div"); t.className="t";
+    t.innerHTML="<b>Aula "+num+(dup?'<span class="flag">link repetido</span>':"")+"</b><small>"+c.nome+"</small>";
+    const a=document.createElement("a"); a.className="go"; a.href=url; a.target="_blank"; a.rel="noopener"; a.textContent="Assistir";
+    d.append(cb,t,a); box.appendChild(d);
+  });
+  document.getElementById("bar").style.width=(n/c.aulas.length*100)+"%";
+  document.getElementById("pt").textContent=n+" de "+c.aulas.length+" assistidas";
+  document.getElementById("t-mat").setAttribute("aria-selected",atual==="mat");
+  document.getElementById("t-por").setAttribute("aria-selected",atual==="por");
+}
+document.getElementById("t-mat").onclick=()=>{atual="mat";desenhar();};
+document.getElementById("t-por").onclick=()=>{atual="por";desenhar();};
+desenhar();
+</script>
+</body>
+</html>
