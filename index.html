@@ -3,156 +3,155 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Simulado – Leal Concursos</title>
-<meta name="description" content="Simulado de Matemática (porcentagem) do Leal Concursos, com resolução comentada pelo professor.">
+<title>Leal Concursos – Preparatório para Cefet, FAETEC e pré-militar</title>
+<meta name="description" content="Leal Concursos: preparatório presencial para Cefet, FAETEC, ESA, EEAr e Fuzileiros Navais, em Duque de Caxias, com o Prof. Bruno Leal.">
 <meta name="theme-color" content="#0f2a6b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--text:#1b1f2a;--muted:#5d6577;--line:#dde1ea;--accent:#2457d6;--ok:#17803d;--okbg:#e5f6ec;--bad:#c0262d;--badbg:#fdeaea;
+:root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--hero1:#0f2a6b;--hero2:#1f4fd8;--zap:#12a150;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1b2029;--text:#eceff5;--muted:#9aa3b5;--line:#2c3342;--accent:#7aa2ff;--ok:#5fd08a;--okbg:#14301f;--bad:#ff8a8f;--badbg:#3a1a1c;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#12151c;--card:#1b2029;--text:#eceff5;--muted:#9aa3b5;--line:#2c3342;--accent:#7aa2ff;--ok:#5fd08a;--okbg:#14301f;--bad:#ff8a8f;--badbg:#3a1a1c;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f121a;--card:#181d28;--text:#eef1f7;--muted:#9aa3b6;--line:#2a3142;--accent:#7aa2ff;--hero1:#0a1636;--hero2:#16339a;--zap:#2fbf71;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f121a;--card:#181d28;--text:#eef1f7;--muted:#9aa3b6;--line:#2a3142;--accent:#7aa2ff;--hero1:#0a1636;--hero2:#16339a;--zap:#2fbf71;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:640px;margin:0 auto;padding:16px}
-h1{font-size:1.15rem;margin:4px 0 2px}
-.sub{color:var(--muted);font-size:.85rem;margin-bottom:12px}
-.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:14px}
-.bar i{display:block;height:100%;background:var(--accent);transition:width .3s}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
-.tag{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
-.q{font-size:1.05rem;margin:8px 0 14px}
-.row{display:flex;gap:8px}
-input{flex:1;min-width:0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--text);font:inherit}
-input:disabled{opacity:.8}
-.btn{padding:12px 18px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-weight:600;cursor:pointer}
-.btn.full{width:100%;margin-top:14px}
-.hint{color:var(--muted);font-size:.85rem;margin-top:6px}
-.res{font-weight:600;margin-top:14px;padding:10px 12px;border-radius:10px}
-.res.ok{background:var(--okbg);color:var(--ok)}
-.res.bad{background:var(--badbg);color:var(--bad)}
-.sol{margin-top:12px;padding:12px;border-left:4px solid var(--accent);background:var(--bg);border-radius:6px;font-size:.95rem;white-space:pre-line}
-[hidden]{display:none}
-.big{font-size:2.2rem;font-weight:700;text-align:center;margin:8px 0}
-.rev{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line);font-size:.9rem}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:48px 0 56px}
+.logo{font-weight:700;letter-spacing:.02em;margin-bottom:32px}
+.logo span{color:#7ee8d2}
+h1{font-size:clamp(1.9rem,6vw,3rem);line-height:1.12;margin:0 0 14px;max-width:17em}
+.hero p{font-size:1.08rem;max-width:36em;opacity:.93;margin:0 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.chips span{background:rgba(255,255,255,.15);border-radius:999px;padding:5px 12px;font-size:.88rem}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none}
+.btn.z{background:var(--zap);color:#fff}
+.btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+section{padding:44px 0}
+h2{font-size:1.55rem;margin:0 0 6px}
+.lead{color:var(--muted);max-width:38em;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin:0 0 4px;font-size:1.08rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.when{margin:10px 0 14px;font-weight:600;color:var(--accent);font-size:.95rem}
+.card .btn{padding:10px 16px;font-size:.92rem}
+.band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ico{font-size:1.5rem;margin-bottom:6px}
+.cta{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:20px;padding:30px 24px}
+.cta h2{margin-bottom:6px}.cta p{margin:0 0 18px;opacity:.93}
+.cta .btn.p{background:#fff;color:#0f2a6b}
+.loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center}
+
+.prof{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
+@media(max-width:700px){.prof{grid-template-columns:1fr}}
+.prof img.main{width:100%;border-radius:18px;display:block;border:1px solid var(--line)}
+.who{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
+.who b{font-size:1.15rem;display:block}.who span{color:var(--muted);font-size:.9rem}
+.prof p{color:var(--muted);margin:0 0 10px}
+.logo{margin-bottom:28px}.logo-svg{height:56px;width:auto;display:block}
+.heroin{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center}
+.pic{display:flex;justify-content:center}
+.pic img{width:100%;max-width:340px;aspect-ratio:1;object-fit:cover;border-radius:28px;border:4px solid rgba(255,255,255,.85);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+@media(max-width:760px){.heroin{grid-template-columns:1fr}.pic{order:-1}.pic img{max-width:240px;border-radius:50%}}
 </style>
 </head>
 <body>
-<main>
-<a href="index.html" style="color:var(--accent);font-size:.9rem;text-decoration:none">← Voltar ao site</a>
-<h1>Simulado – Leal Concursos</h1>
-<div class="sub">Matemática · Aula 5 · Porcentagem · Prof. Bruno Leal</div>
-<div class="bar"><i id="bar"></i></div>
-<div class="card" id="quiz">
-  <div class="tag" id="tag"></div>
-  <div class="q" id="q"></div>
-  <div class="row"><input id="ans" inputmode="decimal" autocomplete="off" placeholder="Digite sua resposta"><button class="btn" id="ok">Responder</button></div>
-  <div class="hint" id="hint"></div>
-  <div id="fb" hidden>
-    <div class="res" id="res"></div>
-    <div class="sol" id="sol"></div>
-    <button class="btn full" id="next"></button>
+<header class="hero">
+  <div class="wrap">
+    <div class="logo"><svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="Leal Concursos">
+<defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14d8b0"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
+<rect x="4" y="4" width="56" height="56" rx="16" fill="url(#gh)"/>
+<path d="M22 17V43H36" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32 35L45 22M36 22H45V31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="74" y="36" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="31" font-weight="800" letter-spacing="1.5" fill="#ffffff">LEAL</text>
+<text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
+</svg></div>
+    <div class="heroin"><div class="txt">
+    <h1>Sua aprovação em escolas técnicas e carreiras militares começa aqui.</h1>
+    <p>Curso com todas as matérias, em turmas presenciais na Vila São Luís, Duque de Caxias, com o Prof. Bruno Leal, professor há 29 anos.</p>
+    <div class="chips"><span>Cefet</span><span>FAETEC</span><span>ESA</span><span>EEAr</span><span>Fuzileiros Navais</span></div>
+    <div class="btns">
+      <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="btn s" href="#turmas">Ver turmas e horários</a>
+    </div>
+    </div>
+    <div class="pic"><img alt="Prof. Bruno Leal, professor do Leal Concursos" src="foto-topo.jpg"></div>
+    </div>
   </div>
-</div>
-<div class="card" id="end" hidden>
-  <div class="tag">Resultado</div>
-  <div class="big" id="score"></div>
-  <div id="review"></div>
-  <button class="btn full" id="again">Refazer simulado</button>
-</div>
-</main>
-<script>
-// Para trocar ou acrescentar questões, edite apenas esta lista.
-// ok: respostas numéricas aceitas · resp: texto da resposta correta · dica: unidade pedida.
-const QUESTOES = [
- {fonte:"Professor de Matemática – SC/2023", dica:"Responda em reais.", ok:[80], resp:"R$ 80,00",
-  enunciado:"Em uma feira, Maria gastou 40% de todo o dinheiro que tinha em sua carteira. Se o valor gasto por Maria foi de R$ 32,00, então é correto afirmar que o valor total que ela tinha na carteira era de:",
-  solucao:"Regra de três:\nR$ → %\n32 → 40\nx → 100\n40x = 32 · 100 → 40x = 3200 → x = 80 reais.\n\nOu: 40% → 32 reais; 10% → 32 ÷ 4 = 8 reais; 100% → 8 × 10 = 80 reais."},
- {fonte:"IBFC/2023", dica:"Responda em reais.", ok:[42], resp:"R$ 42,00",
-  enunciado:"Paulo foi a uma loja e pagou R$ 238,00 por um produto, já incluso 15% de desconto sobre o preço do produto exposto na vitrine. Nessas condições, o valor do desconto atribuído ao preço do produto foi de:",
-  solucao:"Toda grandeza, ANTES de qualquer aumento ou de qualquer desconto, é o 100% na regra de três.\nR$ → %\n238 → 85 (100% − 15%)\nx → 15\n85x = 238 · 15 → 85x = 3570 → x = 42 reais."},
- {fonte:"IBFC/2023", dica:"Responda em reais.", ok:[12.75], resp:"R$ 12,75",
-  enunciado:"Em uma feira local, um quilo do tomate custava R$ 8,50. No fim da feira comprando três quilos de tomates o cliente teria um desconto de 50% no valor. Com o desconto o cliente pagará:",
-  solucao:"1) 3 kg de tomate → 3 × 8,50 = 25,50\n2) Com 50% de desconto: 25,50 ÷ 2 = 12,75 reais."},
- {fonte:"IBFC/2024", dica:"Responda com o número de entregadores.", ok:[42], resp:"42 entregadores",
-  enunciado:"Em uma cidade, há duas empresas, A e B, que oferecem serviços de entrega de alimentos. Na empresa A, 25% dos entregadores são ciclistas, enquanto que na empresa B, 15% dos entregadores utilizam bicicletas. Se a empresa A possui 120 entregadores e a empresa B tem 80 entregadores, o número total de entregadores que utilizam bicicletas é de:",
-  solucao:"1) Empresa A → 25% de 120 = 30\n2) Empresa B → 15% de 80 = 12\nLogo: total → 30 + 12 = 42."},
- {fonte:"IBFC/2024", dica:"Responda com o número de laranjeiras.", ok:[102], resp:"102 laranjeiras",
-  enunciado:"Um agricultor plantou uma área retangular de terra com laranjeiras. Ele plantou 8 fileiras de laranjeiras, e em cada fileira, ele plantou 15 laranjeiras espaçadas igualmente. No entanto, devido a uma praga, 15% das laranjeiras morreram. O número de laranjeiras que ainda restaram é de:",
-  solucao:"1) Total → 8 × 15 = 120 laranjeiras\n2) Morreram → 15% de 120 = 18\n3) Restaram → 120 – 18 = 102 laranjeiras."},
- {fonte:"IBFC/2024", dica:"Responda em reais.", ok:[1248], resp:"R$ 1.248,00",
-  enunciado:"Um smartphone tem um preço inicial de R$ 1.500,00. A taxa de seguro é de 4% sobre o valor do smartphone e os clientes que optam pelo pagamento à vista recebem um desconto de 20% sobre o custo total (inclui o seguro). Se um cliente efetuou o pagamento à vista, ele gastou:",
-  solucao:"1) Seguro → 4% de 1.500 = 60\n2) Custo total do smartphone → 1.500 + 60 = 1.560\n3) Desconto → 20% de 1.560 = 312\nLogo: 1.560 – 312 = 1.248 reais."},
- {fonte:"EBSERH – IBFC/2023", dica:"Responda em reais.", ok:[5000], resp:"R$ 5.000,00",
-  enunciado:"Se um salário foi aumentado em R$ 500,00, o que corresponde a um aumento de 10% do valor original, o salário antes do aumento era:",
-  solucao:"Toda grandeza, ANTES de qualquer aumento ou de qualquer desconto, é o 100% na regra de três.\nR$ → %\n500 → 10\nx → 100\n10x = 50.000 → x = 5.000."},
- {fonte:"IBFC/2024", dica:"Responda em reais.", ok:[100], resp:"R$ 100,00",
-  enunciado:"Uma loja vende uma de suas camisetas por R$ 85,00 cada e já com desconto de 15% do valor original. O valor original dessa camiseta é:",
-  solucao:"Toda grandeza, ANTES de qualquer aumento ou de qualquer desconto, é o 100% na regra de três.\nR$ → %\n85 → 85 (100% − 15%)\nx → 100\n85x = 8.500 → x = 100."},
- {fonte:"Analista – SAEB – IBFC/2023", dica:"Responda em %.", ok:[28], resp:"28%",
-  enunciado:"O preço de um produto na vitrine estava anunciado com 20% de desconto à vista, porém Mariana obteve outro desconto de 10% sobre o valor do produto já descontado os 20%. Nessas condições, o desconto total obtido por Mariana na compra do produto foi de:",
-  solucao:"1) Vamos supor o valor inicial do produto = 100 reais\n2) Desconto de 20% de 100 = 20\n3) Valor atual do produto → 100 – 20 = 80\n4) Desconto de 10% de 80 = 8\n5) Logo: 20 + 8 = 28 reais de desconto → 28% de desconto."},
- {fonte:"Professor de Matemática – AC – IBFC/2023", dica:"Responda em %.", ok:[2.4], resp:"2,4%",
-  enunciado:"Num aquário 12% dos peixes foram afetados por uma doença. Dos peixes atingidos por essa doença, apenas 20% deles morreram. A porcentagem de peixes que morreu por causa dessa doença é:",
-  solucao:"1) Vamos supor que no aquário havia 100 peixes\n2) Doentes → 12% de 100 = 12 peixes\n3) Morreram → 20% de 12 = 2,4 peixes\n→ 2,4% do total."},
- {fonte:"Professor de Matemática – RR – IBFC/2021", dica:"Responda em %.", ok:[4.5], resp:"4,5%",
-  enunciado:"Em uma comunidade, 15% das pessoas foram afetadas por uma bactéria. Das pessoas atingidas por essa bactéria, 30% tiveram diarreia em decorrência de uma doença causada por ela. Qual a porcentagem da população que teve diarreia causada por essa bactéria?",
-  solucao:"1) Vamos supor que na comunidade havia 100 pessoas\n2) Doentes → 15% de 100 = 15 pessoas\n3) Diarreia → 30% de 15 = 4,5 pessoas\n→ 4,5% do total."},
- {fonte:"Professor de Matemática – Camaçari – BA/2024", dica:"Responda em %, informando o valor da variação do preço.", ok:[13.6,-13.6,86.4], resp:"diminuição de 13,6%",
-  enunciado:"No preço P de um determinado produto foram aplicados, em dois meses consecutivos, dois aumentos sucessivos de 20% e, no terceiro mês, um desconto de 40%. Considerando regime de capitalização composto, qual foi a variação do preço final em relação ao valor original P?",
-  solucao:"1) Vamos supor o valor inicial P = 100 reais\n2) Aumento de 20% de 100 = 20 → valor atual: 120\n3) Aumento de 20% de 120 = 24 → valor atual: 144\n4) Desconto de 40% de 144 = 57,60 → valor final: 144 – 57,60 = 86,40\nLogo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%."},
- {fonte:"Professor de Matemática – SC/2024", dica:"Responda em %.", ok:[54], resp:"54%",
-  enunciado:"Luan fez um reservatório para água da chuva e uma caixa plástica e colocou uma torneira de escape. Em um dia de temporal foram ocupados 72% do volume total do reservatório, mas no outro dia Luan percebeu que havia deixado a torneira um pouco aberta e por isso perdeu 25% da água que havia captado. Qual era o percentual da capacidade total que havia no reservatório naquele momento?",
-  solucao:"1) Vamos supor que a caixa inteira = 100 litros\n2) Captados: 72% de 100 litros = 72 litros\n3) Perdeu: 25% de 72 = 18 litros\nLogo: 72 – 18 = 54 litros → 54% do total."}
-];
-let i=0, acertos=0, certas=[];
-const $=id=>document.getElementById(id);
-function num(s){
-  s=s.toLowerCase().replace(/r\$|%|reais|\s/g,"");
-  if(s.indexOf(",")>-1) s=s.replace(/\./g,"").replace(",",".");
-  else if(/^-?\d{1,3}(\.\d{3})+$/.test(s)) s=s.replace(/\./g,"");
-  const n=parseFloat(s); return isNaN(n)?null:n;
-}
-function mostrar(){
-  const q=QUESTOES[i];
-  $("bar").style.width=(i/QUESTOES.length*100)+"%";
-  $("tag").textContent="Questão "+(i+1)+" de "+QUESTOES.length+" · "+q.fonte;
-  $("q").textContent=q.enunciado;
-  $("hint").textContent=q.dica;
-  $("ans").value=""; $("ans").disabled=false; $("ok").disabled=false;
-  $("fb").hidden=true; $("ans").focus();
-}
-function responder(){
-  const q=QUESTOES[i], v=num($("ans").value);
-  if(v===null){ $("hint").textContent="Digite um número para responder."; return; }
-  const certo=q.ok.some(x=>Math.abs(x-v)<0.005);
-  certas[i]=certo; if(certo) acertos++;
-  $("ans").disabled=true; $("ok").disabled=true;
-  $("res").className="res "+(certo?"ok":"bad");
-  $("res").textContent=certo?"✓ Resposta correta!":"✗ Incorreta. A resposta correta é: "+q.resp+".";
-  $("sol").textContent="Resolução do professor:\n"+q.solucao;
-  $("next").textContent=i<QUESTOES.length-1?"Próxima questão":"Ver resultado";
-  $("fb").hidden=false;
-}
-function fim(){
-  $("bar").style.width="100%";
-  $("quiz").hidden=true; $("end").hidden=false;
-  $("score").textContent=acertos+" / "+QUESTOES.length;
-  const r=$("review"); r.innerHTML="";
-  QUESTOES.forEach((q,n)=>{
-    const d=document.createElement("div"); d.className="rev";
-    const a=document.createElement("span"); a.textContent="Questão "+(n+1);
-    const b=document.createElement("span"); b.textContent=certas[n]?"✓ acertou":"✗ era "+q.resp;
-    b.style.color=certas[n]?"var(--ok)":"var(--bad)";
-    d.append(a,b); r.appendChild(d);
-  });
-}
-$("ok").onclick=responder;
-$("ans").addEventListener("keydown",e=>{ if(e.key==="Enter" && !$("ans").disabled) responder(); });
-$("next").onclick=()=>{ if(i<QUESTOES.length-1){ i++; mostrar(); } else fim(); };
-$("again").onclick=()=>{ i=0; acertos=0; certas=[]; $("end").hidden=true; $("quiz").hidden=false; mostrar(); };
-mostrar();
-</script>
+</header>
+
+<section id="turmas">
+  <div class="wrap">
+    <h2>Turmas</h2>
+    <p class="lead">Todas as matérias em todas as turmas. Aulas presenciais no Educandário Santo Antônio. Valores e vagas pelo WhatsApp.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">📘</div><h3>9º ano · Escolas técnicas</h3><p>Preparação para Cefet, FAETEC e outras escolas técnicas.</p>
+        <div class="when">Seg, qua e qui · 16h às 18h</div>
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20do%209%C2%BA%20ano." target="_blank" rel="noopener">Quero esta turma</a></div>
+      <div class="card"><div class="ico">🎖️</div><h3>Pré-militar noturno</h3><p>Preparação para ESA, EEAr e Fuzileiros Navais.</p>
+        <div class="when">Seg, qua e qui · 19h às 21h</div>
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20pr%C3%A9-militar." target="_blank" rel="noopener">Quero esta turma</a></div>
+      <div class="card"><div class="ico">🧒</div><h3>5º ano</h3><p>Preparatório para o 6º ano: Colégio Militar, Colégio da Polícia Militar e Pedro II.</p>
+        <div class="when">Seg, qua e qui · 9h30 às 11h30</div>
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20do%205%C2%BA%20ano." target="_blank" rel="noopener">Quero esta turma</a></div>
+      <div class="card"><div class="ico">✏️</div><h3>Reforço escolar</h3><p>Apoio nas matérias da escola, com acompanhamento de perto.</p>
+        <div class="when">Segunda a sexta · horários diversos</div>
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20refor%C3%A7o%20escolar." target="_blank" rel="noopener">Consultar horários</a></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Conheça o professor</h2>
+    <div class="prof" style="margin-top:14px">
+      <img class="main" alt="Prof. Bruno Leal explicando matéria em sala de aula" src="foto-aula.jpg">
+      <div>
+        <div class="who"><img alt="Retrato do Prof. Bruno Leal" src="foto-retrato.jpg"><div><b>Prof. Bruno Leal</b><span>Professor de Matemática e Português</span></div></div>
+        <p>Didática simples e objetiva, para que todos aprendam, inclusive quem sente que não tem base.</p>
+        <p>Aulas presenciais com acompanhamento de perto e muita prática com questões no estilo das provas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Como funciona o curso</h2>
+    <p class="lead">Aprender de verdade, e não só decorar fórmulas.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🎓</div><h3>Professor experiente</h3><p>Prof. Bruno Leal ensina há 29 anos e sabe onde os alunos mais travam.</p></div>
+      <div class="card"><div class="ico">📝</div><h3>Questões de provas</h3><p>Treino com questões no estilo das provas, resolvidas passo a passo.</p></div>
+      <div class="card"><div class="ico">📚</div><h3>Todas as matérias</h3><p>Matemática, Português, História, Geografia, Física, Inglês e as demais matérias cobradas nas provas, no mesmo curso.</p></div>
+      <div class="card"><div class="ico">⏱️</div><h3>Simulados</h3><p>Pratique e veja a resolução do professor logo após responder.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="aluno">
+  <div class="wrap">
+    <h2>Área do aluno</h2>
+    <p class="lead">Estude no seu ritmo e pratique com a resolução comentada pelo professor.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🎬</div><h3>Curso online</h3><p>Videoaulas de Matemática e Português para estudar no seu ritmo.</p>
+        <p style="margin-top:14px;font-weight:600;color:var(--accent)">Em breve, mais informações</p></div>
+      <div class="card"><div class="ico">📝</div><h3>Simulado</h3><p>Questões de provas anteriores. Responda e veja a resolução do professor.</p>
+        <a class="btn z" style="margin-top:14px" href="simulado-aula5-porcentagem.html">Fazer simulado</a></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2>Onde estamos</h2>
+    <div class="loc">📍 Educandário Santo Antônio · Vila São Luís, Duque de Caxias</div>
+    <div class="btns" style="margin-top:18px"><a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
+  </div>
+</section>
+
+<footer>© Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal</footer>
 </body>
 </html>
