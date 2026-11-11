@@ -212,20 +212,16 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
     <h2>Provas e apostilas para download</h2>
     <p class="lead">Provas anteriores e materiais de estudo do Prof. Bruno Leal.</p>
     <div class="grid">
+      <div class="card"><div class="ico">📖</div><h3>Português – Aula 1 (Soluções)</h3><p>Análise Sintática: 57 exercícios resolvidos sobre sujeito, objetos, adjuntos e apostos em PDF.</p>
+        <a class="btn z" style="margin-top:14px" href="materiais/portugues-aula1.pdf" target="_blank" rel="noopener">Abrir apostila</a></div>
       <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2026</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
         <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/19OGPCo2B3lNJAvI1JjSAFG6kZKIE-TNH/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
       <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2025</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
         <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1Zs6NdXUk7gQ9u3_Esr6MWPz9Qhw-rQ3l/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
       <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2024</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
         <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1JE2H-0yq4SGdcQ2abIHte7M2TV-BSoVH/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
-      <div class="card"><div class="ico">📄</div><h3>Português – Aula 1</h3><p>Análise sintática: 57 orações com a solução comentada pelo professor.</p>
-        <a class="btn z" style="margin-top:14px" href="materiais/portugues-aula1-analise-sintatica.pdf" target="_blank" rel="noopener">Baixar PDF</a></div>
       <div class="card"><div class="ico">📥</div><h3>Mais provas em breve</h3><p>Estamos organizando outros anos e apostilas. Quer ser avisado quando forem liberados?</p>
         <a class="btn z" style="margin-top:14px" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20ser%20avisado%20quando%20as%20apostilas%20e%20provas%20estiverem%20dispon%C3%ADveis." target="_blank" rel="noopener">Quero ser avisado</a></div>
-      <!-- Modelo de cartão de download (copie, cole acima e troque os textos e o nome do arquivo):
-      <div class="card"><div class="ico">📄</div><h3>Título do material</h3><p>Descrição curta.</p>
-        <a class="btn z" style="margin-top:14px" href="materiais/nome-do-arquivo.pdf" download>Baixar PDF</a></div>
-      -->
     </div>
   </div>
 </section>
@@ -237,10 +233,8 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
     <div class="grid">
       <div class="card"><div class="ico">🎬</div><h3>Curso online</h3><p>Videoaulas de Matemática e Português para estudar no seu ritmo.</p>
         <p style="margin-top:14px;font-weight:600;color:var(--accent)">Em breve, mais informações</p></div>
-      <div class="card"><div class="ico">📝</div><h3>Simulado de Matemática</h3><p>Questões de provas anteriores. Responda e veja a resolução do professor.</p>
+      <div class="card"><div class="ico">📝</div><h3>Simulado</h3><p>Questões de provas anteriores. Responda e veja a resolução do professor.</p>
         <a class="btn z" style="margin-top:14px" href="simulado-aula5-porcentagem.html">Fazer simulado</a></div>
-      <div class="card"><div class="ico">✍️</div><h3>Simulado de Português</h3><p>Análise sintática: identifique a função do termo destacado e veja a análise completa da oração.</p>
-        <a class="btn z" style="margin-top:14px" href="simulado-portugues-aula1.html">Fazer simulado</a></div>
     </div>
   </div>
 </section>
@@ -253,23 +247,6 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
   </div>
 </section>
 
-<footer>© Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal<br><span id="visitas" hidden></span></footer>
-<script>
-// Contador de visitas (serviço gratuito Abacus). Conta uma vez por sessão do navegador.
-(function(){
-  var el=document.getElementById("visitas"); if(!el) return;
-  var base="https://abacus.jasoncameron.dev/", ns="lealconcursos-profbrunoleal", key="visitas", jaContou=false;
-  try{ jaContou=sessionStorage.getItem("lc-visita")==="1"; }catch(e){}
-  fetch(base+(jaContou?"get/":"hit/")+ns+"/"+key)
-    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
-    .then(function(d){
-      if(d && typeof d.value==="number"){
-        el.textContent="Visitas: "+d.value.toLocaleString("pt-BR"); el.hidden=false;
-        try{ sessionStorage.setItem("lc-visita","1"); }catch(e){}
-      }
-    })
-    .catch(function(){});
-})();
-</script>
+<footer>© Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal</footer>
 </body>
 </html>
