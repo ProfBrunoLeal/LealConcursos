@@ -26,8 +26,9 @@ h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.12;margin:0 0 14px;max-width
 .btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;cursor:pointer;border:none}
 .btn.z{background:var(--zap);color:#fff}
 .btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff}
+.btn.sm{padding:8px 14px;font-size:.85rem}
 
-/* NAVEGAÇÃO POR BOTÕES (ABAS) */
+/* NAVEGAÇÃO POR ABAS */
 .nav-tabs-wrap{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.05)}
 .nav-tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 20px;max-width:960px;margin:0 auto;scrollbar-width:none}
 .nav-tabs::-webkit-scrollbar{display:none}
@@ -46,7 +47,6 @@ h2{font-size:1.55rem;margin:0 0 6px}
 .card h3{margin:0 0 4px;font-size:1.08rem}
 .card p{margin:0;color:var(--muted);font-size:.95rem}
 .when{margin:10px 0 14px;font-weight:600;color:var(--accent);font-size:.95rem}
-.card .btn{padding:10px 16px;font-size:.92rem}
 .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ico{font-size:1.5rem;margin-bottom:6px}
 .loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
@@ -64,8 +64,14 @@ footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
 .pic img{width:100%;max-width:300px;aspect-ratio:1;object-fit:cover;border-radius:28px;border:4px solid rgba(255,255,255,.85);box-shadow:0 18px 40px rgba(0,0,0,.35)}
 @media(max-width:760px){.heroin{grid-template-columns:1fr}.pic{order:-1}.pic img{max-width:200px;border-radius:50%}}
 .tag{display:inline-block;font-size:.75rem;font-weight:600;border-radius:999px;padding:3px 10px;margin-bottom:8px;background:var(--bg);border:1px solid var(--line);color:var(--accent)}
-.card h3 a{color:inherit}.card .src{display:inline-block;margin-top:10px;font-size:.88rem;color:var(--accent);text-decoration:none;font-weight:600}
-.upd{color:var(--muted);font-size:.85rem;margin:-10px 0 18px}
+
+/* ESTILOS DO DIÁRIO DE CLASSE */
+.diario-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
+.diario-header{display:flex;justify-space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.diario-date{font-size:.85rem;color:var(--muted);font-weight:600}
+.diario-img{width:100%;max-height:350px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid var(--line)}
+.diario-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
 summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none}
 summary::-webkit-details-marker{display:none}
@@ -108,10 +114,10 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 <div class="nav-tabs-wrap">
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="openTab(event, 'tab-turmas')">📘 Turmas & Horários</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab-diario')">📌 Diário de Classe</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-professor')">🎓 O Professor</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-simulados')">📝 Simulados & Aulas</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-materiais')">📄 Material Gratuito</button>
-    <button class="tab-btn" onclick="openTab(event, 'tab-noticias')">📰 Notícias</button>
   </div>
 </div>
 
@@ -145,7 +151,33 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     </section>
   </div>
 
-  <!-- ABA 2: O PROFESSOR -->
+  <!-- ABA 2: DIÁRIO DE CLASSE / ROTINA -->
+  <div id="tab-diario" class="tab-content">
+    <section>
+      <h2>Diário de Classe & Rotina</h2>
+      <p class="lead">Acompanhe o que foi dado nas aulas recentes, fotos do quadro e materiais de apoio.</p>
+
+      <!-- ADICIONAR NOVA AULA AQUI -->
+
+      <!-- AULA REGISTRADA -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma 5º ano (CMRJ / CPM)</span>
+          <span class="diario-date">Aula recente · Prof. Bruno Leal</span>
+        </div>
+        <h3>Matemática: Volume do Paralelepípedo & Conversão de Unidades</h3>
+        <p>Resolução detalhada da questão do Colégio Militar do Rio de Janeiro. Trabalhamos a conversão de m³ para cm³ e o cálculo de capacidade de carga do caminhão.</p>
+        <img class="diario-img" src="foto-aula.jpg" alt="Prof. Bruno Leal explicando o conteúdo no quadro">
+        <div class="diario-actions">
+          <a class="btn z sm" href="https://www.youtube.com/watch?v=2F_URk3Jj9Q" target="_blank" rel="noopener">📺 Assistir Vídeo de Apoio (YouTube)</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="materiais/portugues-aula1.pdf" target="_blank" rel="noopener">📄 Baixar Lista de Exercícios</a>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ABA 3: O PROFESSOR -->
   <div id="tab-professor" class="tab-content">
     <section>
       <h2>Conheça o professor</h2>
@@ -173,7 +205,7 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     </section>
   </div>
 
-  <!-- ABA 3: SIMULADOS E AULAS -->
+  <!-- ABA 4: SIMULADOS E AULAS -->
   <div id="tab-simulados" class="tab-content">
     <section>
       <h2>Aulas demonstrativas</h2>
@@ -237,7 +269,7 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
     </section>
   </div>
 
-  <!-- ABA 4: MATERIAIS PARA DOWNLOAD -->
+  <!-- ABA 5: MATERIAIS PARA DOWNLOAD -->
   <div id="tab-materiais" class="tab-content">
     <section>
       <h2>Provas e apostilas para download</h2>
@@ -253,31 +285,6 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
           <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1JE2H-0yq4SGdcQ2abIHte7M2TV-BSoVH/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
         <div class="card"><div class="ico">📥</div><h3>Mais provas em breve</h3><p>Estamos organizando outros anos e apostilas. Quer ser avisado quando forem liberados?</p>
           <a class="btn z" style="margin-top:14px" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20ser%20avisado%20quando%20as%20apostilas%20e%20provas%20estiverem%20dispon%C3%ADveis." target="_blank" rel="noopener">Quero ser avisado</a></div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ABA 5: NOTÍCIAS -->
-  <div id="tab-noticias" class="tab-content">
-    <section>
-      <h2>Notícias sobre concursos</h2>
-      <p class="lead">Os processos seletivos que mais interessam aos nossos alunos.</p>
-      <p class="upd">Atualizado em 09/11/2026 · Confira sempre o edital oficial.</p>
-      <div class="grid">
-        <div class="card"><span class="tag">Prova em 22/11/2026</span><h3>EEAr: 235 vagas para sargentos</h3>
-          <p>A Aeronáutica abriu vagas para o Curso de Formação de Sargentos, com ingresso no 2º semestre de 2027. As inscrições foram de 11 de junho a 2 de julho de 2026 e a prova objetiva está marcada para 22 de novembro.</p>
-          <a class="src" href="https://folha.qconcursos.com/n/concurso-aeronautica-edital-eear-2-2027" target="_blank" rel="noopener">Fonte: Qconcursos ↗</a></div>
-        <div class="card"><span class="tag">Inscrições encerradas</span><h3>Cefet/RJ: 1.024 vagas para 2027</h3>
-          <p>O edital 05/2026 ofereceu vagas em cursos técnicos integrados ao ensino médio, em sete campi. As inscrições foram até 27 de setembro de 2026 e o início das aulas está previsto para 26 de janeiro de 2027.</p>
-          <a class="src" href="https://www.pebsp.com/inscricoes-abertas-cefet-rj-oferece-1-024-vagas-para-ensino-tecnico-integrado-ao-ensino-medio-dcs/" target="_blank" rel="noopener">Fonte: PEBSP ↗</a></div>
-        <div class="card"><span class="tag">Em andamento</span><h3>ESA 2027: 1.100 vagas</h3>
-          <p>O exame intelectual foi aplicado em 26 de julho de 2026. Os aprovados seguem para as etapas de saúde e de aptidão física.</p>
-          <a class="src" href="https://www.novaconcursos.com.br/portal/concursos/concurso-essa/" target="_blank" rel="noopener">Fonte: Nova Concursos ↗</a></div>
-        <div class="card"><span class="tag">Inscrições encerradas</span><h3>Fuzileiros Navais: 1.680 vagas</h3>
-          <p>O concurso para soldados das turmas I e II de 2027 teve as inscrições prorrogadas até 20 de abril de 2026. O curso de formação dura cerca de 17 semanas, em regime de internato.</p>
-          <a class="src" href="https://blog.grancursosonline.com.br/edital-marinha-fuzileiro-naval-soldado-2027/amp/" target="_blank" rel="noopener">Fonte: Gran Cursos ↗</a></div>
-        <div class="card"><span class="tag">Calendário de referência</span><h3>Quando saíram os editais em 2026</h3>
-          <p>Fuzileiros Navais: fevereiro. EEAr: fevereiro (turma 1/2027) e junho (turma 2/2027). ESA: março. Use as datas como referência para se planejar para o próximo ciclo.</p></div>
       </div>
     </section>
   </div>
