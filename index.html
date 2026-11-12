@@ -75,8 +75,10 @@ footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
 .diario-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
-summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
 summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";font-weight:700;color:var(--accent);font-size:1.1rem;flex-shrink:0}
+details[open] summary::after{content:"－"}
 summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 .det{padding:0 16px 16px;color:var(--muted);font-size:.95rem}
 .det .enun{color:var(--text);margin:0 0 10px}
@@ -125,7 +127,7 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 
 <main class="wrap">
 
-  <!-- ABA 1: TURMAS -->
+  <!-- ABA 1: TURMAS + ONDE ESTAMOS + FAQ -->
   <div id="tab-turmas" class="tab-content active">
     <section>
       <h2>Turmas Presenciais</h2>
@@ -149,7 +151,41 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     <section style="padding-top:0">
       <h2>Onde estamos</h2>
       <div class="loc">📍 Educandário Santo Antônio · Vila São Luís, Duque de Caxias</div>
-      <div class="btns" style="margin-top:18px"><a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Chamar no WhatsApp</a></div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES (FAQ) -->
+    <section style="padding-top:0">
+      <h2>Perguntas Frequentes</h2>
+      <p class="lead">Tire suas principais dúvidas sobre nossas turmas e metodologia.</p>
+
+      <details>
+        <summary>Meu filho tem muita dificuldade na base de Matemática. Ele consegue acompanhar?</summary>
+        <div class="det">Sim. Nossa metodologia parte do zero em cada assunto, construindo o raciocínio passo a passo antes de avançar para questões de nível de concurso. O acompanhamento em sala é próximo justamente para identificar onde o aluno trava.</div>
+      </details>
+
+      <details>
+        <summary>O curso cobre todas as matérias do edital?</summary>
+        <div class="det">Sim. Todas as turmas preparatórias contemplam 100% das disciplinas exigidas nas provas (Matemática, Português, Redação, Ciências/Física, História, Geografia e Inglês, conforme o edital de cada concurso).</div>
+      </details>
+
+      <details>
+        <summary>O material didático já está incluso?</summary>
+        <div class="det">Trabalhamos com apostilas próprias focadas nas bancas examinadoras e listas de exercícios atualizadas. Consulte no WhatsApp as condições de matrícula e entrega do material para a turma desejada.</div>
+      </details>
+
+      <details>
+        <summary>Posso assistir a uma aula experimental antes de fechar a matrícula?</summary>
+        <div class="det">Com certeza. Agende pelo nosso WhatsApp um dia para o aluno assistir a uma aula presencial no Educandário Santo Antônio e conhecer nossa didática na prática, sem compromisso.</div>
+      </details>
+
+      <details>
+        <summary>Vocês aplicam simulados no estilo das provas reais?</summary>
+        <div class="det">Sim. Realizamos simulados periódicos com tempo cronometrado e cartão-resposta no padrão oficial do Cefet, FAETEC, CMRJ e escolas militares, seguidos de correção comentada.</div>
+      </details>
+
+      <div class="btns" style="margin-top:20px">
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Li%20as%20d%C3%BAvidas%20no%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Ainda tenho dúvidas · Falar no WhatsApp</a>
+      </div>
     </section>
   </div>
 
@@ -238,34 +274,34 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 
       <h2>Questões resolvidas</h2>
       <p class="lead">Toque em uma questão para ver o enunciado e a resolução passo a passo do professor.</p>
-      <details><summary>Valor total a partir de uma porcentagem<small>Professor de Matemática – SC/2023</small></summary>
+      <details><summary><div>Valor total a partir de uma porcentagem<small>Professor de Matemática – SC/2023</small></div></summary>
         <div class="det"><p class="enun">Em uma feira, Maria gastou 40% de todo o dinheiro que tinha em sua carteira. Se o valor gasto por Maria foi de R$ 32,00, então é correto afirmar que o valor total que ela tinha na carteira era de:</p>
         <div class="sol">Regra de três:
 R$ → %
 32 → 40
 x → 100
 40x = 32 · 100 → 40x = 3200 → x = 80 reais.</div><div class="resp">Resposta: R$ 80,00</div></div></details>
-      <details><summary>Desconto aplicado sobre o preço de vitrine<small>IBFC/2023</small></summary>
+      <details><summary><div>Desconto aplicado sobre o preço de vitrine<small>IBFC/2023</small></div></summary>
         <div class="det"><p class="enun">Paulo foi a uma loja e pagou R$ 238,00 por um produto, já incluso 15% de desconto sobre o preço do produto exposto na vitrine. Nessas condições, o valor do desconto atribuído ao preço do produto foi de:</p>
         <div class="sol">Toda grandeza, ANTES de qualquer aumento ou de qualquer desconto, é o 100% na regra de três.
 R$ → %
 238 → 85 (100% − 15%)
 x → 15
 85x = 238 · 15 → 85x = 3570 → x = 42 reais.</div><div class="resp">Resposta: R$ 42,00</div></div></details>
-      <details><summary>Descontos sucessivos<small>Analista – SAEB – IBFC/2023</small></summary>
+      <details><summary><div>Descontos sucessivos<small>Analista – SAEB – IBFC/2023</small></div></summary>
         <div class="det"><p class="enun">O preço de um produto na vitrine estava anunciado com 20% de desconto à vista, porém Mariana obteve outro desconto de 10% sobre o valor do produto já descontado os 20%. Nessas condições, o desconto total obtido por Mariana na compra do produto foi de:</p>
         <div class="sol">1) Vamos supor o valor inicial do produto = 100 reais
 2) Desconto de 20% de 100 = 20
 3) Valor atual do produto → 100 – 20 = 80
 4) Desconto de 10% de 80 = 8
 5) Logo: 20 + 8 = 28 reais de desconto → 28% de desconto.</div><div class="resp">Resposta: 28%</div></div></details>
-      <details><summary>Porcentagem de uma porcentagem<small>Professor de Matemática – AC – IBFC/2023</small></summary>
+      <details><summary><div>Porcentagem de uma porcentagem<small>Professor de Matemática – AC – IBFC/2023</small></div></summary>
         <div class="det"><p class="enun">Num aquário 12% dos peixes foram afetados por uma doença. Dos peixes atingidos por essa doença, apenas 20% deles morreram. A porcentagem de peixes que morreu por causa dessa doença é:</p>
         <div class="sol">1) Vamos supor que no aquário havia 100 peixes
 2) Doentes → 12% de 100 = 12 peixes
 3) Morreram → 20% de 12 = 2,4 peixes
 → 2,4% do total.</div><div class="resp">Resposta: 2,4%</div></div></details>
-      <details><summary>Aumentos e desconto sucessivos<small>Professor de Matemática – Camaçari – BA/2024</small></summary>
+      <details><summary><div>Aumentos e desconto sucessivos<small>Professor de Matemática – Camaçari – BA/2024</small></div></summary>
         <div class="det"><p class="enun">No preço P de um determinado produto foram aplicados, em dois meses consecutivos, dois aumentos sucessivos de 20% e, no terceiro mês, um desconto de 40%. Considerando regime de capitalização composto, qual foi a variação do preço final em relação ao valor original P?</p>
         <div class="sol">1) Vamos supor o valor inicial P = 100 reais
 2) Aumento de 20% de 100 = 20 → valor atual: 120
