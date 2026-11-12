@@ -50,7 +50,9 @@ h2{font-size:1.55rem;margin:0 0 6px}
 .band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ico{font-size:1.5rem;margin-bottom:6px}
 .loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+
 footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;border-top:1px solid var(--line);margin-top:40px}
+.visitas-tag{display:inline-block;margin-left:8px;padding:2px 8px;background:var(--card);border:1px solid var(--line);border-radius:12px;font-weight:600;color:var(--accent)}
 
 .prof{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
 @media(max-width:700px){.prof{grid-template-columns:1fr}}
@@ -67,7 +69,7 @@ footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
 
 /* ESTILOS DO DIÁRIO DE CLASSE */
 .diario-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
-.diario-header{display:flex;justify-space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.diario-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
 .diario-date{font-size:.85rem;color:var(--muted);font-weight:600}
 .diario-img{width:100%;max-height:350px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid var(--line)}
 .diario-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
@@ -291,9 +293,12 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
 
 </main>
 
-<footer>© Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal</footer>
+<footer>
+  © Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal 
+  <span class="visitas-tag">👁️ <span id="visits-count">...</span> acessos</span>
+</footer>
 
-<!-- JAVASCRIPT DE TROCA DE ABAS -->
+<!-- JAVASCRIPT DE TROCA DE ABAS E CONTADOR DE VISITAS -->
 <script>
 function openTab(evt, tabId) {
   var contents = document.getElementsByClassName("tab-content");
@@ -307,6 +312,16 @@ function openTab(evt, tabId) {
   document.getElementById(tabId).classList.add("active");
   evt.currentTarget.classList.add("active");
 }
+
+// Contador de visitas usando CountAPI
+fetch('https://api.countapi.xyz/hit/lealconcursos-oficial-site/visits')
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('visits-count').innerText = data.value.toLocaleString('pt-BR');
+  })
+  .catch(() => {
+    document.getElementById('visits-count').innerText = '1+';
+  });
 </script>
 
 </body>
