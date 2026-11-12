@@ -157,23 +157,28 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
   <div id="tab-diario" class="tab-content">
     <section>
       <h2>Diário de Classe & Rotina</h2>
-      <p class="lead">Acompanhe o que foi dado nas aulas recentes, fotos do quadro e materiais de apoio.</p>
+      <p class="lead">Acompanhe os assuntos ministrados em sala e a evolução das turmas.</p>
 
       <!-- ADICIONAR NOVA AULA AQUI -->
 
-      <!-- AULA REGISTRADA -->
+      <!-- REGISTRO 1: 9º ANO -->
       <div class="diario-card">
         <div class="diario-header">
-          <span class="tag">Turma 5º ano (CMRJ / CPM)</span>
-          <span class="diario-date">Aula recente · Prof. Bruno Leal</span>
+          <span class="tag">Turma 9º ano</span>
+          <span class="diario-date">11/11/2026 · Prof. Bruno Leal</span>
         </div>
-        <h3>Matemática: Volume do Paralelepípedo & Conversão de Unidades</h3>
-        <p>Resolução detalhada da questão do Colégio Militar do Rio de Janeiro. Trabalhamos a conversão de m³ para cm³ e o cálculo de capacidade de carga do caminhão.</p>
-        <img class="diario-img" src="foto-aula.jpg" alt="Prof. Bruno Leal explicando o conteúdo no quadro">
-        <div class="diario-actions">
-          <a class="btn z sm" href="https://www.youtube.com/watch?v=2F_URk3Jj9Q" target="_blank" rel="noopener">📺 Assistir Vídeo de Apoio (YouTube)</a>
-          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="materiais/portugues-aula1.pdf" target="_blank" rel="noopener">📄 Baixar Lista de Exercícios</a>
+        <h3>Resolução de Provas Anteriores · IFRJ/2016</h3>
+        <p>Resolvemos diversas questões da prova do processo seletivo IFRJ/2016, reforçando a prática e o estilo de cobrança da banca.</p>
+      </div>
+
+      <!-- REGISTRO 2: PRÉ-MILITAR -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma Pré-militar</span>
+          <span class="diario-date">11/11/2026 · Prof. Bruno Leal</span>
         </div>
+        <h3>Proporcionalidade · Resolução de Questões PMSP</h3>
+        <p>Treino intensivo focado em Proporcionalidade com a resolução de diversas questões da banca da Polícia Militar do Estado de São Paulo.</p>
       </div>
 
     </section>
@@ -313,7 +318,6 @@ function openTab(evt, tabId) {
   evt.currentTarget.classList.add("active");
 }
 
-// Contador de visitas usando CountAPI
 fetch('https://api.countapi.xyz/hit/lealconcursos-oficial-site/visits')
   .then(res => res.json())
   .then(data => {
