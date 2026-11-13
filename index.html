@@ -368,10 +368,12 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
 
 <footer>
   © Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal 
-  <span class="visitas-tag">👁️ <span id="visits-count">...</span> acessos</span>
+  <div style="margin-top:10px">
+    <img src="https://hits.sh/profbrunoleal.github.io/LealConcursos.svg?style=flat-square&label=acessos&color=1f4fd8&labelColor=0f2a6b" alt="Contador de acessos">
+  </div>
 </footer>
 
-<!-- JAVASCRIPT DE TROCA DE ABAS E CONTADOR DE VISITAS -->
+<!-- JAVASCRIPT DE TROCA DE ABAS -->
 <script>
 function openTab(evt, tabId) {
   var contents = document.getElementsByClassName("tab-content");
@@ -385,16 +387,8 @@ function openTab(evt, tabId) {
   document.getElementById(tabId).classList.add("active");
   evt.currentTarget.classList.add("active");
 }
-
-fetch('https://api.counterapi.dev/v1/lealconcursos-rio/visitas/up')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById('visits-count').innerText = data.count.toLocaleString('pt-BR');
-  })
-  .catch(() => {
-    document.querySelector('.visitas-tag').style.display = 'none';
-  });
 </script>
 
 </body>
 </html>
+
