@@ -386,13 +386,13 @@ function openTab(evt, tabId) {
   evt.currentTarget.classList.add("active");
 }
 
-fetch('https://api.countapi.xyz/hit/lealconcursos-oficial-site/visits')
+fetch('https://api.counterapi.dev/v1/lealconcursos-rio/visitas/up')
   .then(res => res.json())
   .then(data => {
-    document.getElementById('visits-count').innerText = data.value.toLocaleString('pt-BR');
+    document.getElementById('visits-count').innerText = data.count.toLocaleString('pt-BR');
   })
   .catch(() => {
-    document.getElementById('visits-count').innerText = '1+';
+    document.querySelector('.visitas-tag').style.display = 'none';
   });
 </script>
 
