@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Recuperar senha | Leal Concursos</title>
+  <style>
+    :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#eef2f8;color:#182337;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;display:grid;place-items:center;padding:20px}.card{background:white;border-radius:18px;box-shadow:0 12px 38px #15274720;width:min(100%,470px);padding:28px}h1{font-size:1.55rem;margin:0 0 6px}p{margin:8px 0 18px;color:#4b5563}label{display:block;font-weight:650;margin:16px 0 6px}input{width:100%;font:inherit;border:1px solid #aeb9c8;border-radius:10px;padding:12px}button{width:100%;font:inherit;font-weight:700;background:#164b91;color:white;border:0;border-radius:10px;padding:13px;margin-top:18px;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.status{white-space:pre-wrap;border-radius:9px;padding:11px 13px;margin-top:16px;background:#edf2f7;color:#263445}.status:empty{display:none}.error{background:#fff0ee;color:#9b251c}.success{background:#e8f7ef;color:#135b39}.hint{font-size:.85rem}hr{border:0;border-top:1px solid #dce3ed;margin:25px 0}section[hidden]{display:none}a{color:#164b91}
+  </style>
+</head>
+<body>
+<main class="card">
+  <h1>Leal Concursos</h1>
+  <p>Recuperação de acesso ao Painel do Professor</p>
+  <section id="request">
+    <h2 style="font-size:1.12rem">Solicitar link de recuperação</h2>
+    <p>Digite o e-mail cadastrado no Supabase. Aguarde o fim do limite temporário de e-mails antes de tentar novamente.</p>
+    <form id="requestForm">
+      <label for="email">E-mail da conta</label>
+      <input id="email" type="email" autocomplete="email" required>
+      <button id="requestButton" type="submit">Enviar link de recuperação</button>
+    </form>
+  </section>
+  <section id="change" hidden>
+    <h2 style="font-size:1.12rem">Definir nova senha</h2>
+    <p>Seu link foi validado. Escolha uma senha nova, exclusiva para esta conta.</p>
+    <form id="changeForm">
+      <label for="password">Nova senha</label>
+      <input id="password" type="password" minlength="12" autocomplete="new-password" required>
+      <label for="confirm">Confirmar nova senha</label>
+      <input id="confirm" type="password" minlength="12" autocomplete="new-password" required>
+      <button id="changeButton" type="submit">Salvar nova senha</button>
+    </form>
+    <p class="hint">Use pelo menos 12 caracteres. Não compartilhe a senha.</p>
+  </section>
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+  <p class="hint">Esta página utiliza apenas a chave pública e a API oficial de autenticação do Supabase. Nunca informe sua senha a terceiros.</p>
+</main>
+<script type="module">
+  import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+  const URL='https://vppizvieeggbzwkqtoss.supabase.co';
+  const KEY='sb_publishable_669pWt20h8OoG9NWiDkEMA_nm2jIjHF';
+  const REDIRECT='https://profbrunoleal.github.io/LealConcursos/recuperar-senha.html';
+  const supabase=createClient(URL,KEY,{auth:{detectSessionInUrl:true,autoRefreshToken:true,persistSession:true}});
+  const el=id=>document.getElementById(id);
+  const status=(msg,kind='')=>{el('status').textContent=msg;el('status').className='status '+kind};
+  const showChange=()=>{el('request').hidden=true;el('change').hidden=false;status('Link de recuperação reconhecido. Você pode definir sua nova senha.','success')};
+  const query=new URLSearchParams(location.search);
+  const hash=new URLSearchParams(location.hash.slice(1));
+  const recoveryLink=hash.get('type')==='recovery'||query.get('type')==='recovery'||!!query.get('code');
+  let recoveryValidated=false;
+  supabase.auth.onAuthStateChange((event,session)=>{
+    if(event==='PASSWORD_RECOVERY' && session){recoveryValidated=true;showChange()}
+  });
+  (async()=>{
+    if(query.get('error')||hash.get('error')){
+      status('O link de recuperação não pôde ser validado: '+(query.get('error_description')||hash.get('error_description')||'link inválido ou expirado')+'. Solicite um novo link quando o limite de e-mails permitir.','error');return;
+    }
+    if(recoveryLink){
+      const {data,error}=await supabase.auth.getSession();
+      if(error){status('Não foi possível validar o link: '+error.message,'error')}
+      else if(data.session){recoveryValidated=true;showChange()}
+      else{status('Aguardando validação do link. Se a tela não mudar, o link pode estar expirado.','error')}
+    }
+  })();
+  el('requestForm').addEventListener('submit',async ev=>{
+    ev.preventDefault();const b=el('requestButton');b.disabled=true;status('Solicitando link...');
+    try{
+      const {error}=await supabase.auth.resetPasswordForEmail(el('email').value.trim(),{redirectTo:REDIRECT});
+      if(error)throw error;
+      status('Se o e-mail estiver cadastrado, você receberá um link. Verifique a caixa de entrada e o spam. Abra o link no navegador.','success');
+    }catch(err){status('Não foi possível enviar o link: '+err.message+'. Se houver limite de e-mails, aguarde antes de tentar novamente.','error')}
+    finally{b.disabled=false}
+  });
+  el('changeForm').addEventListener('submit',async ev=>{
+    ev.preventDefault();
+    if(!recoveryValidated){status('Abra primeiro o link de recuperação recebido por e-mail.','error');return}
+    const pw=el('password').value;
+    if(pw!==el('confirm').value){status('As duas senhas não coincidem.','error');return}
+    const b=el('changeButton');b.disabled=true;status('Salvando nova senha...');
+    try{
+      const {error}=await supabase.auth.updateUser({password:pw});
+      if(error)throw error;
+      el('changeForm').hidden=true;
+      status('Senha alterada com sucesso! Agora você pode entrar no Painel do Professor usando a nova senha.','success');
+      await supabase.auth.signOut();
+    }catch(err){status('Não foi possível atualizar a senha: '+err.message,'error')}
+    finally{b.disabled=false}
+  });
+</script>
+</body>
+</html>
