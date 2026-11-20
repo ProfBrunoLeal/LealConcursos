@@ -66,12 +66,13 @@ footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;bord
 @media(max-width:760px){.heroin{grid-template-columns:1fr}.pic{order:-1}.pic img{max-width:200px;border-radius:50%}}
 .tag{display:inline-block;font-size:.75rem;font-weight:600;border-radius:999px;padding:3px 10px;margin-bottom:8px;background:var(--bg);border:1px solid var(--line);color:var(--accent)}
 
-/* ESTILOS DO DIÁRIO DE CLASSE */
+/* ESTILOS DO DIÁRIO DE CLASSE E DR. BIZU */
 .diario-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
 .diario-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
 .diario-date{font-size:.85rem;color:var(--muted);font-weight:600}
 .diario-img{width:100%;max-height:350px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid var(--line)}
 .diario-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.bizu-box{margin-top:12px;padding:12px 14px;background:var(--bg);border-left:4px solid var(--accent);border-radius:8px;color:var(--text);font-size:.95rem}
 
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
 summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
@@ -119,6 +120,7 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     <button class="tab-btn active" onclick="openTab(event, 'tab-turmas')">📘 Turmas & Horários</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-diario')">📌 Diário de Classe</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-professor')">🎓 O Professor</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab-bizu')">💡 Dr. Bizu</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-simulados')">📝 Simulados & Aulas</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-materiais')">📄 Material Gratuito</button>
   </div>
@@ -315,7 +317,35 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     </section>
   </div>
 
-  <!-- ABA 4: SIMULADOS E AULAS -->
+  <!-- ABA 4: BIZUS DO DR. BIZU -->
+  <div id="tab-bizu" class="tab-content">
+    <section>
+      <h2>💡 Bizus do Dr. Bizu</h2>
+      <p class="lead">Atalhos diretos ao ponto para você ganhar velocidade e não perder tempo na hora da prova.</p>
+
+      <!-- ADICIONAR NOVO BIZU AQUI -->
+
+      <!-- BIZU #01 -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Aritmética · Cálculo Mental</span>
+          <span class="diario-date">Bizu #01</span>
+        </div>
+        <h3>Divisão rápida por 5 (sem armar a conta)</h3>
+        <p>Nunca arme a divisão por 5 na prova. Como <strong>5 = 10 ÷ 2</strong>, dividir qualquer número por 5 é a mesma coisa que <strong>dobrar o número e dividir por 10</strong>:</p>
+        <div class="bizu-box">
+          <strong>1º passo:</strong> Dobre o dividendo (multiplique por 2).<br>
+          <strong>2º passo:</strong> Se terminar em <strong>0</strong>, corte o zero. Se não terminar em zero, ande <strong>1 casa decimal</strong> para a esquerda e coloque a vírgula.<br><br>
+          <strong>Exemplos na prática:</strong><br>
+          • <strong>240 ÷ 5</strong> → dobro de 240 é 480 → corta o zero = <strong>48</strong><br>
+          • <strong>73 ÷ 5</strong> → dobro de 73 é 146 → uma casa decimal = <strong>14,6</strong>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ABA 5: SIMULADOS E AULAS -->
   <div id="tab-simulados" class="tab-content">
     <section>
       <h2>Aulas demonstrativas</h2>
@@ -379,7 +409,7 @@ Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class
     </section>
   </div>
 
-  <!-- ABA 5: MATERIAIS PARA DOWNLOAD -->
+  <!-- ABA 6: MATERIAIS PARA DOWNLOAD -->
   <div id="tab-materiais" class="tab-content">
     <section>
       <h2>Provas e apostilas para download</h2>
