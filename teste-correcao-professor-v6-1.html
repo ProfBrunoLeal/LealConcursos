@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leal Concursos — Teste administrativo V6.1</title>
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#102b46;background:#edf2f7}*{box-sizing:border-box}body{margin:0}header{background:#081e36;color:#fff;padding:22px;text-align:center;border-bottom:5px solid #cfa943}header h1{font-size:1.5rem;margin:0 0 6px}main{max-width:700px;margin:24px auto;padding:0 15px}.card{background:#fff;padding:clamp(18px,4vw,28px);border-radius:18px;box-shadow:0 6px 20px #122b4512}label{display:block;font-weight:700;margin:16px 0 7px}input,select,button{font:inherit;width:100%;padding:13px;border-radius:9px}input,select{border:1px solid #b7c8d8;background:white;color:#102b46}button{border:0;background:#103e67;color:white;font-weight:700;margin-top:20px;cursor:pointer}button:disabled{opacity:.55;cursor:wait}.warn{background:#fff5d9;border:1px solid #e8d398;padding:14px;border-radius:9px;line-height:1.5}.result{background:#eef4f9;border-radius:9px;padding:15px;margin-top:15px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.88rem}small{display:block;color:#52677c;margin-top:15px;line-height:1.5}.ok{color:#12663a;font-weight:700}.bad{color:#9b2929;font-weight:700}#status{min-height:1.5em}code{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<header><h1>LEAL CONCURSOS</h1><div>#incomparável · Teste administrativo V6.1</div></header>
+<main><section class="card">
+<p class="warn"><strong>Área exclusiva do professor.</strong> Esta página testa a correção no Supabase. Não é um portal para alunos. A senha não é armazenada pela página; ela é apagada do campo após a autenticação.</p>
+<label for="url">URL do projeto Supabase</label>
+<input id="url" value="https://vppizvieeggbzwkqtoss.supabase.co" spellcheck="false" autocomplete="off">
+<label for="key">Chave pública (publishable ou anon)</label>
+<input id="key" type="password" spellcheck="false" autocomplete="off" placeholder="Cole somente a chave pública">
+<label for="email">E-mail do professor</label>
+<input id="email" type="email" autocomplete="username" placeholder="E-mail cadastrado no Supabase">
+<label for="password">Senha do professor no Supabase</label>
+<input id="password" type="password" autocomplete="off" placeholder="Senha do professor">
+<label for="answer">Alternativa para testar</label>
+<select id="answer"><option value="A">A — incorreta (teste de 0%)</option><option value="B">B — correta (teste de 100%)</option><option value="C">C — incorreta</option><option value="D">D — incorreta</option><option value="E">E — incorreta</option></select>
+<button id="run" type="button">Entrar e testar correção</button>
+<p id="status" role="status" aria-live="polite"></p>
+<div id="result" class="result" hidden><div id="summary"></div><details><summary>Ver resposta técnica do Supabase</summary><pre id="output"></pre></details></div>
+<small>Questão de teste: <code>67f31c84-c89d-4fd4-a344-b857cf704d21</code>. A função é chamada usando o login do professor. Esta página não altera questões, gabaritos ou políticas RLS. Não use chaves secretas ou <code>service_role</code>.</small>
+</section></main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const qid = '67f31c84-c89d-4fd4-a344-b857cf704d21';
+$('run').addEventListener('click', async () => {
+  const button = $('run');
+  const result = $('result');
+  const status = $('status');
+  const answer = $('answer').value;
+  button.disabled = true;
+  result.hidden = true;
+  status.textContent = 'Autenticando professor...';
+  let token = '';
+  try {
+    const url = new URL($('url').value.trim());
+    if (url.protocol !== 'https:' || !/^[a-z0-9-]+\.supabase\.co$/i.test(url.hostname)) {
+      throw Error('URL do Supabase inválida. Use https://SEU-PROJETO.supabase.co');
+    }
+    const key = $('key').value.trim();
+    const email = $('email').value.trim();
+    const password = $('password').value;
+    if (!key || !email || !password) throw Error('Preencha URL, chave pública, e-mail e senha.');
+    const headers = {'apikey':key,'Content-Type':'application/json'};
+    const auth = await fetch(url.origin + '/auth/v1/token?grant_type=password', {
+      method:'POST',headers,body:JSON.stringify({email,password}),cache:'no-store'
+    });
+    const authData = await auth.json();
+    if (!auth.ok || !authData.access_token) {
+      throw Error('Falha no login: ' + (authData.msg || authData.error_description || authData.message || auth.status));
+    }
+    token = authData.access_token;
+    $('password').value = '';
+    status.textContent = 'Professor autenticado. Corrigindo alternativa ' + answer + '...';
+    const response = await fetch(url.origin + '/rest/v1/rpc/corrigir_simulado_v6', {
+      method:'POST',
+      headers:{...headers,Authorization:'Bearer ' + token},
+      body:JSON.stringify({p_respostas:[{questao_id:qid,resposta:answer}]}),
+      cache:'no-store'
+    });
+    const raw = await response.text();
+    let data;
+    try { data = JSON.parse(raw); } catch { data = raw; }
+    if (!response.ok) throw Error(typeof data === 'object' && data !== null ? (data.message || JSON.stringify(data)) : raw);
+    if (!data || typeof data !== 'object' || !Array.isArray(data.questoes)) throw Error('A função retornou um formato inesperado.');
+    const item = data.questoes.find(q => q.questao_id === qid);
+    if (!item) throw Error('A questão de teste não apareceu na resposta.');
+    const total = Number(data.total);
+    const acertos = Number(data.acertos);
+    const percentual = Number(data.percentual);
+    const esperado = answer === 'B';
+    const validado = total === 1 && acertos === (esperado ? 1 : 0) && percentual === (esperado ? 100 : 0) && item.correta === esperado && item.resposta_aluno === answer && item.gabarito === 'B';
+    const summary = $('summary');
+    summary.replaceChildren();
+    const heading = document.createElement('p');
+    heading.className = validado ? 'ok' : 'bad';
+    heading.textContent = validado ? '✓ Teste aprovado!' : '⚠ Resultado diferente do esperado — revisar antes de avançar.';
+    const details = document.createElement('p');
+    details.textContent = `Alternativa enviada: ${answer} · Gabarito: ${item.gabarito} · Acertos: ${acertos}/${total} · Aproveitamento: ${percentual}%`;
+    summary.append(heading, details);
+    if (item.resolucao) {
+      const resolution = document.createElement('p');
+      resolution.textContent = 'Resolução: ' + item.resolucao;
+      summary.append(resolution);
+    }
+    $('output').textContent = JSON.stringify(data,null,2);
+    result.hidden = false;
+    status.textContent = 'Resposta recebida do Supabase.';
+  } catch (error) {
+    status.textContent = 'Teste não concluído: ' + error.message;
+  } finally {
+    token = '';
+    button.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
