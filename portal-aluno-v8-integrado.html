@@ -2,20 +2,20 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Leal Concursos | Portal do Aluno V8</title>
+<title>Leal Concursos | Portal do Aluno</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#142b44;background:#eef3f8}*{box-sizing:border-box}body{margin:0}header{background:#071d36;color:white;border-bottom:4px solid #d5aa45;padding:22px 16px}.wrap{max-width:920px;margin:auto}.brand{font-size:27px;font-weight:850}.gold{color:#e6c66e}main{padding:20px 16px}.card{background:white;border-radius:16px;padding:24px;margin-bottom:16px;box-shadow:0 5px 18px #183b5512}h1{font-size:25px;margin:0 0 12px}h2{font-size:20px}p{line-height:1.55}.muted{color:#60768a;font-size:14px}.hidden{display:none!important}label.field{display:block;font-weight:700;margin:15px 0 7px}input[type=email],input[type=password],select{width:100%;padding:12px;border:1.5px solid #c7d5e1;border-radius:9px;font:inherit}button{border:0;background:#0a3762;color:#fff;border-radius:9px;padding:12px 17px;font:inherit;font-weight:700;cursor:pointer;min-height:44px}button.secondary{background:#e5edf5;color:#153a5e}button:disabled{opacity:.5;cursor:not-allowed}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.notice{padding:14px;border-radius:10px;background:#eaf2fa;white-space:pre-wrap}.notice.error{background:#fff0ee;color:#9e2c20}.notice.ok{background:#e8f7ed;color:#17653c}.pill{display:inline-block;border-radius:99px;background:#edf3f9;padding:5px 10px;font-size:13px}.option{display:flex;align-items:flex-start;gap:10px;border:1.5px solid #d4e0e9;border-radius:11px;padding:13px;margin:10px 0;cursor:pointer}.option:has(input:checked){background:#edf5ff;border-color:#0a3762}.option input{margin-top:4px}.question{font-size:18px;font-weight:650;white-space:pre-wrap}.progress{height:9px;background:#e8edf3;border-radius:9px;overflow:hidden}.progress>div{height:100%;background:#d5aa45}.score{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.score>div{background:#edf3f9;padding:18px;border-radius:12px}.score strong{display:block;font-size:30px}.review{border-top:1px solid #dbe4ec;padding:15px 0}.review p{white-space:pre-wrap}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.actions button{flex:1}footer{text-align:center;color:#61768a;font-size:12px;padding:16px}.warning{background:#fff6dc;border:1px solid #e6d08d;border-radius:10px;padding:13px;margin:12px 0}@media(max-width:600px){.card{padding:17px}.row>*{flex-basis:100%}.actions button{flex-basis:100%}.brand{font-size:23px}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><div class="brand">LEAL CONCURSOS</div><div class="gold">#incomparável · Portal do Aluno V8 — Testes</div></div></header>
+<header><div class="wrap"><div class="brand">LEAL CONCURSOS</div><div class="gold">#incomparável · Portal do Aluno</div></div></header>
 <main class="wrap">
 <section class="card" id="loginPanel"><h1>Entre na sua conta</h1><p class="muted">Utilize a conta de aluno cadastrada no Leal Concursos.</p><label class="field" for="email">E-mail</label><input id="email" type="email" autocomplete="email"><label class="field" for="password">Senha</label><input id="password" type="password" autocomplete="current-password"><div class="actions"><button id="login">Entrar</button><button id="signup" class="secondary">Criar conta</button></div><p class="muted">O cadastro poderá exigir confirmação por e-mail. Para recuperar a senha, utilize a <a href="recuperar-senha.html">página de recuperação</a>.</p></section>
-<section class="card hidden" id="homePanel"><div class="row"><div><h1>Meu espaço de estudos</h1><p id="account" class="muted"></p></div><div style="flex:0 0 auto"><button class="secondary" id="logout">Sair</button></div></div><div class="warning">Ambiente de testes. Nesta etapa, o servidor seleciona apenas questões gratuitas, publicadas e de múltipla escolha. Não há filtro por disciplina ou assunto nesta versão.</div><label class="field" for="amount">Quantidade solicitada</label><select id="amount"><option value="1">1 questão</option><option value="5">Até 5 questões</option><option value="10" selected>Até 10 questões</option><option value="20">Até 20 questões</option></select><p class="muted">Se houver menos questões elegíveis, o servidor poderá retornar uma quantidade menor.</p><div class="actions"><button id="start">Iniciar novo simulado</button><button id="resume" class="secondary">Continuar simulado pendente</button></div></section>
+<section class="card hidden" id="homePanel"><div class="row"><div><h1>Meu espaço de estudos</h1><p id="account" class="muted"></p></div><div style="flex:0 0 auto"><button class="secondary" id="logout">Sair</button></div></div><p class="muted">Escolha uma disciplina e, se desejar, um assunto específico. O simulado utilizará somente questões gratuitas e publicadas.</p><label class="field" for="discipline">Disciplina</label><select id="discipline" disabled><option value="">Carregando disciplinas…</option></select><label class="field" for="subject">Assunto</label><select id="subject" disabled><option value="">Todos os assuntos</option></select><label class="field" for="amount">Quantidade solicitada</label><select id="amount"><option value="1">1 questão</option><option value="5" selected>Até 5 questões</option><option value="10">Até 10 questões</option><option value="20">Até 20 questões</option></select><p class="muted" id="availability">Carregando disponibilidade…</p><div class="actions"><button id="start">Iniciar novo simulado</button><button id="resume" class="secondary">Continuar simulado pendente</button></div></section>
 <section class="card hidden" id="quizPanel"><div class="row"><h1 id="counter">Questão</h1><span class="pill" id="answered">0 respondidas</span></div><div class="progress"><div id="bar" style="width:0%"></div></div><p id="stem" class="question"></p><div id="options" role="group" aria-label="Alternativas"></div><div class="actions"><button id="prev" class="secondary">Anterior</button><button id="next" class="secondary">Próxima</button><button id="finish">Finalizar e corrigir</button></div><p class="muted">As respostas são enviadas ao servidor apenas ao finalizar. Se sair antes disso, a tentativa será recuperada, mas as marcações não enviadas precisarão ser feitas novamente.</p></section>
 <section class="card hidden" id="resultPanel"><h1>Resultado do simulado</h1><div class="score"><div>Acertos<strong id="scoreHits">—</strong></div><div>Aproveitamento<strong id="scorePct">—</strong></div></div><h2>Correção comentada</h2><div id="review"></div><button id="another">Voltar ao painel</button></section>
 <section class="card"><div id="notice" class="notice" role="status" aria-live="polite">Inicializando portal…</div></section>
-<footer>Leal Concursos · V8 experimental · Não disponível para lançamento público</footer>
+<footer>Leal Concursos · #incomparável</footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
@@ -27,18 +27,60 @@ const panels=['loginPanel','homePanel','quizPanel','resultPanel'];
 const show=id=>panels.forEach(x=>$(x).classList.toggle('hidden',x!==id));
 const msg=(text,type='')=>{$('notice').textContent=text;$('notice').className='notice'+(type?' '+type:'')};
 let db=null,attemptId=null,questions=[],answers=[],position=0,busy=false;
-const setBusy=state=>{busy=state;for(const id of ['login','signup','start','resume','finish','prev','next','logout','another'])$(id).disabled=state};
+let catalog=[],catalogLoaded=false;
+const setBusy=state=>{busy=state;for(const id of ['login','signup','start','resume','finish','prev','next','logout','another'])$(id).disabled=state;updateStartState()};
 function errorText(error){return error?.message||String(error||'Erro desconhecido')}
 function validQuestions(q){return Array.isArray(q)&&q.length>0&&q.every(x=>typeof x.questao_id==='string'&&typeof x.enunciado==='string'&&Array.isArray(x.alternativas)&&x.alternativas.length===5)}
 function loadQuiz(data){if(!data?.simulado_id||!validQuestions(data.questoes))throw Error('O servidor retornou um simulado inválido.');attemptId=data.simulado_id;questions=data.questoes;answers=questions.map(q=>q.resposta||'');position=0;show('quizPanel');renderQuestion()}
 function renderQuestion(){const q=questions[position];$('counter').textContent=`Questão ${position+1} de ${questions.length}`;$('answered').textContent=`${answers.filter(Boolean).length} respondida(s)`;$('bar').style.width=`${100*(position+1)/questions.length}%`;$('stem').textContent=q.enunciado;const root=$('options');root.replaceChildren();q.alternativas.forEach((text,i)=>{const letter='ABCDE'[i],lab=document.createElement('label'),radio=document.createElement('input'),span=document.createElement('span');lab.className='option';radio.type='radio';radio.name='resposta';radio.value=letter;radio.checked=answers[position]===letter;radio.addEventListener('change',()=>{answers[position]=letter;$('answered').textContent=`${answers.filter(Boolean).length} respondida(s)`});span.textContent=letter+') '+String(text);lab.append(radio,span);root.append(lab)});$('prev').disabled=position===0;$('next').disabled=position===questions.length-1}
 async function requireSession(){const {data,error}=await db.auth.getUser();if(error||!data?.user)throw Error('Sessão inválida. Faça login novamente.');return data.user}
-async function displaySession(){const {data}=await db.auth.getSession();if(data?.session){try{const user=await requireSession();$('account').textContent='Conectado como '+(user.email||'aluno');show('homePanel');msg('Sessão autenticada. Você pode iniciar ou recuperar um simulado.','ok');return}catch{}}show('loginPanel');msg('Entre com sua conta para continuar.')}
+function updateStartState(){
+  $('start').disabled=busy||!catalogLoaded||!$('discipline').value;
+}
+function populateSubjects(){
+  const id=$('discipline').value;
+  const d=catalog.find(x=>x.id===id);
+  $('subject').replaceChildren(new Option('Todos os assuntos',''));
+  for(const a of (d?.assuntos||[]))$('subject').add(new Option(a.nome,a.id));
+  $('subject').disabled=!d||!(d.assuntos||[]).length;
+  updateAvailability();
+  updateStartState();
+}
+function updateAvailability(){
+  const d=catalog.find(x=>x.id===$('discipline').value);
+  const a=d?.assuntos?.find(x=>x.id===$('subject').value);
+  const total=a?Number(a.disponiveis||0):Number(d?.disponiveis||0);
+  $('availability').textContent=!d?'Selecione uma disciplina.':`${total} questão(ões) gratuita(s) publicada(s) disponível(is) para esta seleção. Se solicitar mais, o servidor retornará somente as disponíveis.`;
+}
+async function loadCatalog(){
+  catalogLoaded=false;updateStartState();
+  $('discipline').disabled=true;
+  try{
+    const {data,error}=await db.rpc('listar_filtros_simulado_v9');
+    if(error)throw error;
+    if(!Array.isArray(data))throw Error('Catálogo inválido.');
+    catalog=data;
+    $('discipline').replaceChildren(new Option('Selecione uma disciplina',''));
+    for(const d of catalog)$('discipline').add(new Option(d.nome,d.id));
+    $('discipline').disabled=false;
+    catalogLoaded=true;
+    populateSubjects();
+  }catch(e){
+    $('discipline').replaceChildren(new Option('Filtros indisponíveis',''));
+    $('subject').replaceChildren(new Option('Todos os assuntos',''));
+    $('subject').disabled=true;
+    $('availability').textContent='Não foi possível carregar as disciplinas. Confira a função listar_filtros_simulado_v9 no Supabase.';
+    msg('Falha ao carregar filtros: '+errorText(e),'error');
+  }
+  updateStartState();
+}
+async function displaySession(){const {data}=await db.auth.getSession();if(data?.session){try{const user=await requireSession();$('account').textContent='Conectado como '+(user.email||'aluno');show('homePanel');msg('Sessão autenticada. Você pode iniciar ou recuperar um simulado.','ok');await loadCatalog();return}catch{}}show('loginPanel');msg('Entre com sua conta para continuar.')}
 async function authenticate(register=false){if(busy)return;const email=$('email').value.trim(),password=$('password').value;if(!email||!password)return msg('Informe seu e-mail e senha.','error');setBusy(true);try{if(register){const {error}=await db.auth.signUp({email,password});if(error)throw error;msg('Cadastro solicitado. Verifique seu e-mail para confirmar a conta, se necessário.','ok')}else{const {error}=await db.auth.signInWithPassword({email,password});if(error)throw error;$('password').value='';await displaySession()}}catch(e){msg('Não foi possível autenticar: '+errorText(e),'error')}finally{setBusy(false)}}
-async function start(){if(busy)return;setBusy(true);try{await requireSession();const {data,error}=await db.rpc('iniciar_simulado_v8',{p_quantidade:Number($('amount').value)});if(error)throw error;loadQuiz(data);msg('Simulado iniciado! Responda às questões e finalize quando terminar.','ok')}catch(e){msg('Não foi possível iniciar: '+errorText(e)+'\nSe houver um simulado pendente, use “Continuar simulado pendente”.','error')}finally{setBusy(false)}}
+async function start(){if(busy)return;setBusy(true);try{await requireSession();const {data,error}=await db.rpc('iniciar_simulado_v9',{p_quantidade:Number($('amount').value),p_disciplina_id:$('discipline').value||null,p_assunto_id:$('subject').value||null});if(error)throw error;loadQuiz(data);msg('Simulado iniciado! Responda às questões e finalize quando terminar.','ok')}catch(e){msg('Não foi possível iniciar: '+errorText(e)+'\nSe houver um simulado pendente, use “Continuar simulado pendente”.','error')}finally{setBusy(false)}}
 async function resume(){if(busy)return;setBusy(true);try{await requireSession();const {data,error}=await db.rpc('recuperar_simulado_v8');if(error)throw error;if(!data?.encontrado){attemptId=null;questions=[];answers=[];show('homePanel');msg('Nenhum simulado em andamento.','ok');return}loadQuiz(data);msg('Simulado recuperado! As respostas ainda não enviadas deverão ser marcadas novamente.','ok')}catch(e){msg('Falha ao recuperar: '+errorText(e),'error')}finally{setBusy(false)}}
 async function finish(){if(busy||!attemptId)return;const missing=answers.filter(x=>!x).length;if(missing){msg(`Responda todas as questões antes de finalizar. Faltam ${missing}.`,'error');return}if(!confirm('Finalizar definitivamente este simulado e receber a correção?'))return;setBusy(true);try{await requireSession();const payload=questions.map((q,i)=>({questao_id:q.questao_id,resposta:answers[i]}));const {data,error}=await db.rpc('finalizar_simulado_v8',{p_simulado_id:attemptId,p_respostas:payload});if(error)throw error;if(!data||!Array.isArray(data.questoes))throw Error('Resultado inesperado do servidor.');$('scoreHits').textContent=`${data.acertos} de ${data.total}`;$('scorePct').textContent=`${data.percentual}%`;const root=$('review');root.replaceChildren();data.questoes.forEach((item,i)=>{const section=document.createElement('section'),title=document.createElement('h3'),p=document.createElement('p'),resolution=document.createElement('p');section.className='review';title.textContent=`Questão ${item.ordem||i+1}`;p.textContent=`Sua resposta: ${item.resposta_aluno} | Gabarito: ${item.gabarito} | ${item.correta?'Correta':'Incorreta'}`;resolution.textContent='Resolução: '+(item.resolucao||'Não disponível.');section.append(title,p,resolution);root.append(section)});attemptId=null;questions=[];answers=[];show('resultPanel');msg('Simulado finalizado e corrigido pelo servidor.','ok')}catch(e){msg('Falha ao finalizar: '+errorText(e)+'\nNão tente novamente antes de verificar a situação da tentativa.','error')}finally{setBusy(false)}}
-$('login').onclick=()=>authenticate(false);$('signup').onclick=()=>authenticate(true);$('start').onclick=start;$('resume').onclick=resume;$('finish').onclick=finish;$('prev').onclick=()=>{if(position>0){position--;renderQuestion()}};$('next').onclick=()=>{if(position<questions.length-1){position++;renderQuestion()}};$('another').onclick=()=>{show('homePanel');msg('Você pode iniciar um novo simulado.','ok')};$('logout').onclick=async()=>{if(busy)return;setBusy(true);try{await db.auth.signOut();attemptId=null;questions=[];answers=[];show('loginPanel');msg('Sessão encerrada.')}catch(e){msg(errorText(e),'error')}finally{setBusy(false)}};
+$('discipline').addEventListener('change',populateSubjects);$('subject').addEventListener('change',updateAvailability);
+$('login').onclick=()=>authenticate(false);$('signup').onclick=()=>authenticate(true);$('start').onclick=start;$('resume').onclick=resume;$('finish').onclick=finish;$('prev').onclick=()=>{if(position>0){position--;renderQuestion()}};$('next').onclick=()=>{if(position<questions.length-1){position++;renderQuestion()}};$('another').onclick=()=>{show('homePanel');loadCatalog();msg('Você pode iniciar um novo simulado.','ok')};$('logout').onclick=async()=>{if(busy)return;setBusy(true);try{await db.auth.signOut();attemptId=null;questions=[];answers=[];catalogLoaded=false;show('loginPanel');msg('Sessão encerrada.')}catch(e){msg(errorText(e),'error')}finally{setBusy(false)}};
 // Compatibilidade entre o login HTML próprio e o cliente oficial do Supabase.
 // Só restaura uma sessão depois de validá-la no servidor do Supabase.
 function extractTokens(value,depth=0){
