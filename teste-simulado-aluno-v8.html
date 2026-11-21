@@ -10,16 +10,15 @@
 </head>
 <body><main>
 <h1>Leal Concursos — Simulado V8</h1>
-<p class="muted">Ambiente de testes. Esta página inicia ou finaliza uma tentativa de 1 questão. O gabarito aparece somente após a finalização.</p>
+<p class="muted">Ambiente de testes. Esta página inicia, recupera e finaliza um simulado de teste de 1 questão. O gabarito aparece somente após a finalização.</p>
 <p><a href="login-aluno-v7.html">Voltar ao login do aluno</a></p>
 <label for="key">Chave pública (publishable/anon) do Supabase</label>
 <input id="key" type="text" autocomplete="off" spellcheck="false" placeholder="Cole aqui a chave pública do projeto">
 <p class="muted">Use apenas a chave pública. Nunca insira uma chave <code>service_role</code>, <code>secret</code> ou sua senha neste campo.</p>
 <button id="check">Verificar sessão</button>
 <button id="start" disabled>Iniciar simulado de teste</button>
-<label for="attempt">ID da tentativa já iniciada (para recuperar o teste anterior)</label>
-<input id="attempt" value="587c46ea-bd30-4f23-9c01-3097cc3a2cb7" spellcheck="false">
-<button id="load" disabled>Carregar tentativa existente</button>
+<button id="load" disabled>Continuar simulado pendente</button>
+<p id="attemptInfo" class="muted"></p>
 <button id="finish" disabled>Finalizar e corrigir</button>
 <div id="status" class="notice" role="status">Aguardando verificação da sessão.</div>
 <div id="questions"></div>
@@ -32,15 +31,16 @@ const statusBox=document.getElementById('status');
 const startButton=document.getElementById('start');
 const checkButton=document.getElementById('check');
 const questionsBox=document.getElementById('questions');
-const attemptInput=document.getElementById('attempt');
+const attemptInfo=document.getElementById('attemptInfo');
 const loadButton=document.getElementById('load');
 const finishButton=document.getElementById('finish');
 let activeId=null;let activeQuestions=[];
 let client=null;
 function status(message,error=false){statusBox.textContent=message;statusBox.classList.toggle('error',error)}
+function resetAttempt(){activeId=null;activeQuestions=[];attemptInfo.textContent='';questionsBox.replaceChildren();finishButton.disabled=true}
 function add(tag,text,parent,cls){const node=document.createElement(tag);node.textContent=text;if(cls)node.className=cls;parent.appendChild(node);return node}
 checkButton.addEventListener('click',async()=>{
-  startButton.disabled=true;loadButton.disabled=true;finishButton.disabled=true;questionsBox.replaceChildren();
+  startButton.disabled=true;loadButton.disabled=true;resetAttempt();
   const key=keyInput.value.trim();
   if(!key){status('Informe a chave pública do Supabase.',true);return}
   if(!window.supabase){status('Não foi possível carregar a biblioteca do Supabase. Verifique sua conexão.',true);return}
@@ -73,26 +73,37 @@ startButton.addEventListener('click',async()=>{
     const {data,error}=await client.rpc('iniciar_simulado_v8',{p_quantidade:1});
     if(error)throw error;
     if(!data||!Array.isArray(data.questoes))throw new Error('Resposta inesperada do servidor.');
-    activeId=data.simulado_id;activeQuestions=data.questoes;attemptInput.value=activeId;
+    activeId=data.simulado_id;activeQuestions=data.questoes;attemptInfo.textContent='Tentativa: '+activeId;
     renderQuestions(activeQuestions);
     status('Simulado iniciado. ID: '+activeId+'\nEscolha uma alternativa e clique em Finalizar e corrigir.');
-  }catch(e){status('Falha ao iniciar simulado: '+e.message+'\nSe já houver uma tentativa aberta, use Carregar tentativa existente.',true)}
+  }catch(e){status('Falha ao iniciar simulado: '+e.message+'\nSe já houver uma tentativa aberta, use Continuar simulado pendente.',true)}
 });
 loadButton.addEventListener('click',async()=>{
   if(!client){status('Verifique a sessão primeiro.',true);return}
-  const id=attemptInput.value.trim();
-  if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id)){status('ID inválido.',true);return}
-  loadButton.disabled=true;
+  loadButton.disabled=true;finishButton.disabled=true;
+  status('Procurando tentativa pendente...');
   try{
-    // A V8 ainda nao possui uma RPC de recuperacao. A questao ja
-    // exibida no teste anterior e conhecida; usamos seu ID publico.
-    // Nenhum gabarito e consultado nesta etapa.
-    const questionId='67f31c84-c89d-4fd4-a344-b857cf704d21';
-    activeId=id;
-    activeQuestions=[{questao_id:questionId,ordem:1,enunciado:'Qual é o resultado de 48 ÷ 6 + 7 × 2?',alternativas:['15','22','30','28','18']}];
+    const {data,error}=await client.rpc('recuperar_simulado_v8');
+    if(error)throw error;
+    if(!data?.encontrado){
+      resetAttempt();
+      status('Nenhum simulado em andamento. Você pode iniciar um novo teste.');
+      return;
+    }
+    if(!Array.isArray(data.questoes)||!data.questoes.length)throw new Error('A tentativa não possui questões válidas.');
+    activeId=data.simulado_id;activeQuestions=data.questoes;
+    attemptInfo.textContent='Tentativa recuperada: '+activeId;
     renderQuestions(activeQuestions);
-    status('Tentativa selecionada: '+id+'\nConfirme que é a mesma questão do teste anterior. Selecione sua resposta e finalize.');
-  }catch(e){status(e.message,true)}finally{loadButton.disabled=false}
+    activeQuestions.forEach(q=>{
+      if(!q.resposta)return;
+      const radios=document.getElementsByName('q_'+q.questao_id);
+      for(const radio of radios){if(radio.value===q.resposta)radio.checked=true}
+    });
+    status('Simulado recuperado com sucesso! Selecione suas respostas e finalize.');
+  }catch(e){
+    resetAttempt();
+    status('Falha na recuperação: '+e.message,true);
+  }finally{loadButton.disabled=false}
 });
 finishButton.addEventListener('click',async()=>{
   if(!client||!activeId||!activeQuestions.length)return;
@@ -113,7 +124,7 @@ finishButton.addEventListener('click',async()=>{
       add('p','Sua resposta: '+q.resposta_aluno+' | Gabarito: '+q.gabarito+' | '+(q.correta?'Correta':'Incorreta'),result);
       add('p','Resolução: '+(q.resolucao||'Não informada'),result);
     });
-    questionsBox.replaceChildren(result);startButton.disabled=false;
+    questionsBox.replaceChildren(result);activeId=null;activeQuestions=[];attemptInfo.textContent='';startButton.disabled=false;
   }catch(e){status('Falha na finalização: '+e.message+'\nNão tente outra vez antes de verificar o erro.',true)}
 });
 </script></body></html>
