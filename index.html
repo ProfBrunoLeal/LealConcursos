@@ -1,10 +1,11 @@
+```
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Leal Concursos – Preparatório para Cefet, FAETEC e pré-militar</title>
-<meta name="description" content="Leal Concursos: preparatório presencial para Cefet, FAETEC, ESA, EEAr e Fuzileiros Navais, em Duque de Caxias, com o Prof. Bruno Leal.">
+<title>Leal Concursos | Simulados gratuitos de Matemática e preparatórios</title>
+<meta name="description" content="Faça simulados gratuitos de Matemática com correção comentada. Conheça também as turmas presenciais do Leal Concursos em Duque de Caxias, com o Prof. Bruno Leal.">
 <meta name="theme-color" content="#0f2a6b">
 <style>
 :root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--hero1:#0f2a6b;--hero2:#1f4fd8;--zap:#12a150;
@@ -27,6 +28,22 @@ h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.12;margin:0 0 14px;max-width
 .btn.z{background:var(--zap);color:#fff}
 .btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff}
 .btn.sm{padding:8px 14px;font-size:.85rem}
+
+/* DESTAQUE DOS SIMULADOS GRATUITOS */
+.hero-eyebrow{display:inline-block;margin:0 0 12px;padding:6px 12px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(255,255,255,.12);font-size:.84rem;font-weight:750;letter-spacing:.02em}
+.hero .hero-subtitle{font-size:1.12rem;line-height:1.55;opacity:1;margin-bottom:14px}
+.hero .hero-secondary{font-size:.91rem;opacity:.85;margin-bottom:20px}
+.btn.primary{background:#fff;color:#123477;box-shadow:0 8px 22px rgba(0,0,0,.15)}
+.btn.primary:hover{background:#eaf3ff}
+.hero .btn.s{background:rgba(255,255,255,.09)}
+.free-strip{padding:28px 0 8px}
+.free-panel{display:grid;grid-template-columns:1.35fr 1fr;gap:22px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:0 10px 28px rgba(12,39,91,.07)}
+.free-panel h2{margin-bottom:8px}
+.free-panel p{color:var(--muted);margin:0 0 14px}
+.free-steps{display:grid;gap:9px}
+.free-step{padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--line);font-weight:600;font-size:.94rem}
+.free-panel .btn{background:var(--accent);color:#fff}
+@media(max-width:700px){.free-panel{grid-template-columns:1fr;padding:20px}.hero .btns .btn{width:100%;text-align:center}}
 
 /* NAVEGAÇÃO POR ABAS */
 .nav-tabs-wrap{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.05)}
@@ -102,12 +119,17 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 <text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
 </svg></div>
     <div class="heroin"><div class="txt">
-    <h1>Sua aprovação em escolas técnicas e carreiras militares começa aqui.</h1>
-    <p>Curso com todas as matérias, em turmas presenciais na Vila São Luís, Duque de Caxias, com o Prof. Bruno Leal, professor há 29 anos.</p>
+    <div class="hero-eyebrow">🎯 Plataforma de estudos gratuita</div>
+    <h1>Treine Matemática com simulados gratuitos e correção comentada.</h1>
+    <p class="hero-subtitle">Crie sua conta, resolva questões de múltipla escolha e descubra onde pode melhorar, com explicações após cada simulado.</p>
+    <div class="btns" style="margin-bottom:22px">
+      <a class="btn primary" href="login.html">Começar gratuitamente →</a>
+      <a class="btn s" href="login.html">Já tenho conta · Entrar</a>
+    </div>
+    <p class="hero-secondary">Também oferecemos turmas presenciais com todas as matérias, na Vila São Luís, Duque de Caxias, com o Prof. Bruno Leal, professor há 29 anos.</p>
     <div class="chips"><span>Cefet</span><span>FAETEC</span><span>ESA</span><span>EEAr</span><span>Fuzileiros Navais</span></div>
     <div class="btns">
-      <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Falar no WhatsApp</a>
-      <a class="btn s" href="login.html">🎯 Entrar / Criar conta · Simulados</a>
+      <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Conhecer as turmas · WhatsApp</a>
     </div>
     </div>
     <div class="pic"><img alt="Prof. Bruno Leal, professor do Leal Concursos" src="foto-topo.jpg"></div>
@@ -127,6 +149,21 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
 </div>
 
 <main class="wrap">
+  <section class="free-strip" aria-labelledby="free-title">
+    <div class="free-panel">
+      <div>
+        <span class="tag">Estude sem pagar</span>
+        <h2 id="free-title">Como funcionam os simulados?</h2>
+        <p>Você escolhe as questões disponíveis, responde no seu ritmo e recebe a correção comentada ao finalizar. Uma forma prática de revisar Matemática e identificar os assuntos que merecem mais atenção.</p>
+        <a class="btn" href="login.html">Criar conta e fazer meu primeiro simulado</a>
+      </div>
+      <div class="free-steps" aria-label="Três passos para começar">
+        <div class="free-step">1. Crie sua conta gratuitamente</div>
+        <div class="free-step">2. Resolva as questões do simulado</div>
+        <div class="free-step">3. Confira o gabarito e as explicações</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ABA 1: TURMAS + ONDE ESTAMOS + FAQ -->
   <div id="tab-turmas" class="tab-content active">
@@ -405,3 +442,4 @@ function openTab(evt, tabId) {
 
 </body>
 </html>
+```
