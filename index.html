@@ -6,6 +6,39 @@
 <title>Leal Concursos – Preparatório para Cefet, FAETEC e pré-militar</title>
 <meta name="description" content="Leal Concursos: preparatório presencial para Cefet, FAETEC, ESA, EEAr e Fuzileiros Navais, em Duque de Caxias, com o Prof. Bruno Leal.">
 <meta name="theme-color" content="#0f2a6b">
+
+/* Corrige o corte dos botões de navegação */
+nav {
+  max-width: 100%;
+}
+
+nav .tabs,
+nav .nav-links,
+.tab-nav,
+.tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+nav button,
+nav a,
+.tab-nav button,
+.tabs-nav button {
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  nav .tabs,
+  nav .nav-links,
+  .tab-nav,
+  .tabs-nav {
+    justify-content: flex-start;
+  }
+}
+  
 <style>
 :root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--hero1:#0f2a6b;--hero2:#1f4fd8;--zap:#12a150;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
