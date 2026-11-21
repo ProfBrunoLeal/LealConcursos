@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Leal Concursos — Teste Simulado V8</title>
+<style>
+:root{font-family:system-ui,Arial,sans-serif;color:#112b49;background:#edf3f9}*{box-sizing:border-box}main{max-width:760px;margin:35px auto;padding:26px;background:white;border-radius:16px;box-shadow:0 6px 24px #1232}h1{margin-top:0}label{display:block;margin:16px 0 6px;font-weight:600}input{width:100%;padding:12px;border:1px solid #b9c9d8;border-radius:8px}button{background:#103c6b;color:white;padding:13px 20px;border:0;border-radius:8px;font-weight:700;cursor:pointer;margin-top:16px}button:disabled{opacity:.5;cursor:wait}.muted{color:#536b83}.notice{padding:12px;background:#f0f5fa;border-radius:8px;margin-top:14px;white-space:pre-wrap;overflow-wrap:anywhere}.error{background:#fff1ee;color:#912b1d}.question{margin-top:20px;border-top:1px solid #ddd;padding-top:14px}.option{padding:8px 0}code{overflow-wrap:anywhere}a{color:#07579e}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+</head>
+<body><main>
+<h1>Leal Concursos — Simulado V8</h1>
+<p class="muted">Ambiente de testes. Esta página inicia uma tentativa de 1 questão, sem revelar gabaritos.</p>
+<p><a href="login-aluno-v7.html">Voltar ao login do aluno</a></p>
+<label for="key">Chave pública (publishable/anon) do Supabase</label>
+<input id="key" type="text" autocomplete="off" spellcheck="false" placeholder="Cole aqui a chave pública do projeto">
+<p class="muted">Use apenas a chave pública. Nunca insira uma chave <code>service_role</code>, <code>secret</code> ou sua senha neste campo.</p>
+<button id="check">Verificar sessão</button>
+<button id="start" disabled>Iniciar simulado de teste</button>
+<div id="status" class="notice" role="status">Aguardando verificação da sessão.</div>
+<div id="questions"></div>
+</main>
+<script>
+'use strict';
+const URL_SUPABASE='https://vppizvieeggbzwkqtoss.supabase.co';
+const keyInput=document.getElementById('key');
+const statusBox=document.getElementById('status');
+const startButton=document.getElementById('start');
+const checkButton=document.getElementById('check');
+const questionsBox=document.getElementById('questions');
+let client=null;
+function status(message,error=false){statusBox.textContent=message;statusBox.classList.toggle('error',error)}
+function add(tag,text,parent,cls){const node=document.createElement(tag);node.textContent=text;if(cls)node.className=cls;parent.appendChild(node);return node}
+checkButton.addEventListener('click',async()=>{
+  startButton.disabled=true;questionsBox.replaceChildren();
+  const key=keyInput.value.trim();
+  if(!key){status('Informe a chave pública do Supabase.',true);return}
+  if(!window.supabase){status('Não foi possível carregar a biblioteca do Supabase. Verifique sua conexão.',true);return}
+  try{
+    client=window.supabase.createClient(URL_SUPABASE,key);
+    const {data,error}=await client.auth.getUser();
+    if(error||!data?.user){status('Nenhuma sessão válida encontrada. Entre novamente pelo login V7 nesta mesma origem.',true);return}
+    status('Sessão autenticada confirmada: '+(data.user.email||'aluno')+'\nPronto para iniciar o teste.');
+    startButton.disabled=false;
+  }catch(e){status('Erro ao verificar sessão: '+e.message,true)}
+});
+startButton.addEventListener('click',async()=>{
+  startButton.disabled=true;questionsBox.replaceChildren();status('Solicitando simulado ao servidor...');
+  try{
+    const {data,error}=await client.rpc('iniciar_simulado_v8',{p_quantidade:1});
+    if(error)throw error;
+    if(!data||!Array.isArray(data.questoes))throw new Error('Resposta inesperada do servidor.');
+    status('Simulado iniciado. ID: '+data.simulado_id+'\nQuantidade: '+data.total+'\nNão finalize nesta página: este teste apenas inicia a tentativa.');
+    data.questoes.forEach(q=>{
+      const section=document.createElement('section');section.className='question';
+      add('h2','Questão '+q.ordem,section);
+      add('p',q.enunciado,section);
+      (q.alternativas||[]).forEach((alt,i)=>add('div',String.fromCharCode(65+i)+') '+String(alt),section,'option'));
+      questionsBox.appendChild(section);
+    });
+  }catch(e){status('Falha ao iniciar simulado: '+e.message,true)}
+});
+</script></body></html>
