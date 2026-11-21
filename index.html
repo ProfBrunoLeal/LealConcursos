@@ -6,39 +6,6 @@
 <title>Leal Concursos – Preparatório para Cefet, FAETEC e pré-militar</title>
 <meta name="description" content="Leal Concursos: preparatório presencial para Cefet, FAETEC, ESA, EEAr e Fuzileiros Navais, em Duque de Caxias, com o Prof. Bruno Leal.">
 <meta name="theme-color" content="#0f2a6b">
-
-/* Corrige o corte dos botões de navegação */
-nav {
-  max-width: 100%;
-}
-
-nav .tabs,
-nav .nav-links,
-.tab-nav,
-.tabs-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  max-width: 100%;
-}
-
-nav button,
-nav a,
-.tab-nav button,
-.tabs-nav button {
-  flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  nav .tabs,
-  nav .nav-links,
-  .tab-nav,
-  .tabs-nav {
-    justify-content: flex-start;
-  }
-}
-  
 <style>
 :root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--hero1:#0f2a6b;--hero2:#1f4fd8;--zap:#12a150;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
@@ -63,7 +30,7 @@ h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.12;margin:0 0 14px;max-width
 
 /* NAVEGAÇÃO POR ABAS */
 .nav-tabs-wrap{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.05)}
-.nav-tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 20px;max-width:960px;margin:0 auto;scrollbar-width:none}
+.nav-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px 16px;max-width:1100px;margin:0 auto}
 .nav-tabs::-webkit-scrollbar{display:none}
 .tab-btn{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:8px 16px;border-radius:999px;font-size:.9rem;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .2s ease}
 .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
@@ -155,7 +122,6 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     <button class="tab-btn" onclick="openTab(event, 'tab-diario')">📌 Diário de Classe</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-professor')">🎓 O Professor</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-bizu')">💡 Bizus</button>
-    <button class="tab-btn" onclick="openTab(event, 'tab-simulados')">📝 Simulados & Aulas</button>
     <button class="tab-btn" onclick="openTab(event, 'tab-materiais')">📄 Material Gratuito</button>
   </div>
 </div>
@@ -386,81 +352,7 @@ summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
     </section>
   </div>
 
-  <!-- ABA 5: SIMULADOS E AULAS -->
-  <div id="tab-simulados" class="tab-content">
-    <section>
-      <div class="card" style="margin-bottom:28px;border:2px solid var(--accent);">
-        <span class="tag">Plataforma de estudos</span>
-        <h2>Simulados on-line com correção comentada</h2>
-        <p style="margin:8px 0 16px">Crie sua conta gratuitamente, escolha uma disciplina e pratique com questões publicadas. Ao finalizar, confira seu desempenho, o gabarito e as resoluções disponíveis.</p>
-        <div class="btns">
-          <a class="btn z" href="login.html">Entrar ou criar conta</a>
-          <a class="btn sm" style="background:var(--accent);color:#fff" href="portal.html">Acessar meu portal</a>
-        </div>
-        <p style="margin-top:12px;font-size:.85rem;color:var(--muted)">Banco de questões em expansão. A disponibilidade varia conforme a disciplina e o assunto.</p>
-      </div>
-      <h2>Aulas demonstrativas</h2>
-      <p class="lead">Assista a uma resolução comentada passo a passo pelo Prof. Bruno Leal.</p>
-      
-      <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/2F_URk3Jj9Q" title="Volume do Paralelepípedo - CMRJ/2027 - Prof. Bruno Leal" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-
-      <div class="grid" style="margin-bottom:30px;">
-        <div class="card">
-          <div class="ico">📐</div>
-          <h3>Volume do Paralelepípedo · CMRJ</h3>
-          <p>Resolução detalhada da questão de matemática sobre volume e conversão de unidades (m³ para cm³).</p>
-        </div>
-        <div class="card">
-          <div class="ico">📺</div>
-          <h3>Canal Prof. Bruno Leal</h3>
-          <p>Inscreva-se no nosso canal no YouTube para acompanhar mais resoluções de questões e dicas de estudo.</p>
-          <a class="btn z" style="margin-top:14px;display:inline-block;" href="https://www.youtube.com/watch?v=2F_URk3Jj9Q" target="_blank" rel="noopener">Ver no YouTube ↗</a>
-        </div>
-      </div>
-
-      <h2>Questões resolvidas</h2>
-      <p class="lead">Toque em uma questão para ver o enunciado e a resolução passo a passo do professor.</p>
-      <details><summary><div>Valor total a partir de uma porcentagem<small>Professor de Matemática – SC/2023</small></div></summary>
-        <div class="det"><p class="enun">Em uma feira, Maria gastou 40% de todo o dinheiro que tinha em sua carteira. Se o valor gasto por Maria foi de R$ 32,00, então é correto afirmar que o valor total que ela tinha na carteira era de:</p>
-        <div class="sol">Regra de três:
-R$ → %
-32 → 40
-x → 100
-40x = 32 · 100 → 40x = 3200 → x = 80 reais.</div><div class="resp">Resposta: R$ 80,00</div></div></details>
-      <details><summary><div>Desconto aplicado sobre o preço de vitrine<small>IBFC/2023</small></div></summary>
-        <div class="det"><p class="enun">Paulo foi a uma loja e pagou R$ 238,00 por um produto, já incluso 15% de desconto sobre o preço do produto exposto na vitrine. Nessas condições, o valor do desconto atribuído ao preço do produto foi de:</p>
-        <div class="sol">Toda grandeza, ANTES de qualquer aumento ou de qualquer desconto, é o 100% na regra de três.
-R$ → %
-238 → 85 (100% − 15%)
-x → 15
-85x = 238 · 15 → 85x = 3570 → x = 42 reais.</div><div class="resp">Resposta: R$ 42,00</div></div></details>
-      <details><summary><div>Descontos sucessivos<small>Analista – SAEB – IBFC/2023</small></div></summary>
-        <div class="det"><p class="enun">O preço de um produto na vitrine estava anunciado com 20% de desconto à vista, porém Mariana obteve outro desconto de 10% sobre o valor do produto já descontado os 20%. Nessas condições, o desconto total obtido por Mariana na compra do produto foi de:</p>
-        <div class="sol">1) Vamos supor o valor inicial do produto = 100 reais
-2) Desconto de 20% de 100 = 20
-3) Valor atual do produto → 100 – 20 = 80
-4) Desconto de 10% de 80 = 8
-5) Logo: 20 + 8 = 28 reais de desconto → 28% de desconto.</div><div class="resp">Resposta: 28%</div></div></details>
-      <details><summary><div>Porcentagem de uma porcentagem<small>Professor de Matemática – AC – IBFC/2023</small></div></summary>
-        <div class="det"><p class="enun">Num aquário 12% dos peixes foram afetados por uma doença. Dos peixes atingidos por essa doença, apenas 20% deles morreram. A porcentagem de peixes que morreu por causa dessa doença é:</p>
-        <div class="sol">1) Vamos supor que no aquário havia 100 peixes
-2) Doentes → 12% de 100 = 12 peixes
-3) Morreram → 20% de 12 = 2,4 peixes
-→ 2,4% do total.</div><div class="resp">Resposta: 2,4%</div></div></details>
-      <details><summary><div>Aumentos e desconto sucessivos<small>Professor de Matemática – Camaçari – BA/2024</small></div></summary>
-        <div class="det"><p class="enun">No preço P de um determinado produto foram aplicados, em dois meses consecutivos, dois aumentos sucessivos de 20% e, no terceiro mês, um desconto de 40%. Considerando regime de capitalização composto, qual foi a variação do preço final em relação ao valor original P?</p>
-        <div class="sol">1) Vamos supor o valor inicial P = 100 reais
-2) Aumento de 20% de 100 = 20 → valor atual: 120
-3) Aumento de 20% de 120 = 24 → valor atual: 144
-4) Desconto de 40% de 144 = 57,60 → valor final: 144 – 57,60 = 86,40
-Logo, houve uma diminuição de 100 – 86,40 = 13,60 → 13,6%.</div><div class="resp">Resposta: diminuição de 13,6%</div></div></details>
-      <div class="btns" style="margin-top:16px"><a class="btn z" href="simulado-aula5-porcentagem.html">Praticar no simulado</a></div>
-    </section>
-  </div>
-
-  <!-- ABA 6: MATERIAIS PARA DOWNLOAD -->
+  <!-- ABA: MATERIAL GRATUITO -->
   <div id="tab-materiais" class="tab-content">
     <section>
       <h2>Provas e apostilas para download</h2>
