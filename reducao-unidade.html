@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Leal Concursos | Redução à Unidade</title>
+  <style>
+    :root {
+      --bg-main: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --primary: #22c55e;
+      --primary-dark: #16a34a;
+      --accent: #f59e0b;
+      --accent-dark: #d97706;
+      --danger: #ef4444;
+      --danger-dark: #b91c1c;
+      --info: #38bdf8;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 500px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background-color: var(--bg-main);
+    }
+
+    /* TOP HUD */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .brand-badge {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: 0.3px;
+    }
+
+    .brand-rank {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .stats-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stat-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .stat-xp { color: var(--accent); }
+    .stat-streak { color: #fb923c; }
+    .stat-lives { color: var(--danger); }
+
+    /* SCREENS */
+    .screen {
+      display: none;
+      flex: 1;
+      flex-direction: column;
+      padding: 18px 16px 36px;
+      width: 100%;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HOME / MAP SCREEN */
+    .hero-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-card h1 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+
+    .hero-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .rank-progress-wrap {
+      margin-top: 12px;
+    }
+
+    .rank-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #090d16;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), #4ade80);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .trail-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      position: relative;
+      padding: 8px 0 24px;
+    }
+
+    .trail-node-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+
+    .trail-node-wrap:nth-child(even) { transform: translateX(24px); }
+    .trail-node-wrap:nth-child(odd) { transform: translateX(-24px); }
+    .trail-node-wrap:first-child { transform: translateX(0); }
+
+    .node-btn {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      position: relative;
+      transition: transform 0.12s ease;
+      box-shadow: 0 6px 0 var(--primary-dark), 0 12px 20px rgba(0,0,0,0.4);
+      background: var(--primary);
+      color: #052e16;
+    }
+
+    .node-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 var(--primary-dark);
+    }
+
+    .node-btn.completed {
+      background: var(--accent);
+      color: #451a03;
+      box-shadow: 0 6px 0 var(--accent-dark), 0 12px 20px rgba(0,0,0,0.4);
+    }
+
+    .node-btn.locked {
+      background: #334155;
+      color: #64748b;
+      box-shadow: 0 6px 0 #1e293b;
+      cursor: not-allowed;
+    }
+
+    .node-btn.vip {
+      background: linear-gradient(135deg, #f59e0b, #eab308);
+      color: #451a03;
+      box-shadow: 0 6px 0 #b45309, 0 0 20px rgba(245, 158, 11, 0.35);
+    }
+
+    .node-label {
+      margin-top: 9px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 220px;
+    }
+
+    .node-label strong {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--text-main);
+    }
+
+    .node-label span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .promo-banner {
+      margin-top: 12px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .promo-banner h3 {
+      font-size: 0.96rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .promo-banner p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    /* QUIZ SCREEN */
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      width: 100%;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .quiz-progress-bar {
+      flex: 1;
+      height: 12px;
+      background: var(--bg-card);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-fill {
+      height: 100%;
+      background: var(--primary);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .question-tag {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--info);
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .question-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      font-size: 1.02rem;
+      line-height: 1.55;
+      font-weight: 500;
+      width: 100%;
+      overflow-wrap: break-word;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 110px;
+      width: 100%;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-bottom-width: 4px;
+      border-radius: 14px;
+      padding: 14px 14px;
+      color: var(--text-main);
+      font-size: 0.96rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.12s ease;
+      overflow-wrap: break-word;
+    }
+
+    .option-btn:active {
+      transform: translateY(2px);
+      border-bottom-width: 2px;
+    }
+
+    .option-btn.selected {
+      border-color: var(--info);
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .option-btn.correct {
+      border-color: var(--primary);
+      background: rgba(34, 197, 94, 0.18);
+      color: #86efac;
+    }
+
+    .option-btn.wrong {
+      border-color: var(--danger);
+      background: rgba(239, 68, 68, 0.18);
+      color: #fca5a5;
+    }
+
+    .option-letter {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* BOTTOM ACTION & FEEDBACK SHEET (CORRIGIDO PARA ANDROID) */
+    .bottom-dock {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      padding: 14px 16px;
+      background: var(--bg-main);
+      border-top: 1px solid var(--border);
+      z-index: 30;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 14px;
+      background: var(--primary);
+      color: #052e16;
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      box-shadow: 0 4px 0 var(--primary-dark);
+      transition: transform 0.1s ease;
+    }
+
+    .btn-primary:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 var(--primary-dark);
+    }
+
+    .btn-primary:disabled {
+      background: #334155;
+      color: #64748b;
+      box-shadow: 0 4px 0 #1e293b;
+      cursor: not-allowed;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #451a03;
+      box-shadow: 0 4px 0 var(--accent-dark);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #fff;
+      box-shadow: 0 4px 0 var(--danger-dark);
+    }
+
+    .feedback-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      width: 100%;
+      max-width: 500px;
+      max-height: 75vh;
+      overflow-y: auto;
+      padding: 18px 16px 22px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      z-index: 40;
+      transform: translate(-50%, 105%);
+      transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      box-shadow: 0 -10px 30px rgba(0,0,0,0.65);
+    }
+
+    .feedback-sheet.show {
+      transform: translate(-50%, 0);
+    }
+
+    .feedback-sheet.correct {
+      background: #064e3b;
+      border-top: 3px solid var(--primary);
+    }
+
+    .feedback-sheet.wrong {
+      background: #450a0a;
+      border-top: 3px solid var(--danger);
+    }
+
+    .feedback-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bizu-card {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 12px;
+      padding: 12px 13px;
+      margin-bottom: 14px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #f1f5f9;
+      width: 100%;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .bizu-card strong {
+      color: var(--accent);
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* RESULT & MODAL SCREENS */
+    .center-card {
+      margin: auto 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px 18px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .big-emoji {
+      font-size: 3.2rem;
+      margin-bottom: 10px;
+    }
+
+    .center-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .center-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .reward-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .reward-box {
+      background: var(--bg-main);
+      border: 1px solid var(--border);
+      padding: 12px;
+      border-radius: 12px;
+    }
+
+    .reward-box span {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .reward-box strong {
+      font-size: 1.25rem;
+      color: var(--accent);
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px 18px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .modal-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <div class="brand-badge">
+        <span class="brand-title">LEAL CONCURSOS</span>
+        <span class="brand-rank" id="hud-rank">Patente: Recruta</span>
+      </div>
+      <div class="stats-group">
+        <div class="stat-pill stat-streak" title="Ofensiva">🔥 <span id="hud-streak">1</span></div>
+        <div class="stat-pill stat-xp" title="Pontos de Experiência">⚡ <span id="hud-xp">0</span></div>
+        <div class="stat-pill stat-lives" title="Vidas">❤️ <span id="hud-lives">5</span></div>
+      </div>
+    </header>
+
+    <!-- SCREEN 1: TRILHA DE APRENDIZAGEM -->
+    <main id="screen-map" class="screen active">
+      <section class="hero-card">
+        <h1>Método de Redução à Unidade</h1>
+        <p>Esqueça a decoreba de "cruzar setas". Descubra o valor de <strong>1 unidade</strong> e resolva qualquer questão de concurso.</p>
+        <div class="rank-progress-wrap">
+          <div class="rank-labels">
+            <span id="rank-current-label">Recruta</span>
+            <span id="rank-next-label">Próxima: Cabo (100 XP)</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="rank-progress-fill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trail-container" id="trail-list"></section>
+
+      <section class="promo-banner">
+        <h3>📚 Apostila Completa + Videoaulas</h3>
+        <p>Quer dominar todos os temas com 56 questões resolvidas passo a passo pelo Prof. Bruno Leal?</p>
+        <button class="btn-primary btn-accent" onclick="openKiwify()">Acessar Série Doses Homeopáticas</button>
+      </section>
+    </main>
+
+    <!-- SCREEN 2: ARENA DE QUESTÕES -->
+    <main id="screen-quiz" class="screen">
+      <div class="quiz-header">
+        <button class="close-btn" onclick="exitQuiz()" aria-label="Sair">✕</button>
+        <div class="quiz-progress-bar">
+          <div class="quiz-progress-fill" id="quiz-progress-fill"></div>
+        </div>
+      </div>
+
+      <div>
+        <span class="question-tag" id="question-tag">Fase 1 • Questão 1/4</span>
+        <div class="question-box" id="question-text">Carregando questão...</div>
+        <div class="options-list" id="options-list"></div>
+      </div>
+
+      <div class="bottom-dock">
+        <button class="btn-primary" id="btn-check" disabled onclick="checkAnswer()">Verificar Resposta</button>
+      </div>
+    </main>
+
+    <!-- SCREEN 3: RESULTADO DA FASE -->
+    <main id="screen-result" class="screen">
+      <div class="center-card">
+        <div class="big-emoji" id="result-emoji">🎖️</div>
+        <h2 id="result-title">Missão Cumprida!</h2>
+        <p id="result-subtitle">Você dominou o raciocínio de redução à unidade nesta etapa.</p>
+        <div class="reward-grid">
+          <div class="reward-box">
+            <span>XP Ganho</span>
+            <strong id="result-xp">+50 XP</strong>
+          </div>
+          <div class="reward-box">
+            <span>Precisão</span>
+            <strong id="result-acc">100%</strong>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="goHome()">Continuar na Trilha</button>
+      </div>
+    </main>
+
+    <!-- FEEDBACK DRAWER (BIZU DO DR. BIZU) -->
+    <div class="feedback-sheet" id="feedback-sheet">
+      <div class="feedback-title" id="feedback-title">✅ Na mosca!</div>
+      <div class="bizu-card">
+        <strong>💡 Bizu do Dr. Bizu (Redução à Unidade):</strong>
+        <span id="feedback-explanation">Explicação detalhada aqui.</span>
+      </div>
+      <button class="btn-primary" id="btn-next-question" onclick="nextQuestion()">Continuar</button>
+    </div>
+
+    <!-- MODAL: SEM VIDAS / VIP -->
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal-box">
+        <div class="big-emoji" id="modal-emoji">❤️‍🩹</div>
+        <h3 id="modal-title">Suas vidas acabaram!</h3>
+        <p id="modal-desc">Na prova não dá para chutar sem pensar. Revise os bizus ou recarregue suas energias para continuar treinando.</p>
+        <div class="modal-actions">
+          <button class="btn-primary btn-accent" id="modal-primary-btn" onclick="refillLives()">Recarregar 5 Vidas (Grátis)</button>
+          <button class="btn-ghost" onclick="closeModal()">Voltar para a Trilha</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // CONFIGURAÇÃO DO PRODUTO KIWIFY (COLE AQUI O LINK REAL DO SEU E-BOOK)
+    // =========================================================================
+    const KIWIFY_PRODUCT_URL = "https://profbrunoleal.github.io/LealConcursos/index.html";
+
+    // =========================================================================
+    // BANCO DE FASES E QUESTÕES - PEDAGOGIA ANTI-DECORABA (REDUÇÃO À UNIDADE)
+    // =========================================================================
+    const LEVELS = [
+      {
+        id: 1,
+        title: "Fase 1: O Valor de 1 Unidade",
+        subtitle: "Fundamentos diretos sem fórmula",
+        icon: "🎯",
+        xpReward: 50,
+        questions: [
+          {
+            tag: "Fase 1 • Aquecimento",
+            text: "Se 4 cadernos iguais custam R$ 48,00, quanto custarão 7 desses mesmos cadernos?",
+            options: ["R$ 72,00", "R$ 84,00", "R$ 96,00", "R$ 64,00"],
+            correct: 1,
+            bizu: "Descubra primeiro o preço de 1 caderno: 48 ÷ 4 = R$ 12,00. Agora multiplique pela quantidade desejada: 7 × 12 = R$ 84,00."
+          },
+          {
+            tag: "Fase 1 • Consumo",
+            text: "Um carro percorre 180 km com 15 litros de combustível. Quantos quilômetros ele percorrerá com 22 litros, mantendo o mesmo ritmo?",
+            options: ["240 km", "254 km", "264 km", "270 km"],
+            correct: 2,
+            bizu: "Com 1 litro o carro faz: 180 ÷ 15 = 12 km. Com 22 litros ele fará: 22 × 12 = 264 km. Simples e direto!"
+          },
+          {
+            tag: "Fase 1 • Produção",
+            text: "Uma impressora imprime 240 páginas em 6 minutos. Quantas páginas ela imprime em 11 minutos?",
+            options: ["400 páginas", "420 páginas", "440 páginas", "480 páginas"],
+            correct: 2,
+            bizu: "Em 1 minuto a impressora faz: 240 ÷ 6 = 40 páginas. Em 11 minutos: 11 × 40 = 440 páginas."
+          },
+          {
+            tag: "Fase 1 • Salário",
+            text: "Por 8 horas de trabalho, um técnico recebe R$ 360,00. Quanto ele receberá se trabalhar 13 horas no mesmo regime?",
+            options: ["R$ 540,00", "R$ 585,00", "R$ 600,00", "R$ 625,00"],
+            correct: 1,
+            bizu: "Valor de 1 hora de trabalho: 360 ÷ 8 = R$ 45,00. Para 13 horas: 13 × 45 = R$ 585,00."
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Fase 2: Proporção Direta em Provas",
+        subtitle: "Escalando grandezas com precisão",
+        icon: "📐",
+        xpReward: 70,
+        questions: [
+          {
+            tag: "Fase 2 • Concursos",
+            text: "Em uma fábrica, 12 máquinas iguais produzem 420 peças por dia. Se 5 dessas máquinas quebrarem, quantas peças as restantes produzirão por dia?",
+            options: ["175 peças", "210 peças", "245 peças", "280 peças"],
+            correct: 2,
+            bizu: "1º) Cada máquina produz: 420 ÷ 12 = 35 peças. 2º) Se 5 quebraram, sobraram 12 - 5 = 7 máquinas. 3º) 7 × 35 = 245 peças."
+          },
+          {
+            tag: "Fase 2 • Receita",
+            text: "Para fazer 15 bolos iguais, uma confeiteira usa 2.400 g de farinha. Quantos gramas de farinha ela precisará para fazer 9 bolos?",
+            options: ["1.240 g", "1.360 g", "1.440 g", "1.520 g"],
+            correct: 2,
+            bizu: "Para 1 bolo vai: 2.400 ÷ 15 = 160 g de farinha. Para 9 bolos: 9 × 160 = 1.440 g."
+          },
+          {
+            tag: "Fase 2 • Tempo e Distância",
+            text: "Um ciclista percorre 54 km em 3 horas. Mantendo a mesma velocidade constante, em quanto tempo ele percorrerá 126 km?",
+            options: ["6 horas", "7 horas", "8 horas", "9 horas"],
+            correct: 1,
+            bizu: "Em 1 hora ele percorre: 54 ÷ 3 = 18 km. Para saber quantas horas leva em 126 km, divida pelo rendimento de 1 hora: 126 ÷ 18 = 7 horas."
+          },
+          {
+            tag: "Fase 2 • Custo Unitário",
+            text: "Uma caixa com 25 canetas custa R$ 62,50. Quanto custará um pacote com 16 dessas mesmas canetas?",
+            options: ["R$ 36,00", "R$ 38,50", "R$ 40,00", "R$ 42,50"],
+            correct: 2,
+            bizu: "Preço de 1 caneta: 62,50 ÷ 25 = R$ 2,50. Logo, 16 canetas custam: 16 × 2,50 = R$ 40,00."
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Fase 3: O Pulo do Gato (Inversas)",
+        subtitle: "Quando aumentar significa dividir!",
+        icon: "⚡",
+        xpReward: 90,
+        questions: [
+          {
+            tag: "Fase 3 • Grandezas Inversas",
+            text: "6 pedreiros constroem um muro em 10 dias. Se fossem apenas 4 pedreiros com o mesmo ritmo, em quantos dias o muro ficaria pronto?",
+            options: ["12 dias", "14 dias", "15 dias", "16 dias"],
+            correct: 2,
+            bizu: "ATENÇÃO! Quanto MENOS pedreiros, MAIS dias leva. Descubra o trabalho para 1 pedreiro sozinho: ele levaria 6 × 10 = 60 dias. Dividindo esse trabalho entre 4 pedreiros: 60 ÷ 4 = 15 dias!"
+          },
+          {
+            tag: "Fase 3 • Velocidade",
+            text: "Um ônibus faz uma viagem em 4 horas a uma velocidade média de 90 km/h. Se viajar a 60 km/h, em quantas horas fará a mesma viagem?",
+            options: ["5 horas", "6 horas", "7 horas", "8 horas"],
+            correct: 1,
+            bizu: "Reduza a 1 km/h (ou ache a distância total): 4 × 90 = 360 km. Agora divida pela nova velocidade: 360 ÷ 60 = 6 horas."
+          },
+          {
+            tag: "Fase 3 • Torneiras",
+            text: "3 torneiras iguais enchem um tanque em 8 horas. Se abrirmos 6 torneiras iguais a essas, em quanto tempo o tanque ficará cheio?",
+            options: ["2 horas", "3 horas", "4 horas", "5 horas"],
+            correct: 2,
+            bizu: "1 torneira sozinha levaria 3 × 8 = 24 horas para encher. Com 6 torneiras trabalhando juntas: 24 ÷ 6 = 4 horas."
+          },
+          {
+            tag: "Fase 3 • Suprimentos",
+            text: "Um quartel tem ração para alimentar 20 soldados durante 18 dias. Chegaram mais 4 soldados. Para quantos dias a mesma ração vai durar?",
+            options: ["12 dias", "14 dias", "15 dias", "16 dias"],
+            correct: 2,
+            bizu: "Para 1 único soldado, a comida duraria 20 × 18 = 360 dias. Agora são 20 + 4 = 24 soldados. Dividindo: 360 ÷ 24 = 15 dias."
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Fase 4: Desafio Banca Militar",
+        subtitle: "Questões estilo FAETEC, IFRJ e ESA",
+        icon: "🎖️",
+        xpReward: 120,
+        questions: [
+          {
+            tag: "Fase 4 • Estilo FAETEC/IFRJ",
+            text: "Uma equipe de 8 digitadores digita 320 páginas em 5 horas. Quantas páginas 6 desses digitadores digitarão em 7 horas?",
+            options: ["312 páginas", "336 páginas", "350 páginas", "364 páginas"],
+            correct: 1,
+            bizu: "Reduza a 1 digitador em 1 hora! 8 digitadores fazem 320 ÷ 5 = 64 páginas por hora. Logo, 1 digitador faz 64 ÷ 8 = 8 páginas por hora. Agora multiplique: 6 digitadores × 7 horas × 8 páginas = 336 páginas!"
+          },
+          {
+            tag: "Fase 4 • Estilo ESA",
+            text: "Em uma obra, 10 operários constroem 200 metros de estrada em 8 dias. Quantos metros 15 operários construirão em 6 dias?",
+            options: ["225 metros", "240 metros", "250 metros", "275 metros"],
+            correct: 0,
+            bizu: "Rendimento de 1 operário em 1 dia: 200 ÷ 10 = 20 m em 8 dias -> 20 ÷ 8 = 2,5 m por dia. Para 15 operários em 6 dias: 15 × 6 × 2,5 = 225 metros."
+          },
+          {
+            tag: "Fase 4 • Estilo EEAr",
+            text: "Uma bomba retira 1.800 litros de água em 3 horas. Outra bomba, com o dobro da eficiência, retirará 4.800 litros em quantas horas?",
+            options: ["3 horas", "4 horas", "5 horas", "6 horas"],
+            correct: 1,
+            bizu: "A 1ª bomba retira 1.800 ÷ 3 = 600 L/h. A 2ª bomba tem o dobro da eficiência, então retira 1.200 L/h. Para 4.800 litros: 4.800 ÷ 1.200 = 4 horas."
+          },
+          {
+            tag: "Fase 4 • Estilo Colégio Naval",
+            text: "12 máquinas, trabalhando 6 horas por dia, produzem 720 peças. Quantas máquinas iguais serão necessárias para produzir 900 peças trabalhando 5 horas por dia?",
+            options: ["15 máquinas", "16 máquinas", "18 máquinas", "20 máquinas"],
+            correct: 2,
+            bizu: "1 máquina em 6h faz 720 ÷ 12 = 60 peças -> logo, faz 60 ÷ 6 = 10 peças/hora. Trabalhando 5h/dia, cada máquina fará 5 × 10 = 50 peças. Para 900 peças: 900 ÷ 50 = 18 máquinas!"
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "Fase 5: Simulado VIP Completo",
+        subtitle: "56 Questões + Gabarito Comentado",
+        icon: "👑",
+        isVip: true,
+        xpReward: 500,
+        questions: []
+      }
+    ];
+
+    const RANKS = [
+      { minXp: 0, name: "Recruta" },
+      { minXp: 100, name: "Cabo" },
+      { minXp: 220, name: "Sargento" },
+      { minXp: 350, name: "Tenente" },
+      { minXp: 500, name: "General Dr. Bizu" }
+    ];
+
+    // =========================================================================
+    // ESTADO DO JOGO (SALVO NO NAVEGADOR DO ALUNO)
+    // =========================================================================
+    let state = JSON.parse(localStorage.getItem("leal_redu_unidade_v1")) || {
+      xp: 0,
+      lives: 5,
+      streak: 1,
+      completedLevels: []
+    };
+
+    let currentLevel = null;
+    let currentQuestionIndex = 0;
+    let selectedOptionIndex = null;
+    let correctCount = 0;
+    let isAnswered = false;
+
+    function saveState() {
+      localStorage.setItem("leal_redu_unidade_v1", JSON.stringify(state));
+      updateHUD();
+    }
+
+    // =========================================================================
+    // EFEITOS SONOROS LEVES (SEM ARQUIVO EXTERNO - WEB AUDIO API)
+    // =========================================================================
+    function playTone(type) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === "correct") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.3);
+        } else if (type === "wrong") {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(180, ctx.currentTime);
+          osc.frequency.setValueAtTime(140, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        } else if (type === "win") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.12);
+          osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.24);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.5);
+        }
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // RENDERIZAÇÃO DO HUD E DA TRILHA
+    // =========================================================================
+    function updateHUD() {
+      document.getElementById("hud-xp").textContent = state.xp;
+      document.getElementById("hud-lives").textContent = state.lives;
+      document.getElementById("hud-streak").textContent = state.streak;
+
+      let currentRank = RANKS[0];
+      let nextRank = RANKS[1];
+
+      for (let i = 0; i < RANKS.length; i++) {
+        if (state.xp >= RANKS[i].minXp) {
+          currentRank = RANKS[i];
+          nextRank = RANKS[i + 1] || null;
+        }
+      }
+
+      document.getElementById("hud-rank").textContent = `Patente: ${currentRank.name}`;
+      document.getElementById("rank-current-label").textContent = currentRank.name;
+
+      if (nextRank) {
+        document.getElementById("rank-next-label").textContent = `Próxima: ${nextRank.name} (${nextRank.minXp} XP)`;
+        const range = nextRank.minXp - currentRank.minXp;
+        const progress = ((state.xp - currentRank.minXp) / range) * 100;
+        document.getElementById("rank-progress-fill").style.width = `${Math.min(100, Math.max(5, progress))}%`;
+      } else {
+        document.getElementById("rank-next-label").textContent = "Patente Máxima Atingida!";
+        document.getElementById("rank-progress-fill").style.width = "100%";
+      }
+    }
+
+    function renderTrail() {
+      const container = document.getElementById("trail-list");
+      container.innerHTML = "";
+
+      LEVELS.forEach((level, idx) => {
+        const isCompleted = state.completedLevels.includes(level.id);
+        const prevCompleted = idx === 0 || state.completedLevels.includes(LEVELS[idx - 1].id);
+        const isLocked = !level.isVip && !prevCompleted && !isCompleted;
+
+        const wrap = document.createElement("div");
+        wrap.className = "trail-node-wrap";
+
+        const btn = document.createElement("button");
+        btn.className = "node-btn";
+        if (level.isVip) btn.classList.add("vip");
+        else if (isCompleted) btn.classList.add("completed");
+        else if (isLocked) btn.classList.add("locked");
+
+        btn.innerHTML = isLocked ? "🔒" : (isCompleted ? "⭐" : level.icon);
+        btn.onclick = () => handleLevelClick(level, isLocked);
+
+        const label = document.createElement("div");
+        label.className = "node-label";
+        label.innerHTML = `<strong>${level.title}</strong><span>${level.subtitle}</span>`;
+
+        wrap.appendChild(btn);
+        wrap.appendChild(label);
+        container.appendChild(wrap);
+      });
+    }
+
+    // =========================================================================
+    // FLUXO DO QUIZ
+    // =========================================================================
+    function handleLevelClick(level, isLocked) {
+      if (level.isVip) {
+        showModal(
+          "👑",
+          "Desbloqueie o Treinamento Completo",
+          "Você completou a amostra gratuita! Garanta agora o E-book de Porcentagem e Redução à Unidade com 56 questões resolvidas em vídeo pelo Prof. Bruno Leal.",
+          "Liberar Acesso na Kiwify",
+          () => openKiwify()
+        );
+        return;
+      }
+
+      if (isLocked) {
+        showModal(
+          "🔒",
+          "Fase Bloqueada",
+          "Complete a fase anterior na trilha para desbloquear este módulo de treinamento!",
+          "Entendi",
+          () => closeModal()
+        );
+        return;
+      }
+
+      if (state.lives <= 0) {
+        showModal(
+          "❤️‍🩹",
+          "Suas vidas acabaram!",
+          "Recarregue suas 5 vidas gratuitamente agora para continuar praticando o Método de Redução à Unidade.",
+          "Recarregar 5 Vidas (Grátis)",
+          () => refillLives()
+        );
+        return;
+      }
+
+      startLevel(level);
+    }
+
+    function startLevel(level) {
+      currentLevel = level;
+      currentQuestionIndex = 0;
+      correctCount = 0;
+      switchScreen("screen-quiz");
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      isAnswered = false;
+      selectedOptionIndex = null;
+      document.getElementById("feedback-sheet").classList.remove("show", "correct", "wrong");
+
+      const btnCheck = document.getElementById("btn-check");
+      btnCheck.disabled = true;
+      btnCheck.textContent = "Verificar Resposta";
+
+      const total = currentLevel.questions.length;
+      const q = currentLevel.questions[currentQuestionIndex];
+
+      const progressPct = (currentQuestionIndex / total) * 100;
+      document.getElementById("quiz-progress-fill").style.width = `${progressPct}%`;
+      document.getElementById("question-tag").textContent = `${q.tag} • ${currentQuestionIndex + 1}/${total}`;
+      document.getElementById("question-text").textContent = q.text;
+
+      const optionsContainer = document.getElementById("options-list");
+      optionsContainer.innerHTML = "";
+
+      const letters = ["A", "B", "C", "D"];
+      q.options.forEach((optText, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerHTML = `<span class="option-letter">${letters[index]}</span><span>${optText}</span>`;
+        btn.onclick = () => selectOption(index, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectOption(index, btnElement) {
+      if (isAnswered) return;
+      selectedOptionIndex = index;
+
+      document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+      btnElement.classList.add("selected");
+      document.getElementById("btn-check").disabled = false;
+    }
+
+    function checkAnswer() {
+      if (selectedOptionIndex === null || isAnswered) return;
+      isAnswered = true;
+
+      const q = currentLevel.questions[currentQuestionIndex];
+      const optionBtns = document.querySelectorAll(".option-btn");
+      const isRight = selectedOptionIndex === q.correct;
+
+      const sheet = document.getElementById("feedback-sheet");
+      const title = document.getElementById("feedback-title");
+      const explanation = document.getElementById("feedback-explanation");
+      const nextBtn = document.getElementById("btn-next-question");
+
+      explanation.textContent = q.bizu;
+
+      if (isRight) {
+        correctCount++;
+        optionBtns[selectedOptionIndex].classList.add("correct");
+        sheet.classList.add("show", "correct");
+        title.textContent = "✅ Na mosca! Raciocínio perfeito.";
+        nextBtn.className = "btn-primary";
+        playTone("correct");
+      } else {
+        state.lives = Math.max(0, state.lives - 1);
+        saveState();
+        optionBtns[selectedOptionIndex].classList.add("wrong");
+        optionBtns[q.correct].classList.add("correct");
+        sheet.classList.add("show", "wrong");
+        title.textContent = "❌ Atenção ao detalhe!";
+        nextBtn.className = "btn-primary btn-danger";
+        playTone("wrong");
+      }
+
+      if (currentQuestionIndex === currentLevel.questions.length - 1) {
+        nextBtn.textContent = "Finalizar Missão";
+      } else {
+        nextBtn.textContent = "Próxima Questão";
+      }
+    }
+
+    function nextQuestion() {
+      if (state.lives <= 0) {
+        document.getElementById("feedback-sheet").classList.remove("show");
+        goHome();
+        showModal(
+          "❤️‍🩹",
+          "Você ficou sem vidas!",
+          "Não desanime! Todo aprovado erra no treino para acertar na prova. Recarregue suas vidas e tente novamente.",
+          "Recarregar 5 Vidas (Grátis)",
+          () => refillLives()
+        );
+        return;
+      }
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < currentLevel.questions.length) {
+        renderQuestion();
+      } else {
+        finishLevel();
+      }
+    }
+
+    function finishLevel() {
+      document.getElementById("feedback-sheet").classList.remove("show");
+      document.getElementById("quiz-progress-fill").style.width = "100%";
+
+      const isFirstTime = !state.completedLevels.includes(currentLevel.id);
+      const earnedXp = isFirstTime ? currentLevel.xpReward : Math.round(currentLevel.xpReward * 0.4);
+
+      if (isFirstTime) {
+        state.completedLevels.push(currentLevel.id);
+      }
+      state.xp += earnedXp;
+      saveState();
+
+      const accuracy = Math.round((correctCount / currentLevel.questions.length) * 100);
+      document.getElementById("result-xp").textContent = `+${earnedXp} XP`;
+      document.getElementById("result-acc").textContent = `${accuracy}%`;
+
+      playTone("win");
+      switchScreen("screen-result");
+    }
+
+    // =========================================================================
+    // NAVEGAÇÃO E MODAIS
+    // =========================================================================
+    function switchScreen(screenId) {
+      document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+      document.getElementById(screenId).classList.add("active");
+      window.scrollTo(0, 0);
+    }
+
+    function exitQuiz() {
+      document.getElementById("feedback-sheet").classList.remove("show");
+      goHome();
+    }
+
+    function goHome() {
+      renderTrail();
+      updateHUD();
+      switchScreen("screen-map");
+    }
+
+    function showModal(emoji, title, desc, btnText, actionFn) {
+      document.getElementById("modal-emoji").textContent = emoji;
+      document.getElementById("modal-title").textContent = title;
+      document.getElementById("modal-desc").textContent = desc;
+      const primaryBtn = document.getElementById("modal-primary-btn");
+      primaryBtn.textContent = btnText;
+      primaryBtn.onclick = actionFn;
+      document.getElementById("modal-backdrop").classList.add("show");
+    }
+
+    function closeModal() {
+      document.getElementById("modal-backdrop").classList.remove("show");
+    }
+
+    function refillLives() {
+      state.lives = 5;
+      saveState();
+      closeModal();
+    }
+
+    function openKiwify() {
+      window.open(KIWIFY_PRODUCT_URL, "_blank");
+    }
+
+    // INICIALIZAÇÃO
+    updateHUD();
+    renderTrail();
+  </script>
+</body>
+</html>
