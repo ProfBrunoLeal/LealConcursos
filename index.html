@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Área do Aluno · Matemática Básica – Leal Concursos</title>
-<meta name="robots" content="noindex, nofollow">
+<title>Leal Concursos – Preparatório para Cefet, FAETEC e pré-militar</title>
+<meta name="description" content="Leal Concursos: preparatório presencial para Cefet, FAETEC, ESA, EEAr e Fuzileiros Navais, em Duque de Caxias, e Curso Online de Matemática Básica com o Prof. Bruno Leal.">
 <meta name="theme-color" content="#0f2a6b">
 <style>
 :root{--bg:#f7f8fc;--card:#fff;--text:#161a26;--muted:#5a6275;--line:#e1e5ee;--accent:#1f4fd8;--hero1:#0f2a6b;--hero2:#1f4fd8;--zap:#12a150;--bf:#d97706;
@@ -13,515 +13,525 @@ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:en
 :root[data-theme="dark"]{--bg:#0f121a;--card:#181d28;--text:#eef1f7;--muted:#9aa3b6;--line:#2a3142;--accent:#7aa2ff;--hero1:#0a1636;--hero2:#16339a;--zap:#2fbf71;--bf:#f59e0b;color-scheme:dark}
 html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-.wrap{max-width:960px;margin:0 auto;padding:0 20px;width:100%}
-.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:28px 0 34px}
-.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.logo-svg{height:46px;width:auto;display:block}
-h1{font-size:clamp(1.5rem,4vw,2.15rem);line-height:1.15;margin:0 0 8px}
-.hero p{font-size:.98rem;max-width:42em;opacity:.92;margin:0}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 18px;border-radius:999px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-size:.92rem;transition:opacity .2s}
-.btn:hover{opacity:.92}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:40px 0 48px}
+.logo{font-weight:700;letter-spacing:.02em;margin-bottom:24px}
+.logo-svg{height:52px;width:auto;display:block}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.12;margin:0 0 14px;max-width:17em}
+.hero p{font-size:1.05rem;max-width:36em;opacity:.93;margin:0 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.chips span{background:rgba(255,255,255,.15);border-radius:999px;padding:5px 12px;font-size:.88rem}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;padding:12px 20px;border-radius:999px;font-weight:600;text-decoration:none;cursor:pointer;border:none;text-align:center}
 .btn.z{background:var(--zap);color:#fff}
 .btn.a{background:var(--accent);color:#fff}
-.btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff;background:transparent}
-.btn.ghost{background:var(--bg);border:1px solid var(--line);color:var(--text)}
+.btn.s{border:1.5px solid rgba(255,255,255,.7);color:#fff}
 .btn.sm{padding:8px 14px;font-size:.85rem}
-.btn.disabled{background:var(--bg);border:1px solid var(--line);color:var(--muted);cursor:not-allowed;opacity:.75}
 
-/* TELA DE LOGIN */
-.login-box{max-width:430px;margin:44px auto;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 24px;box-shadow:0 12px 30px rgba(0,0,0,.06)}
-.login-box h2{margin:0 0 6px;font-size:1.4rem}
-.login-box p{margin:0 0 18px;color:var(--muted);font-size:.94rem}
-.field{margin-bottom:14px}
-.field label{display:block;font-size:.86rem;font-weight:600;margin-bottom:6px}
-.field input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font-size:1rem}
-.field input:focus{outline:2px solid var(--accent);border-color:transparent}
-.err-msg{color:#dc2626;font-size:.88rem;font-weight:600;margin:8px 0 0;display:none}
+.hero-bf-banner{margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);padding:8px 14px;border-radius:12px;font-size:.9rem;color:#fff;cursor:pointer;transition:background .2s}
+.hero-bf-banner:hover{background:rgba(255,255,255,.2)}
 
-/* ÁREA INTERNA DO ALUNO */
-#area-aluno{display:none;flex:1}
-section{padding:28px 0}
-.status-bar{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:22px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
-.prog-wrap{flex:1;min-width:220px}
-.prog-label{display:flex;justify-content:space-between;font-size:.86rem;font-weight:600;margin-bottom:6px}
-.prog-track{height:10px;background:var(--bg);border-radius:999px;overflow:hidden;border:1px solid var(--line)}
-.prog-fill{height:100%;background:var(--zap);width:0%;transition:width .3s ease}
+/* NAVEGAÇÃO POR ABAS */
+.nav-tabs-wrap{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+.nav-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px 16px;max-width:1100px;margin:0 auto}
+.nav-tabs::-webkit-scrollbar{display:none}
+.tab-btn{background:var(--bg);border:1px solid var(--line);color:var(--text);padding:8px 16px;border-radius:999px;font-size:.9rem;font-weight:600;white-space:nowrap;cursor:pointer;transition:all .2s ease}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-btn.bf-tab{border-color:var(--bf);color:var(--bf)}
+.tab-btn.bf-tab.active{background:var(--bf);color:#fff;border-color:var(--bf)}
 
-.info-banner{background:var(--card);border-left:4px solid var(--accent);border-radius:12px;padding:14px 16px;margin-bottom:22px;font-size:.92rem;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* CONTROLE DE EXIBIÇÃO DAS SEÇÕES */
+.tab-content{display:none}
+.tab-content.active{display:block}
 
-/* CARDS DOS MÓDULOS */
-.mod-grid{display:flex;flex-direction:column;gap:14px}
-.mod-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;transition:border-color .2s}
-.mod-card.done{border-color:var(--zap)}
-.mod-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
-.mod-badge{display:inline-block;font-size:.76rem;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--bg);border:1px solid var(--line);color:var(--accent)}
-.mod-badge.soon{color:var(--bf);border-color:var(--bf)}
-.check-wrap{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;color:var(--muted);cursor:pointer;user-select:none}
-.check-wrap input{width:17px;height:17px;accent-color:var(--zap);cursor:pointer}
-.mod-card h3{margin:0 0 4px;font-size:1.1rem}
-.mod-card p{margin:0 0 14px;color:var(--muted);font-size:.93rem}
-.mod-actions{display:flex;flex-wrap:wrap;gap:10px}
+section{padding:36px 0}
+h2{font-size:1.55rem;margin:0 0 6px}
+.lead{color:var(--muted);max-width:38em;margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.card h3{margin:0 0 4px;font-size:1.08rem}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.when{margin:10px 0 14px;font-weight:600;color:var(--accent);font-size:.95rem}
+.band{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.ico{font-size:1.5rem;margin-bottom:6px}
+.loc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
 
-footer{padding:24px 0;color:var(--muted);font-size:.85rem;text-align:center;border-top:1px solid var(--line);margin-top:auto}
+footer{padding:26px 0;color:var(--muted);font-size:.85rem;text-align:center;border-top:1px solid var(--line);margin-top:40px}
+
+.prof{display:grid;grid-template-columns:1.2fr 1fr;gap:22px;align-items:center}
+@media(max-width:700px){.prof{grid-template-columns:1fr}}
+.prof img.main{width:100%;border-radius:18px;display:block;border:1px solid var(--line)}
+.who{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.who img{width:76px;height:76px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
+.who b{font-size:1.15rem;display:block}.who span{color:var(--muted);font-size:.9rem}
+.prof p{color:var(--muted);margin:0 0 10px}
+.heroin{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center}
+.pic{display:flex;justify-content:center}
+.pic img{width:100%;max-width:300px;aspect-ratio:1;object-fit:cover;border-radius:28px;border:4px solid rgba(255,255,255,.85);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+@media(max-width:760px){.heroin{grid-template-columns:1fr}.pic{order:-1}.pic img{max-width:200px;border-radius:50%}}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;border-radius:999px;padding:3px 10px;margin-bottom:8px;background:var(--bg);border:1px solid var(--line);color:var(--accent)}
+
+/* ESTILOS DO DIÁRIO DE CLASSE E DR. BIZU */
+.diario-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:20px}
+.diario-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+.diario-date{font-size:.85rem;color:var(--muted);font-weight:600}
+.diario-img{width:100%;max-height:350px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid var(--line)}
+.diario-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.bizu-box{margin-top:12px;padding:12px 14px;background:var(--bg);border-left:4px solid var(--accent);border-radius:8px;color:var(--text);font-size:.95rem}
+
+/* ESTILOS DA PÁGINA DO CURSO ONLINE (BLACK FRIDAY) */
+.bf-hero-box{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:20px;padding:28px 24px;margin-bottom:24px;box-shadow:0 12px 28px rgba(15,42,107,.18)}
+.bf-badge{display:inline-block;background:var(--bf);color:#fff;font-weight:700;font-size:.78rem;padding:4px 12px;border-radius:999px;letter-spacing:.03em;margin-bottom:12px}
+.bf-hero-box h2{font-size:clamp(1.45rem,4vw,2rem);line-height:1.2;margin:0 0 12px;color:#fff}
+.bf-hero-box p{opacity:.94;margin:0 0 18px;max-width:44em;font-size:1rem}
+.bf-price-card{background:var(--card);border:2px solid var(--zap);border-radius:18px;padding:24px;margin:24px 0;text-align:center}
+.bf-old-price{color:var(--muted);text-decoration:line-through;font-size:1rem}
+.bf-new-price{font-size:2.3rem;font-weight:800;color:var(--zap);line-height:1.1;margin:4px 0}
+.bf-pay-note{color:var(--muted);font-size:.9rem;margin-bottom:18px}
+.bf-warn{background:var(--bg);border-left:4px solid var(--bf);border-radius:10px;padding:16px;margin:20px 0;font-size:.95rem}
+.ementa-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px}
+.ementa-item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:.92rem;display:flex;gap:10px;align-items:flex-start}
+.ementa-num{background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;padding:2px 8px;border-radius:999px;flex-shrink:0;margin-top:2px}
+
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:10px;overflow:hidden}
+summary{cursor:pointer;padding:14px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";font-weight:700;color:var(--accent);font-size:1.1rem;flex-shrink:0}
+details[open] summary::after{content:"－"}
+summary small{display:block;color:var(--muted);font-weight:400;font-size:.82rem}
+.det{padding:0 16px 16px;color:var(--muted);font-size:.95rem}
+.det .enun{color:var(--text);margin:0 0 10px}
+.det .sol{white-space:pre-line;border-left:4px solid var(--accent);padding:10px 12px;background:var(--bg);border-radius:6px;color:var(--text)}
+.det .resp{margin-top:10px;font-weight:700;color:var(--zap)}
+
+.video-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;border:1px solid var(--line);box-shadow:0 10px 25px rgba(0,0,0,.1);margin-bottom:20px}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
 
 <header class="hero">
   <div class="wrap">
-    <div class="topbar">
-      <a href="index.html" style="text-decoration:none" aria-label="Voltar ao site Leal Concursos">
-        <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img">
-          <defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14d8b0"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
-          <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#gh)"/>
-          <path d="M22 17V43H36" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M32 35L45 22M36 22H45V31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-          <text x="74" y="36" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="31" font-weight="800" letter-spacing="1.5" fill="#ffffff">LEAL</text>
-          <text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
-        </svg>
-      </a>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <a class="btn s sm" href="index.html">← Voltar ao site</a>
-        <button id="btn-sair" class="btn s sm" style="display:none" onclick="fazerLogout()">Sair</button>
-      </div>
+    <div class="logo"><svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 64" role="img" aria-label="Leal Concursos">
+<defs><linearGradient id="gh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14d8b0"/><stop offset="1" stop-color="#2f6bff"/></linearGradient></defs>
+<rect x="4" y="4" width="56" height="56" rx="16" fill="url(#gh)"/>
+<path d="M22 17V43H36" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M32 35L45 22M36 22H45V31" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="74" y="36" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="31" font-weight="800" letter-spacing="1.5" fill="#ffffff">LEAL</text>
+<text x="75" y="53" font-family="Montserrat,'Segoe UI',system-ui,-apple-system,Arial,sans-serif" font-size="11.5" font-weight="700" letter-spacing="4.4" fill="#14d8b0">CONCURSOS</text>
+</svg></div>
+    <div class="heroin"><div class="txt">
+    <h1>Sua aprovação em escolas técnicas e carreiras militares começa aqui.</h1>
+    <p>Curso com todas as matérias, em turmas presenciais na Vila São Luís, Duque de Caxias, e preparação online de Matemática Básica com o Prof. Bruno Leal (29 anos de experiência).</p>
+    <div class="chips"><span>Cefet</span><span>FAETEC</span><span>ESA</span><span>EEAr</span><span>Fuzileiros Navais</span></div>
+    <div class="btns">
+      <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Leal%20Concursos." target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <a class="btn s" href="login.html">🎯 Entrar / Criar conta · Simulados</a>
     </div>
-    <h1>Área do Aluno · Matemática Básica para Concursos</h1>
-    <p>Curso completo em 21 módulos com PDF teórico, questões resolvidas e suporte direto com o Prof. Bruno Leal.</p>
+    <div class="hero-bf-banner" onclick="switchToTab('tab-curso-online')">
+      <span>🔥 <strong>Black Friday:</strong> Curso Online de Matemática Básica (21 módulos + WhatsApp) por <strong>R$ 100</strong> →</span>
+    </div>
+    </div>
+    <div class="pic"><img alt="Prof. Bruno Leal, professor do Leal Concursos" src="foto-topo.jpg"></div>
+    </div>
   </div>
 </header>
 
+<!-- BARRA DE ABAS -->
+<div class="nav-tabs-wrap" id="barra-abas">
+  <div class="nav-tabs">
+    <button class="tab-btn active" data-tab="tab-turmas" onclick="openTab(event, 'tab-turmas')">📘 Turmas & Horários</button>
+    <button class="tab-btn bf-tab" data-tab="tab-curso-online" onclick="openTab(event, 'tab-curso-online')">🔥 Curso Online (Black Friday)</button>
+    <button class="tab-btn" data-tab="tab-diario" onclick="openTab(event, 'tab-diario')">📌 Diário de Classe</button>
+    <button class="tab-btn" data-tab="tab-professor" onclick="openTab(event, 'tab-professor')">🎓 O Professor</button>
+    <button class="tab-btn" data-tab="tab-bizu" onclick="openTab(event, 'tab-bizu')">💡 Bizus</button>
+    <button class="tab-btn" data-tab="tab-materiais" onclick="openTab(event, 'tab-materiais')">📄 Material Gratuito</button>
+  </div>
+</div>
+
 <main class="wrap">
 
-  <!-- TELA DE BLOQUEIO POR SENHA -->
-  <div id="tela-login" class="login-box">
-    <div style="font-size:1.8rem;margin-bottom:8px">🔒</div>
-    <h2>Acesso Exclusivo para Alunos</h2>
-    <p>Digite a senha enviada pelo Prof. Bruno Leal no WhatsApp para liberar as videoaulas e apostilas em PDF.</p>
-    <form onsubmit="verificarSenha(event)">
-      <div class="field">
-        <label for="senha-input">Senha de Acesso</label>
-        <input type="password" id="senha-input" placeholder="Digite sua senha..." required autocomplete="current-password">
+  <!-- ABA 1: TURMAS + ONDE ESTAMOS + FAQ -->
+  <div id="tab-turmas" class="tab-content active">
+    <section>
+      <h2>Turmas Presenciais</h2>
+      <p class="lead">Todas as matérias em todas as turmas. Aulas presenciais no Educandário Santo Antônio. Valores e vagas pelo WhatsApp.</p>
+      <div class="grid">
+        <div class="card"><div class="ico">📘</div><h3>9º ano · Escolas técnicas</h3><p>Preparação para Cefet, FAETEC e outras escolas técnicas.</p>
+          <div class="when">Seg, qua e qui · 16h às 18h</div>
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20do%209%C2%BA%20ano." target="_blank" rel="noopener">Quero esta turma</a></div>
+        <div class="card"><div class="ico">🎖️</div><h3>Pré-militar noturno</h3><p>Preparação para ESA, EEAr e Fuzileiros Navais.</p>
+          <div class="when">Seg, qua e qui · 19h às 21h</div>
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20pr%C3%A9-militar." target="_blank" rel="noopener">Quero esta turma</a></div>
+        <div class="card"><div class="ico">🧒</div><h3>5º ano</h3><p>Preparatório para o 6º ano: Colégio Militar, Colégio da Polícia Militar e Pedro II.</p>
+          <div class="when">Seg, qua e qui · 9h30 às 11h30</div>
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20a%20turma%20do%205%C2%BA%20ano." target="_blank" rel="noopener">Quero esta turma</a></div>
+        <div class="card"><div class="ico">✏️</div><h3>Reforço escolar</h3><p>Apoio nas matérias da escola, com acompanhamento de perto.</p>
+          <div class="when">Segunda a sexta · horários diversos</div>
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20saber%20sobre%20o%20refor%C3%A7o%20escolar." target="_blank" rel="noopener">Consultar horários</a></div>
       </div>
-      <button type="submit" class="btn a" style="width:100%">Entrar no Curso</button>
-      <div id="erro-senha" class="err-msg">Senha incorreta. Confira a mensagem enviada no seu WhatsApp.</div>
-    </form>
-    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted);text-align:center">
-      Ainda não tem acesso? <a href="index.html#curso-online" style="color:var(--accent);font-weight:600">Garanta sua vaga aqui</a>
-    </div>
+    </section>
+
+    <section style="padding-top:0">
+      <h2>Onde estamos</h2>
+      <div class="loc">📍 Educandário Santo Antônio · Vila São Luís, Duque de Caxias</div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES (FAQ) -->
+    <section style="padding-top:0">
+      <h2>Perguntas Frequentes</h2>
+      <p class="lead">Tire suas principais dúvidas sobre nossas turmas e metodologia.</p>
+
+      <details>
+        <summary>Meu filho tem muita dificuldade na base de Matemática. Ele consegue acompanhar?</summary>
+        <div class="det">Sim. Nossa metodologia parte do zero em cada assunto, construindo o raciocínio passo a passo antes de avançar para questões de nível de concurso. O acompanhamento em sala é próximo justamente para identificar onde o aluno trava.</div>
+      </details>
+
+      <details>
+        <summary>O curso cobre todas as matérias do edital?</summary>
+        <div class="det">Sim. Todas as turmas preparatórias contemplam 100% das disciplinas exigidas nas provas (Matemática, Português, Redação, Ciências/Física, História, Geografia e Inglês, conforme o edital de cada concurso).</div>
+      </details>
+
+      <details>
+        <summary>O material didático já está incluso?</summary>
+        <div class="det">Trabalhamos com apostilas próprias focadas nas bancas examinadoras e listas de exercícios atualizadas. Consulte no WhatsApp as condições de matrícula e entrega do material para a turma desejada.</div>
+      </details>
+
+      <details>
+        <summary>Posso assistir a uma aula experimental antes de fechar a matrícula?</summary>
+        <div class="det">Com certeza. Agende pelo nosso WhatsApp um dia para o aluno assistir a uma aula presencial no Educandário Santo Antônio e conhecer nossa didática na prática, sem compromisso.</div>
+      </details>
+
+      <details>
+        <summary>Vocês aplicam simulados no estilo das provas reais?</summary>
+        <div class="det">Sim. Realizamos simulados periódicos com tempo cronometrado e cartão-resposta no padrão oficial do Cefet, FAETEC, CMRJ e escolas militares, seguidos de correção comentada.</div>
+      </details>
+
+      <div class="btns" style="margin-top:20px">
+        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Li%20as%20d%C3%BAvidas%20no%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Ainda tenho dúvidas · Falar no WhatsApp</a>
+      </div>
+    </section>
   </div>
 
-  <!-- CONTEÚDO INTERNO DO CURSO -->
-  <div id="area-aluno">
+  <!-- NOVA ABA: CURSO ONLINE DE MATEMÁTICA BÁSICA (BLACK FRIDAY) -->
+  <div id="tab-curso-online" class="tab-content">
     <section>
-
-      <!-- BARRA DE PROGRESSO E SUPORTE WHATSAPP -->
-      <div class="status-bar">
-        <div class="prog-wrap">
-          <div class="prog-label">
-            <span>Seu Progresso no Curso</span>
-            <span id="prog-texto">0 de 21 módulos concluídos</span>
-          </div>
-          <div class="prog-track">
-            <div class="prog-fill" id="prog-barra"></div>
-          </div>
+      <div class="bf-hero-box">
+        <span class="bf-badge">🔥 OFERTA DE BLACK FRIDAY · LOTE FUNDADOR</span>
+        <h2>Destrave a Matemática Básica para Concursos de uma vez por todas.</h2>
+        <p>Do zero absoluto até Funções, Análise Combinatória e Geometria. Aulas gravadas passo a passo sem decoreba, PDF completo com teoria e questões em todas as aulas e <strong>suporte tira-dúvidas direto comigo no WhatsApp</strong>.</p>
+        <div class="btns">
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1%2C%20Prof.%20Bruno!%20Quero%20garantir%20minha%20vaga%20no%20Curso%20Online%20de%20Matem%C3%A1tica%20B%C3%A1sica%20na%20Black%20Friday%20por%20R%24%20100%20no%20Pix." target="_blank" rel="noopener">⚡ Comprar no Pix (R$ 100 · WhatsApp)</a>
+          <a class="btn s" href="SEU_LINK_PAGBANK_AQUI" target="_blank" rel="noopener">💳 Parcelar no Cartão (PagBank)</a>
         </div>
-        <a class="btn z sm" href="https://wa.me/5521973803201?text=Ol%C3%A1%2C%20Prof.%20Bruno!%20Sou%20aluno%20do%20Curso%20Online%20de%20Matem%C3%A1tica%20B%C3%A1sica%20e%20tenho%20uma%20d%C3%BAvida." target="_blank" rel="noopener">💬 Tirar Dúvida no WhatsApp</a>
       </div>
 
-      <!-- AVISO DE ORIENTAÇÃO AO ALUNO -->
-      <div class="info-banner">
-        <strong>📌 Como estudar este curso:</strong> Siga a ordem numérica dos módulos. Em cada aula, baixe primeiro o <strong>PDF (Teoria + Questões)</strong> e acompanhe a resolução passo a passo na <strong>Videoaula</strong>. Os módulos finais (18 a 21) estão em fase final de gravação e serão liberados semanalmente aqui mesmo.
+      <!-- 3 PILARES DO CURSO -->
+      <div class="grid">
+        <div class="card">
+          <div class="ico">🎯</div>
+          <h3>Didática Anti-Decoreba</h3>
+          <p>Nada de pular etapas no quadro. Você aprende o raciocínio lógico desde as 4 operações até questões de prova.</p>
+        </div>
+        <div class="card">
+          <div class="ico">📄</div>
+          <h3>PDF em Todas as Aulas</h3>
+          <p>Cada aula acompanha material em PDF com teoria direta ao ponto e todas as questões abordadas nas videoaulas.</p>
+        </div>
+        <div class="card">
+          <div class="ico">💬</div>
+          <h3>WhatsApp Direto com o Prof.</h3>
+          <p>Travou em algum exercício? Você manda sua dúvida direto no meu WhatsApp a qualquer tempo — sem robô ou monitor.</p>
+        </div>
       </div>
 
-      <!-- LISTA DOS 21 MÓDULOS -->
-      <div class="mod-grid">
-
-        <!-- MÓDULO 01 -->
-        <div class="mod-card" id="card-mod-01">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 01 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="01" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>As Quatro Operações Fundamentais</h3>
-          <p>Adição, Subtração, Multiplicação e Divisão; Expressões Numéricas e Problemas Clássicos.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_01" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_01" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 02 -->
-        <div class="mod-card" id="card-mod-02">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 02 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="02" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Divisibilidade, Números Primos, MMC e MDC</h3>
-          <p>Critérios de divisibilidade, fatoração em números primos, múltiplos, divisores, MMC e MDC.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_02" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_02" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 03 -->
-        <div class="mod-card" id="card-mod-03">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 03 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="03" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Números Inteiros – Operações</h3>
-          <p>Conjunto dos números inteiros, módulo, números opostos e regras de sinais sem erro.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_03" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_03" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 04 -->
-        <div class="mod-card" id="card-mod-04">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 04 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="04" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Números Racionais – Frações e Decimais</h3>
-          <p>Operações com frações, números decimais, geratriz de dízimas periódicas e problemas clássicos.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_04" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_04" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 05 -->
-        <div class="mod-card" id="card-mod-05">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 05 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="05" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Sistema Métrico Decimal</h3>
-          <p>Conversões de unidades de comprimento, superfície (área), volume, capacidade e massa.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_05" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_05" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 06 -->
-        <div class="mod-card" id="card-mod-06">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 06 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="06" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Razões, Proporções e Regras de Três</h3>
-          <p>Razão e proporção, divisão diretamente e inversamente proporcional, regra de três simples e composta.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_06" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_06" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 07 -->
-        <div class="mod-card" id="card-mod-07">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 07 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="07" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Porcentagem e Juros</h3>
-          <p>Cálculo porcentual rápido, aumentos e descontos sucessivos, juros simples e compostos básicos.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_07" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_07" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 08 -->
-        <div class="mod-card" id="card-mod-08">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 08 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="08" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Polinômios, Produtos Notáveis e Fatoração</h3>
-          <p>Operações algébricas, quadrado da soma/diferença, diferença de quadrados e fatoração algébrica.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_08" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_08" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 09 -->
-        <div class="mod-card" id="card-mod-09">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 09 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="09" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Equações e Sistemas do 1º Grau</h3>
-          <p>Resolução de equações do 1º grau, sistemas lineares (adição e substituição) e problemas contextualizados.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_09" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_09" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 10 -->
-        <div class="mod-card" id="card-mod-10">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 10 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="10" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Conjuntos Numéricos, Potências e Raízes</h3>
-          <p>Propriedades da potenciação, radiciação, simplificação de radicais e racionalização de denominadores.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_10" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_10" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 11 -->
-        <div class="mod-card" id="card-mod-11">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 11 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="11" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Equações do 2º Grau</h3>
-          <p>Equações completas e incompletas, fórmula resolutiva, discriminante, soma e produto e biquadradas.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_11" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_11" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 12 -->
-        <div class="mod-card" id="card-mod-12">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 12 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="12" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Conjuntos e Funções</h3>
-          <p>Operações entre conjuntos, plano cartesiano, definição de função, domínio, contradomínio e imagem.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_12" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_12" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 13 -->
-        <div class="mod-card" id="card-mod-13">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 13 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="13" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Função do 1º Grau (Função Afim)</h3>
-          <p>Coeficientes angular e linear, raiz da função, construção de gráficos, estudo do sinal e problemas.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_13" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_13" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 14 -->
-        <div class="mod-card" id="card-mod-14">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 14 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="14" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Função do 2º Grau (Função Quadrática)</h3>
-          <p>Concavidade, raízes, vértice da parábola, valor máximo e mínimo e análise gráfica em provas.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_14" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_14" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 15 -->
-        <div class="mod-card" id="card-mod-15">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 15 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="15" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Progressões Aritmética e Geométrica (PA e PG)</h3>
-          <p>Termo geral, propriedades dos termos, soma dos termos finitos e soma da PG infinita.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_15" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_15" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 16 -->
-        <div class="mod-card" id="card-mod-16">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 16 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="16" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Análise Combinatória</h3>
-          <p>Princípio Fundamental da Contagem (PFC), fatorial, permutações, arranjos e combinações simples.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_16" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_16" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 17 -->
-        <div class="mod-card" id="card-mod-17">
-          <div class="mod-top">
-            <span class="mod-badge">Módulo 17 · Liberado</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="17" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Probabilidade</h3>
-          <p>Espaço amostral, evento, probabilidade da união, probabilidade condicional e eventos independentes.</p>
-          <div class="mod-actions">
-            <a class="btn a sm" href="LINK_VIDEO_MODULO_17" target="_blank" rel="noopener">📺 Assistir Aula</a>
-            <a class="btn z sm" href="LINK_PDF_MODULO_17" target="_blank" rel="noopener">📄 Baixar PDF</a>
-          </div>
-        </div>
-
-        <!-- MÓDULO 18 (EM GRAVAÇÃO) -->
-        <div class="mod-card" id="card-mod-18">
-          <div class="mod-top">
-            <span class="mod-badge soon">Módulo 18 · Em gravação</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="18" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Semelhança de Triângulos</h3>
-          <p>Teorema de Tales, casos de semelhança de triângulos e razão entre áreas de figuras semelhantes.</p>
-          <div class="mod-actions">
-            <span class="btn disabled sm">⏳ Aula em edição · Liberação em breve</span>
-          </div>
-        </div>
-
-        <!-- MÓDULO 19 (EM GRAVAÇÃO) -->
-        <div class="mod-card" id="card-mod-19">
-          <div class="mod-top">
-            <span class="mod-badge soon">Módulo 19 · Em gravação</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="19" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Teorema de Pitágoras</h3>
-          <p>Triângulos pitagóricos, diagonal do quadrado, altura do triângulo equilátero e aplicações.</p>
-          <div class="mod-actions">
-            <span class="btn disabled sm">⏳ Aula em edição · Liberação em breve</span>
-          </div>
-        </div>
-
-        <!-- MÓDULO 20 (EM GRAVAÇÃO) -->
-        <div class="mod-card" id="card-mod-20">
-          <div class="mod-top">
-            <span class="mod-badge soon">Módulo 20 · Em gravação</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="20" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Relações Métricas e Trigonométricas no Triângulo Retângulo</h3>
-          <p>Projeções, altura relativa à hipotenusa, seno, cosseno, tangente e ângulos notáveis (30°, 45° e 60°).</p>
-          <div class="mod-actions">
-            <span class="btn disabled sm">⏳ Aula em edição · Liberação em breve</span>
-          </div>
-        </div>
-
-        <!-- MÓDULO 21 (EM GRAVAÇÃO) -->
-        <div class="mod-card" id="card-mod-21">
-          <div class="mod-top">
-            <span class="mod-badge soon">Módulo 21 · Em gravação</span>
-            <label class="check-wrap"><input type="checkbox" data-mod="21" onchange="toggleModulo(this)"> Concluído</label>
-          </div>
-          <h3>Áreas e Volumes</h3>
-          <p>Áreas das principais figuras planas (quadrado, retângulo, triângulo, trapézio, círculo) e volumes de sólidos.</p>
-          <div class="mod-actions">
-            <span class="btn disabled sm">⏳ Aula em edição · Liberação em breve</span>
-          </div>
-        </div>
-
+      <!-- AVISO DE TRANSPARÊNCIA DOS 80% -->
+      <div class="bf-warn">
+        <strong>⚠️ Por que este curso custa apenas R$ 100 nesta Black Friday? (Transparência Total)</strong><br>
+        Hoje, <strong>mais de 80% de todo o curso já está gravado e liberado</strong> na área do aluno (cobrindo das operações básicas até o bloco de Funções) para você começar a estudar hoje mesmo. Os módulos finais (Combinatória, Probabilidade e Geometria) estão em reta final de gravação e serão publicados semanalmente na plataforma <strong>sem nenhum custo adicional</strong>. Por ser Lote Fundador de Black Friday, você garante o acesso completo por um pagamento único de R$ 100.
       </div>
 
-      <!-- RODAPÉ DE SUPORTE -->
-      <div style="text-align:center;margin-top:32px;padding:24px;background:var(--card);border:1px solid var(--line);border-radius:16px">
-        <h3 style="margin:0 0 6px">Ficou com dúvida em algum exercício?</h3>
-        <p style="margin:0 0 14px;color:var(--muted);font-size:.94rem">Mande a foto da questão ou o número da aula diretamente para mim no WhatsApp.</p>
-        <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1%2C%20Prof.%20Bruno!%20Sou%20aluno%20do%20Curso%20Online%20de%20Matem%C3%A1tica%20B%C3%A1sica%20e%20preciso%20de%20ajuda%20em%20uma%20quest%C3%A3o." target="_blank" rel="noopener">💬 Falar com o Prof. Bruno Leal</a>
+      <!-- EMENTA COMPLETA DOS 21 MÓDULOS -->
+      <div style="margin-top:28px">
+        <h2>Ementa Completa do Curso (21 Módulos)</h2>
+        <p class="lead">Um roteiro progressivo para construir sua base sólida para concursos públicos, escolas técnicas e carreiras militares:</p>
+
+        <div class="ementa-list">
+          <div class="ementa-item"><span class="ementa-num">01</span><span><strong>As Quatro Operações Fundamentais:</strong> Adição, Subtração, Multiplicação e Divisão; Expressões Numéricas, Problemas Clássicos</span></div>
+          <div class="ementa-item"><span class="ementa-num">02</span><span><strong>Divisibilidade e Fatoração:</strong> Números Primos, Múltiplos e Divisores, MMC e MDC</span></div>
+          <div class="ementa-item"><span class="ementa-num">03</span><span><strong>Números Inteiros:</strong> Operações e regras de sinais sem erro</span></div>
+          <div class="ementa-item"><span class="ementa-num">04</span><span><strong>Números Racionais:</strong> Frações, Números Decimais, Dízimas Periódicas e Problemas Clássicos</span></div>
+          <div class="ementa-item"><span class="ementa-num">05</span><span><strong>Sistema Métrico Decimal:</strong> Conversões de unidades de medida</span></div>
+          <div class="ementa-item"><span class="ementa-num">06</span><span><strong>Proporcionalidade:</strong> Razões, Proporções, Divisão Proporcional e Regras de Três</span></div>
+          <div class="ementa-item"><span class="ementa-num">07</span><span><strong>Porcentagem e Juros:</strong> Cálculo rápido e resolução de problemas de prova</span></div>
+          <div class="ementa-item"><span class="ementa-num">08</span><span><strong>Cálculo Algébrico:</strong> Polinômios, Produtos Notáveis e Fatoração</span></div>
+          <div class="ementa-item"><span class="ementa-num">09</span><span><strong>1º Grau:</strong> Equações e Sistemas do 1º Grau</span></div>
+          <div class="ementa-item"><span class="ementa-num">10</span><span><strong>Conjuntos Numéricos, Potências e Raízes:</strong> Propriedades e radicais</span></div>
+          <div class="ementa-item"><span class="ementa-num">11</span><span><strong>Equações do 2º Grau:</strong> Completas, incompletas e relações entre raízes</span></div>
+          <div class="ementa-item"><span class="ementa-num">12</span><span><strong>Conjuntos e Funções:</strong> Conceitos fundamentais, domínio e imagem</span></div>
+          <div class="ementa-item"><span class="ementa-num">13</span><span><strong>Função do 1º Grau:</strong> Estudo completo, gráficos e aplicações</span></div>
+          <div class="ementa-item"><span class="ementa-num">14</span><span><strong>Função do 2º Grau:</strong> Parábola, vértice, máximos e mínimos</span></div>
+          <div class="ementa-item"><span class="ementa-num">15</span><span><strong>Progressões:</strong> Progressão Aritmética (PA) e Progressão Geométrica (PG)</span></div>
+          <div class="ementa-item"><span class="ementa-num">16</span><span><strong>Análise Combinatória:</strong> PFC, Arranjos, Permutações e Combinações</span></div>
+          <div class="ementa-item"><span class="ementa-num">17</span><span><strong>Probabilidade:</strong> Conceitos e resolução de questões de bancas</span></div>
+          <div class="ementa-item"><span class="ementa-num">18</span><span><strong>Semelhança de Triângulos:</strong> Proporcionalidade na geometria plana</span></div>
+          <div class="ementa-item"><span class="ementa-num">19</span><span><strong>Teorema de Pitágoras:</strong> Aplicações diretas e problemas clássicos</span></div>
+          <div class="ementa-item"><span class="ementa-num">20</span><span><strong>Triângulo Retângulo:</strong> Relações Métricas e Trigonométricas</span></div>
+          <div class="ementa-item"><span class="ementa-num">21</span><span><strong>Áreas e Volumes:</strong> Geometria Plana e Espacial essenciais</span></div>
+        </div>
       </div>
 
+      <!-- CAIXA DE OFERTA FINAL -->
+      <div class="bf-price-card">
+        <span class="tag" style="border-color:var(--zap);color:var(--zap)">CONDIÇÃO ÚNICA DE BLACK FRIDAY</span>
+        <h3 style="margin:6px 0 8px;font-size:1.3rem">Curso Completo de Matemática Básica para Concursos</h3>
+        <div class="bf-old-price">De R$ 297,00 por</div>
+        <div class="bf-new-price">R$ 100,00</div>
+        <div class="bf-pay-note">Pagamento único (sem mensalidade) · Acesso aos 21 módulos + PDFs + Suporte no WhatsApp</div>
+        <div class="btns" style="justify-content:center">
+          <a class="btn z" href="https://wa.me/5521973803201?text=Ol%C3%A1%2C%20Prof.%20Bruno!%20Quero%20pagar%20os%20R%24%20100%20no%20Pix%20e%20liberar%20meu%20acesso%20ao%20Curso%20de%20Matem%C3%A1tica%20B%C3%A1sica." target="_blank" rel="noopener">⚡ Pagar R$ 100 no Pix (WhatsApp)</a>
+          <a class="btn a" href="SEU_LINK_PAGBANK_AQUI" target="_blank" rel="noopener">💳 Pagar no Cartão (Link PagBank)</a>
+        </div>
+        <p style="margin:14px 0 0;font-size:.82rem;color:var(--muted)">Pagou no cartão pelo PagBank? Envie o comprovante no WhatsApp para liberação imediata do seu acesso.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABA 2: DIÁRIO DE CLASSE / ROTINA -->
+  <div id="tab-diario" class="tab-content">
+    <section>
+      <h2>Diário de Classe & Rotina</h2>
+      <p class="lead">Acompanhe os assuntos ministrados em sala, vídeos de apoio e apostilas para download.</p>
+
+      <!-- ADICIONAR NOVA AULA AQUI -->
+
+      <!-- REGISTRO (18/11/2026): PRÉ-MILITAR -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma Pré-militar</span>
+          <span class="diario-date">18/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Equações Exponenciais</h3>
+        <p>Estudo das propriedades de potenciação, método da redução à mesma base, fatoração em evidência e mudança de variável em questões no estilo dos concursos militares.</p>
+        <div class="diario-actions">
+          <a class="btn z sm" href="materiais/mini-ebook-equacoes-exponenciais.pdf" target="_blank" rel="noopener">📄 Abrir Mini E-book (PDF)</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://www.youtube.com/live/ZIfeCSPcmKg" target="_blank" rel="noopener">📺 Vídeo de Apoio (Live)</a>
+        </div>
+      </div>
+
+      <!-- REGISTRO (16/11/2026): 9º ANO -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma 9º ano</span>
+          <span class="diario-date">16/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Live de Revisão · Aritmética</h3>
+        <p>Revisão geral dos principais tópicos de Aritmética com resolução de questões focadas nas provas das escolas técnicas.</p>
+      </div>
+
+      <!-- REGISTRO (16/11/2026): PRÉ-MILITAR -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma Pré-militar</span>
+          <span class="diario-date">16/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Live · Princípio Fundamental da Contagem</h3>
+        <p>Estudo do Princípio Fundamental da Contagem (PFC) com resolução comentada de questões de concursos de 2026 no estilo das provas militares.</p>
+        <div class="diario-actions">
+          <a class="btn z sm" href="https://drive.google.com/file/d/1UPirDcXryX-7CYtCLCoxB0s363Q6f1mp/preview" target="_blank" rel="noopener">📄 Abrir Mini E-book (PDF)</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://youtu.be/LN-3tmSEXPY" target="_blank" rel="noopener">📺 Vídeo de Apoio (PFC)</a>
+        </div>
+      </div>
+
+      <!-- REGISTRO (12/11/2026): 9º ANO -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma 9º ano</span>
+          <span class="diario-date">12/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Raciocínio Lógico · Verdades e Mentiras</h3>
+        <p>Treino intensivo com resolução passo a passo de questões de raciocínio lógico (técnica das suposições) focadas nas provas das escolas técnicas.</p>
+        <div class="diario-actions">
+          <a class="btn z sm" href="https://docs.google.com/document/d/1KLQqH-F04Bu-bEl5SEGroBt6aWVESwqIM_Arqk7Nyiw/preview" target="_blank" rel="noopener">📄 Abrir E-book da Aula</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://youtu.be/KitvDXB2iAs" target="_blank" rel="noopener">📺 Vídeo · Parte 1</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://youtu.be/x1vgzf1pm3c" target="_blank" rel="noopener">📺 Vídeo · Parte 2</a>
+        </div>
+      </div>
+
+      <!-- REGISTRO (12/11/2026): PRÉ-MILITAR -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma Pré-militar</span>
+          <span class="diario-date">12/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Raciocínio Lógico · Verdades e Mentiras</h3>
+        <p>Treino intensivo com resolução passo a passo de questões de raciocínio lógico direcionadas para os concursos militares.</p>
+        <div class="diario-actions">
+          <a class="btn z sm" href="https://docs.google.com/document/d/1KLQqH-F04Bu-bEl5SEGroBt6aWVESwqIM_Arqk7Nyiw/preview" target="_blank" rel="noopener">📄 Abrir E-book da Aula</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://youtu.be/KitvDXB2iAs" target="_blank" rel="noopener">📺 Vídeo · Parte 1</a>
+          <a class="btn s sm" style="background:var(--accent);color:#fff;border:none" href="https://youtu.be/x1vgzf1pm3c" target="_blank" rel="noopener">📺 Vídeo · Parte 2</a>
+        </div>
+      </div>
+
+      <!-- REGISTRO (11/11/2026): 9º ANO -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma 9º ano</span>
+          <span class="diario-date">11/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Resolução de Provas Anteriores · IFRJ/2016</h3>
+        <p>Resolvemos diversas questões da prova do processo seletivo IFRJ/2016, reforçando a prática e o estilo de cobrança da banca.</p>
+      </div>
+
+      <!-- REGISTRO (11/11/2026): PRÉ-MILITAR -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Turma Pré-militar</span>
+          <span class="diario-date">11/11/2026 · Prof. Bruno Leal</span>
+        </div>
+        <h3>Proporcionalidade · Resolução de Questões PMSP</h3>
+        <p>Treino intensivo focado em Proporcionalidade com a resolução de diversas questões da banca da Polícia Militar do Estado de São Paulo.</p>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ABA 3: O PROFESSOR -->
+  <div id="tab-professor" class="tab-content">
+    <section>
+      <h2>Conheça o professor</h2>
+      <div class="prof" style="margin-top:14px">
+        <img class="main" alt="Prof. Bruno Leal explicando matéria em sala de aula" src="foto-aula.jpg">
+        <div>
+          <div class="who"><img alt="Retrato do Prof. Bruno Leal" src="foto-retrato.jpg"><div><b>Prof. Bruno Leal</b><span>Professor de Matemática e Português</span></div></div>
+          <p>Didática simples e objetiva, para que todos aprendam, inclusive quem sente que não tem base.</p>
+          <p>Aulas presenciais com acompanhamento de perto e muita prática com questões no estilo das provas.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" style="border-radius:16px;margin-bottom:20px;">
+      <div style="padding:20px;">
+        <h2>Como funciona o curso</h2>
+        <p class="lead">Aprender de verdade, e não só decorar fórmulas.</p>
+        <div class="grid">
+          <div class="card"><div class="ico">🎓</div><h3>Professor experiente</h3><p>Prof. Bruno Leal ensina há 29 anos e sabe onde os alunos mais travam.</p></div>
+          <div class="card"><div class="ico">📝</div><h3>Questões de provas</h3><p>Treino com questões no estilo das provas, resolvidas passo a passo.</p></div>
+          <div class="card"><div class="ico">📚</div><h3>Todas as matérias</h3><p>Matemática, Português, História, Geografia, Física, Inglês e as demais matérias cobradas nas provas, no mesmo curso.</p></div>
+          <div class="card"><div class="ico">⏱️</div><h3>Simulados</h3><p>Pratique e veja a resolução do professor logo após responder.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABA 4: BIZUS DO DR. BIZU -->
+  <div id="tab-bizu" class="tab-content">
+    <section>
+      <h2>💡 Bizus do Dr. Bizu</h2>
+      <p class="lead">Atalhos diretos ao ponto para você ganhar velocidade e não perder tempo na hora da prova.</p>
+
+      <!-- ADICIONAR NOVO BIZU AQUI -->
+
+      <!-- BIZU #01 -->
+      <div class="diario-card">
+        <div class="diario-header">
+          <span class="tag">Aritmética · Cálculo Mental</span>
+          <span class="diario-date">Bizu #01</span>
+        </div>
+        <h3>Divisão rápida por 5 (sem armar a conta)</h3>
+        <p>Nunca arme a divisão por 5 na prova. Como <strong>5 = 10 ÷ 2</strong>, dividir qualquer número por 5 é a mesma coisa que <strong>dobrar o número e dividir por 10</strong>:</p>
+        <div class="bizu-box">
+          <strong>1º passo:</strong> Dobre o dividendo (multiplique por 2).<br>
+          <strong>2º passo:</strong> Se terminar em <strong>0</strong>, corte o zero. Se não terminar em zero, ande <strong>1 casa decimal</strong> para a esquerda e coloque a vírgula.<br><br>
+          <strong>Tipo 1 — Dobro terminando em zero (corta o zero):</strong><br>
+- <strong>240 ÷ 5</strong> → dobro de 240 é 480 → corta o zero = <strong>48</strong><br>
+- <strong>35 ÷ 5</strong> → dobro de 35 é 70 → corta o zero = <strong>7</strong><br>
+- <strong>125 ÷ 5</strong> → dobro de 125 é 250 → corta o zero = <strong>25</strong><br>
+- <strong>430 ÷ 5</strong> → dobro de 430 é 860 → corta o zero = <strong>86</strong><br><br>
+          <strong>Tipo 2 — Dobro sem terminar em zero (1 casa decimal):</strong><br>
+- <strong>73 ÷ 5</strong> → dobro de 73 é 146 → 1 casa decimal = <strong>14,6</strong><br>
+- <strong>42 ÷ 5</strong> → dobro de 42 é 84 → 1 casa decimal = <strong>8,4</strong><br>
+- <strong>114 ÷ 5</strong> → dobro de 114 é 228 → 1 casa decimal = <strong>22,8</strong><br>
+- <strong>319 ÷ 5</strong> → dobro de 319 é 638 → 1 casa decimal = <strong>63,8</strong>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <!-- ABA: MATERIAL GRATUITO -->
+  <div id="tab-materiais" class="tab-content">
+    <section>
+      <h2>Provas e apostilas para download</h2>
+      <p class="lead">Provas anteriores e materiais de estudo do Prof. Bruno Leal.</p>
+      <div class="grid">
+        <div class="card"><div class="ico">📈</div><h3>Mini E-book · Equações Exponenciais</h3><p>Propriedades de potenciação, redução à mesma base, evidência, mudança de variável e exercícios gabaritados.</p>
+          <a class="btn z" style="margin-top:14px" href="materiais/mini-ebook-equacoes-exponenciais.pdf" target="_blank" rel="noopener">Abrir PDF</a></div>
+        <div class="card"><div class="ico">🔢</div><h3>Mini E-book · Princípio Fundamental da Contagem</h3><p>Análise Combinatória: método prático do "E" multiplicativo, questões resolvidas de 2026 e exercícios gabaritados.</p>
+          <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1UPirDcXryX-7CYtCLCoxB0s363Q6f1mp/preview" target="_blank" rel="noopener">Abrir PDF</a></div>
+        <div class="card"><div class="ico">🧠</div><h3>E-book · Verdades e Mentiras</h3><p>Raciocínio Lógico: teoria completa do método das suposições, 5 questões resolvidas e exercícios de fixação.</p>
+          <a class="btn z" style="margin-top:14px" href="https://docs.google.com/document/d/1KLQqH-F04Bu-bEl5SEGroBt6aWVESwqIM_Arqk7Nyiw/preview" target="_blank" rel="noopener">Abrir e-book</a></div>
+        <div class="card"><div class="ico">📖</div><h3>Português – Aula 1 (Soluções)</h3><p>Análise Sintática: 57 exercícios resolvidos sobre sujeito, objetos, adjuntos e apostos em PDF.</p>
+          <a class="btn z" style="margin-top:14px" href="materiais/portugues-aula1.pdf" target="_blank" rel="noopener">Abrir apostila</a></div>
+        <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2026</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
+          <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/19OGPCo2B3lNJAvI1JjSAFG6kZKIE-TNH/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
+        <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2025</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
+          <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1Zs6NdXUk7gQ9u3_Esr6MWPz9Qhw-rQ3l/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
+        <div class="card"><div class="ico">📄</div><h3>Prova do IFRJ 2024</h3><p>Prova anterior do processo seletivo do IFRJ, em PDF.</p>
+          <a class="btn z" style="margin-top:14px" href="https://drive.google.com/file/d/1JE2H-0yq4SGdcQ2abIHte7M2TV-BSoVH/view?usp=drivesdk" target="_blank" rel="noopener">Abrir prova</a></div>
+        <div class="card"><div class="ico">📥</div><h3>Mais provas em breve</h3><p>Estamos organizando outros anos e apostilas. Quer ser avisado quando forem liberados?</p>
+          <a class="btn z" style="margin-top:14px" href="https://wa.me/5521973803201?text=Ol%C3%A1!%20Quero%20ser%20avisado%20quando%20as%20apostilas%20e%20provas%20estiverem%20dispon%C3%ADveis." target="_blank" rel="noopener">Quero ser avisado</a></div>
+      </div>
     </section>
   </div>
 
 </main>
 
 <footer>
-  © Leal Concursos · Curso Online de Matemática Básica · Prof. Bruno Leal
+  © Leal Concursos · Vila São Luís, Duque de Caxias – RJ · Prof. Bruno Leal 
+  <div style="margin-top:10px">
+    <img src="https://hits.sh/profbrunoleal.github.io/LealConcursos.svg?style=flat-square&label=acessos&color=1f4fd8&labelColor=0f2a6b" alt="Contador de acessos">
+  </div>
 </footer>
 
+<!-- JAVASCRIPT DE TROCA DE ABAS -->
 <script>
-// DEFINA AQUI A SENHA DE ACESSO DOS ALUNOS:
-const SENHA_ACESSO = "LEAL2026BF";
-const STORAGE_AUTH = "leal_curso_basico_auth";
-const STORAGE_PROG = "leal_curso_basico_prog";
-
-function verificarSenha(e) {
-  e.preventDefault();
-  const digitada = document.getElementById("senha-input").value.trim();
-  const erro = document.getElementById("erro-senha");
-  if (digitada === SENHA_ACESSO) {
-    localStorage.setItem(STORAGE_AUTH, "ok");
-    erro.style.display = "none";
-    liberarArea();
-  } else {
-    erro.style.display = "block";
+function openTab(evt, tabId) {
+  var contents = document.getElementsByClassName("tab-content");
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].classList.remove("active");
+  }
+  var buttons = document.getElementsByClassName("tab-btn");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("active");
+  }
+  document.getElementById(tabId).classList.add("active");
+  if (evt && evt.currentTarget) {
+    evt.currentTarget.classList.add("active");
   }
 }
 
-function liberarArea() {
-  document.getElementById("tela-login").style.display = "none";
-  document.getElementById("area-aluno").style.display = "block";
-  document.getElementById("btn-sair").style.display = "inline-flex";
-  carregarProgresso();
-}
-
-function fazerLogout() {
-  localStorage.removeItem(STORAGE_AUTH);
-  document.getElementById("area-aluno").style.display = "none";
-  document.getElementById("btn-sair").style.display = "none";
-  document.getElementById("tela-login").style.display = "block";
-  document.getElementById("senha-input").value = "";
-}
-
-function carregarProgresso() {
-  const salvos = JSON.parse(localStorage.getItem(STORAGE_PROG) || "[]");
-  const checks = document.querySelectorAll('input[type="checkbox"][data-mod]');
-  checks.forEach(chk => {
-    const id = chk.getAttribute("data-mod");
-    const card = document.getElementById("card-mod-" + id);
-    if (salvos.includes(id)) {
-      chk.checked = true;
-      if (card) card.classList.add("done");
-    } else {
-      chk.checked = false;
-      if (card) card.classList.remove("done");
+function switchToTab(tabId) {
+  var contents = document.getElementsByClassName("tab-content");
+  for (var i = 0; i < contents.length; i++) {
+    contents[i].classList.remove("active");
+  }
+  var buttons = document.getElementsByClassName("tab-btn");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].classList.remove("active");
+    if (buttons[i].getAttribute("data-tab") === tabId) {
+      buttons[i].classList.add("active");
     }
-  });
-  atualizarBarra(salvos.length, checks.length);
-}
-
-function toggleModulo(chk) {
-  const id = chk.getAttribute("data-mod");
-  let salvos = JSON.parse(localStorage.getItem(STORAGE_PROG) || "[]");
-  const card = document.getElementById("card-mod-" + id);
-  if (chk.checked) {
-    if (!salvos.includes(id)) salvos.push(id);
-    if (card) card.classList.add("done");
-  } else {
-    salvos = salvos.filter(item => item !== id);
-    if (card) card.classList.remove("done");
   }
-  localStorage.setItem(STORAGE_PROG, JSON.stringify(salvos));
-  const total = document.querySelectorAll('input[type="checkbox"][data-mod]').length;
-  atualizarBarra(salvos.length, total);
+  document.getElementById(tabId).classList.add("active");
+  document.getElementById("barra-abas").scrollIntoView({ behavior: "smooth" });
 }
 
-function atualizarBarra(feitos, total) {
-  const pct = total > 0 ? Math.round((feitos / total) * 100) : 0;
-  document.getElementById("prog-texto").textContent = feitos + " de " + total + " módulos concluídos (" + pct + "%)";
-  document.getElementById("prog-barra").style.width = pct + "%";
-}
-
+// Permite abrir direto na aba do curso se o link terminar com #curso-online
 window.addEventListener("DOMContentLoaded", function() {
-  if (localStorage.getItem(STORAGE_AUTH) === "ok") {
-    liberarArea();
+  if (window.location.hash === "#curso-online") {
+    switchToTab("tab-curso-online");
   }
 });
 </script>
